@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#faf9f6]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}Premium hardwood, luxury vinyl plank, laminate, and custom tile installation across Toronto and GTA. JKN Flooring - Intelligent Architectural Surfaces.{% endblock %}">
+  <title>{% block title %}JKN Flooring | Intelligent Architectural Surfaces{% endblock %}</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Outfit (Headings) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Config & Fluid Utilities -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Outfit"', "sans-serif"],
+            sans: ['"Plus Jakarta Sans"', "sans-serif"],
+          },
+          colors: {
+            surface: "#faf9f6", // Luxurious Alabaster / Warm Cream
+            obsidian: "#1a1a1a", // Deep Classy Charcoal
+            secondary: "#6e6e73", // Apple-style Muted Gray
+            accent: "#8e7256", // Matte Architectural Bronze
+            accentDark: "#6b543e", // Burnished Earth
+            accentLight: "#e5ded4", // Soft Linen
+            glass: "rgba(250, 249, 246, 0.8)",
+            "glass-dark": "rgba(26, 26, 26, 0.9)",
+          },
+          boxShadow: {
+            glass: "0 8px 30px rgba(0, 0, 0, 0.03)",
+            "glass-inner": "inset 0 0 0 1px rgba(26, 26, 26, 0.03), 0 8px 30px rgba(0, 0, 0, 0.03)",
+            float: "0 20px 40px rgba(0, 0, 0, 0.04)",
+          },
+          letterSpacing: {
+            tightest: "-.04em",
+            tight: "-.01em",
+          },
+          fontSize: {
+            "fluid-hero": "clamp(3rem, 7vw, 8.5rem)",
+            "fluid-h2": "clamp(2rem, 4vw, 4.5rem)",
+            "fluid-h3": "clamp(1.35rem, 2.5vw, 2.25rem)",
+            "fluid-p": "clamp(0.95rem, 1.15vw, 1.25rem)",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    ::selection {
+      background-color: #8e7256;
+      color: #faf9f6;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #faf9f6;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(142, 114, 86, 0.2);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(142, 114, 86, 0.4);
+    }
+
+    /* 3D Soft Reveal */
+    .blur-reveal {
+      opacity: 0;
+      filter: blur(15px);
+      transform: translateY(30px);
+      transition:
+        opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, filter, transform;
+    }
+    .blur-reveal.active {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+
+    /* Image Physics */
+    .img-container {
+      overflow: hidden;
+      position: relative;
+    }
+    .img-zoom {
+      transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+    .img-container:hover .img-zoom {
+      transform: scale(1.03);
+    }
+
+    /* Minimalist Shimmer */
+    .shimmer {
+      background: #f2f0ea;
+      background-image: linear-gradient(
+        to right,
+        #f2f0ea 0%,
+        #e5ded4 20%,
+        #f2f0ea 40%,
+        #f2f0ea 100%
+      );
+      background-repeat: no-repeat;
+      background-size: 800px 100%;
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: placeholderShimmer;
+      animation-timing-function: linear;
+    }
+    @keyframes placeholderShimmer {
+      0% { background-position: -468px 0; }
+      100% { background-position: 468px 0; }
+    }
+
+    .slider-container {
+      touch-action: pan-y;
+    }
+  </style>
+</head>
+<body class="text-obsidian antialiased overflow-x-hidden relative bg-[#faf9f6] min-h-screen flex flex-col font-sans">
+
+  <!-- NAVBAR -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-40 transition-all duration-700 pt-4 sm:pt-6 px-4 sm:px-8 pointer-events-none w-full max-w-[120rem] mx-auto">
+    <div class="flex items-center justify-between w-full">
+      <!-- Minimalist Logo -->
+      <div class="pointer-events-auto bg-glass backdrop-blur-xl shadow-glass-inner border border-black/5 rounded-full px-5 sm:px-6 py-2.5 flex items-center transition-all hover:scale-[1.02] duration-300 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <span class="font-heading font-semibold text-base sm:text-lg tracking-tight flex items-center gap-2 text-obsidian">
+          JKN<span class="font-normal text-secondary font-sans text-xs tracking-wider uppercase ml-1">Flooring</span>
+        </span>
+      </div>
+
+      <!-- Minimalist AI Search Trigger -->
+      <button onclick="toggleChatAgent(true)" class="pointer-events-auto hidden md:flex items-center gap-3 bg-glass backdrop-blur-xl shadow-glass-inner rounded-full py-2 px-4 border border-black/5 hover:bg-white hover:border-black/10 transition-all group">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
+        <span class="text-xs font-semibold text-secondary tracking-tight group-hover:text-obsidian transition-colors truncate">Ask AI Concierge...</span>
+        <div class="ml-8 flex items-center gap-0.5 bg-black/[0.03] px-1.5 py-0.5 rounded border border-black/5">
+          <span class="text-[8px] font-bold text-secondary">⌘</span>
+          <span class="text-[8px] font-bold text-secondary">K</span>
+        </div>
+      </button>
+
+      <!-- Contact CTA -->
+      <div class="pointer-events-auto hidden sm:flex items-center gap-5 bg-glass backdrop-blur-xl shadow-glass-inner border border-black/5 rounded-full p-1 pl-5">
+        <a href="tel:9058404019" class="text-xs font-bold tracking-tight text-secondary hover:text-obsidian transition-colors hidden lg:block">
+          (905) 840-4019
+        </a>
+        <a href="#contact" class="bg-obsidian text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide hover:bg-black/90 transition-all duration-300 shadow-sm whitespace-nowrap">
+          Get Estimate
+        </a>
+      </div>
+
+      <!-- Mobile triggers -->
+      <div class="pointer-events-auto sm:hidden flex items-center gap-1.5">
+        <button onclick="toggleChatAgent(true)" class="bg-glass backdrop-blur-xl shadow-glass-inner p-2.5 rounded-full text-obsidian border border-black/5 transition-all">
+          <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i>
+        </button>
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="bg-glass backdrop-blur-xl shadow-glass-inner p-2.5 rounded-full text-obsidian border border-black/5 transition-all">
+          <i data-lucide="menu" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-[#faf9f6]/98 backdrop-blur-3xl flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-all duration-500">
+    <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-2.5 rounded-full bg-glass shadow-glass-inner text-obsidian border border-black/5 transition-all">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+    <a href="#vision-tool" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">AI Visualizer</a>
+    <a href="#transformations" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Transformations</a>
+    <a href="#contact" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Contact</a>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white text-obsidian py-16 px-4 sm:px-8 border-t border-black/[0.04] relative z-25 font-sans">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-8 mb-12">
+      <div>
+        <span class="font-heading font-semibold text-xl tracking-tight flex items-center gap-2 text-obsidian mb-6">
+          JKN<span class="font-normal text-secondary font-sans text-xs tracking-wider uppercase">Flooring</span>
+        </span>
+        <p class="text-secondary font-medium text-sm leading-relaxed max-w-sm">
+          Architectural grade surface contractors. Specialize in wide-plank hardwood, luxury vinyl, laminates, and stone tile layouts. Servicing Toronto & the GTA.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-heading font-bold uppercase tracking-widest text-accent mb-6">Services</h4>
+        <ul class="flex flex-col gap-3 font-semibold text-sm text-secondary">
+          <li><a href="#contact" class="hover:text-obsidian transition-colors">Hardwood Installations</a></li>
+          <li><a href="#contact" class="hover:text-obsidian transition-colors">Luxury Vinyl Plank (LVP)</a></li>
+          <li><a href="#contact" class="hover:text-obsidian transition-colors">Premium Laminates</a></li>
+          <li><a href="#contact" class="hover:text-obsidian transition-colors">Architectural Custom Tiling</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-heading font-bold uppercase tracking-widest text-accent mb-6">Toronto Office</h4>
+        <p class="font-semibold text-sm text-secondary mb-2">
+          Toronto & Greater Toronto Area, Ontario
+        </p>
+        <p class="font-semibold text-sm text-secondary mb-2">
+          (905) 840-4019
+        </p>
+        <p class="font-semibold text-sm text-secondary">
+          info@jknflooring.ca
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto pt-8 border-t border-black/[0.04] flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-secondary gap-4">
+      <p>&copy; 2026 JKN Flooring Toronto. All rights reserved.</p>
+      <div class="flex gap-4 items-center">
+        <span>GTA Professional Contractors</span>
+        <span class="text-black/10">&middot;</span>
+        <span class="text-accent flex items-center gap-1"><i data-lucide="cpu" class="w-3 h-3"></i> Gemini AI concierge</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DOCKABLE SLIDE-OUT AI ARCHITECTURAL AGENT CHAT PANEL (Clean Alabaster Concierge style) -->
+  <div id="ai-chat-panel" class="fixed inset-y-0 right-0 z-50 w-full sm:w-[420px] bg-white text-obsidian border-l border-black/5 shadow-2xl flex flex-col translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+    <!-- Header -->
+    <div class="p-6 border-b border-black/5 flex items-center justify-between bg-surface/50">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-accent/5 flex items-center justify-center text-accent border border-accent/15">
+          <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-semibold text-sm tracking-tight text-obsidian">AI Concierge</h3>
+          <p class="text-[9px] font-bold text-accent uppercase tracking-widest flex items-center gap-1.5 font-sans">
+            <span class="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span> Online &bull; Gemini Integrated
+          </p>
+        </div>
+      </div>
+      <button onclick="toggleChatAgent(false)" class="p-2 rounded-full hover:bg-black/5 transition-colors text-secondary hover:text-obsidian">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div id="ai-chat-messages" class="flex-grow p-6 overflow-y-auto flex flex-col gap-4 font-sans">
+      <!-- Agent Intro Message -->
+      <div class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter">
+        <div class="text-[9px] font-bold tracking-widest text-secondary uppercase font-sans">AI CONCIERGE</div>
+        <div class="bg-surface border border-black/[0.04] p-4 rounded-2xl rounded-tl-none font-medium text-xs sm:text-sm leading-relaxed text-secondary">
+          Welcome to JKN Flooring. I can assist with engineered hardwood specifications, waterproof luxury vinyl details, and GTA installation estimates.
+          <br><br>
+          Select a prompt to begin:
+          <ul class="list-none mt-2 flex flex-col gap-2 font-bold text-accent text-xs">
+            <li class="cursor-pointer hover:text-accentDark flex items-center gap-1" onclick="sendSuggestedMessage('Show me waterproof vinyl options')"><i data-lucide="chevron-right" class="w-3 h-3"></i> Waterproof vinyl planks</li>
+            <li class="cursor-pointer hover:text-accentDark flex items-center gap-1" onclick="sendSuggestedMessage('Tell me about engineered hardwood')"><i data-lucide="chevron-right" class="w-3 h-3"></i> Engineered hardwood specs</li>
+            <li class="cursor-pointer hover:text-accentDark flex items-center gap-1" onclick="sendSuggestedMessage('What are your installation rates?')"><i data-lucide="chevron-right" class="w-3 h-3"></i> Typical GTA costs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Suggestions Row -->
+    <div class="px-6 py-2 border-t border-black/5 bg-surface/30 flex gap-2 overflow-x-auto whitespace-nowrap text-xs font-bold scrollbar-none">
+      <button onclick="sendSuggestedMessage('Waterproof LVP')" class="px-3 py-1.5 rounded-full bg-white border border-black/5 hover:border-accent/40 hover:text-accent transition-all">Waterproof LVP</button>
+      <button onclick="sendSuggestedMessage('Premium hardwood')" class="px-3 py-1.5 rounded-full bg-white border border-black/5 hover:border-accent/40 hover:text-accent transition-all">Premium Wood</button>
+      <button onclick="sendSuggestedMessage('Warranty details')" class="px-3 py-1.5 rounded-full bg-white border border-black/5 hover:border-accent/40 hover:text-accent transition-all">Warranty Details</button>
+    </div>
+
+    <!-- Input Form -->
+    <form id="ai-chat-form" onsubmit="handleChatSubmit(event)" class="p-6 border-t border-black/5 bg-surface/50 flex items-center gap-3">
+      <input type="text" id="ai-chat-input" placeholder="Type a surface query..." class="flex-grow bg-white border border-black/5 rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-accent text-obsidian font-semibold" required autocomplete="off">
+      <button type="submit" class="bg-obsidian text-white p-3 rounded-xl hover:bg-black/90 transition-all shrink-0">
+        <i data-lucide="send" class="w-4 h-4 text-white"></i>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+    });
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobile-menu");
+      if (menu.classList.contains("opacity-0")) {
+        menu.classList.remove("opacity-0", "pointer-events-none");
+        menu.classList.add("opacity-100");
+      } else {
+        menu.classList.add("opacity-0", "pointer-events-none");
+        menu.classList.remove("opacity-100");
+      }
+    }
+
+    // Toggle slide-out AI Agent Panel
+    function toggleChatAgent(open) {
+      const panel = document.getElementById("ai-chat-panel");
+      if (open) {
+        panel.classList.remove("translate-x-full");
+      } else {
+        panel.classList.add("translate-x-full");
+      }
+    }
+
+    // Add hotkey ⌘K and Esc triggers
+    window.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        toggleChatAgent(true);
+        document.getElementById("ai-chat-input").focus();
+      }
+      if (e.key === "Escape") {
+        toggleChatAgent(false);
+      }
+    });
+
+    // Handle Quick suggested message sending
+    function sendSuggestedMessage(text) {
+      const input = document.getElementById("ai-chat-input");
+      input.value = text;
+      document.getElementById("ai-chat-form").requestSubmit();
+    }
+
+    // Handle Chat submit
+    async function handleChatSubmit(event) {
+      event.preventDefault();
+      const inputEl = document.getElementById("ai-chat-input");
+      const message = inputEl.value.trim();
+      if (!message) return;
+
+      inputEl.value = "";
+      const chatMessages = document.getElementById("ai-chat-messages");
+
+      // Append User message HTML
+      const userMsgHtml = `
+        <div class="flex flex-col gap-1 max-w-[85%] self-end chat-message-enter">
+          <div class="text-[9px] font-bold tracking-widest text-secondary uppercase text-right">You</div>
+          <div class="bg-obsidian text-white p-4 rounded-2xl rounded-tr-none font-semibold text-xs sm:text-sm leading-relaxed">
+            ${escapeHTML(message)}
+          </div>
+        </div>
+      `;
+      chatMessages.insertAdjacentHTML("beforeend", userMsgHtml);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Append Loading shimmer message
+      const loadingId = "ai-loading-" + Date.now();
+      const loadingHtml = `
+        <div id="${loadingId}" class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter">
+          <div class="text-[9px] font-bold tracking-widest text-accent uppercase">AI CONCIERGE</div>
+          <div class="bg-surface border border-black/5 p-4 rounded-2xl rounded-tl-none flex items-center gap-2">
+            <div class="w-3 h-3 border border-accent border-t-transparent rounded-full animate-spin"></div>
+            <span class="text-xs text-secondary font-bold uppercase tracking-wider">Accessing JKN specifications...</span>
+          </div>
+        </div>
+      `;
+      chatMessages.insertAdjacentHTML("beforeend", loadingHtml);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: message })
+        });
+        const result = await response.json();
+
+        // Remove loading state
+        document.getElementById(loadingId).remove();
+
+        if (response.ok) {
+          // Construct suggestion cards if present (Sophisticated matte boxes)
+          let cardsHtml = "";
+          if (result.cards && result.cards.length > 0) {
+            cardsHtml = `<div class="mt-4 flex flex-col gap-2.5">`;
+            result.cards.forEach(card => {
+              cardsHtml += `
+                <div class="bg-white border border-black/5 rounded-xl overflow-hidden flex items-center group cursor-pointer hover:border-accent transition-all" onclick="document.location.href='#contact'; toggleChatAgent(false);">
+                  <img src="${card.image}" class="w-14 h-14 object-cover bg-gray-100 shrink-0">
+                  <div class="p-3 pr-4 flex-grow truncate">
+                    <p class="text-[8px] font-bold uppercase tracking-widest text-accent">${card.category}</p>
+                    <p class="text-xs font-bold truncate text-obsidian">${card.title}</p>
+                    <p class="text-[10px] text-secondary font-semibold mt-0.5">${card.price}</p>
+                  </div>
+                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 mr-3 group-hover:text-accent transition-colors"></i>
+                </div>
+              `;
+            });
+            cardsHtml += `</div>`;
+          }
+
+          // Append real response
+          const agentMsgHtml = `
+            <div class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter">
+              <div class="text-[9px] font-bold tracking-widest text-accent uppercase">AI CONCIERGE</div>
+              <div class="bg-surface border border-black/5 p-4 rounded-2xl rounded-tl-none font-medium text-xs sm:text-sm leading-relaxed text-secondary">
+                ${result.reply}
+                ${cardsHtml}
+              </div>
+            </div>
+          `;
+          chatMessages.insertAdjacentHTML("beforeend", agentMsgHtml);
+          lucide.createIcons(); // Instantly initialize icons
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        document.getElementById(loadingId).remove();
+        const errorHtml = `
+          <div class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter text-red-600">
+            <div class="text-[9px] font-bold tracking-widest uppercase">System Issue</div>
+            <div class="bg-red-50 border border-red-200 p-4 rounded-2xl rounded-tl-none text-xs">
+              Unable to reach JKN server. Please call (905) 840-4019.
+            </div>
+          </div>
+        `;
+        chatMessages.insertAdjacentHTML("beforeend", errorHtml);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    }
+
+    // Helper to escape HTML characters
+    function escapeHTML(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

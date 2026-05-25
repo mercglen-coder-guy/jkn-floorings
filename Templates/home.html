@@ -1,0 +1,596 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HERO SECTION WITH ASYMMETRICAL EDITORIAL GRID -->
+<section class="relative min-h-[90svh] sm:min-h-screen flex items-center justify-center px-4 sm:px-8 pt-32 pb-20 w-full max-w-[120rem] mx-auto arch-grid overflow-hidden">
+  <!-- Subtle warm golden radial glow for structural background warmth -->
+  <div class="absolute w-[450px] h-[450px] rounded-full bg-accent/[0.03] blur-[100px] top-[15%] left-[5%] pointer-events-none"></div>
+
+  <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center z-10">
+    
+    <!-- Left text block (6 cols) -->
+    <div class="lg:col-span-6 flex flex-col items-start text-left blur-reveal">
+      <!-- Luxury Brand Stamp Seal Tag -->
+      <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-accent/5 border border-accent/25 mb-6 text-[10px] font-heading font-bold tracking-widest uppercase text-accent shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+        Servicing Toronto & The GTA
+      </div>
+
+      <!-- Classy two-tone editorial header -->
+      <h1 class="text-fluid-hero font-heading font-light tracking-tightest leading-[0.84] mb-8 text-obsidian">
+        The Ground<br><span class="font-extrabold text-accent">We Walk.</span>
+      </h1>
+
+      <p class="text-secondary font-medium text-sm sm:text-base max-w-xl leading-relaxed mb-10 tracking-tight font-sans">
+        Architectural grade hardwood, luxury vinyl plank, laminates, and custom tiles. Engineered for design, built to outlast.
+      </p>
+
+      <!-- Polished Dual-tone buttons -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto font-sans font-semibold text-xs tracking-wider uppercase">
+        <a href="#vision-tool" class="w-full sm:w-auto bg-obsidian text-white border border-obsidian px-8 py-4 rounded-full hover:bg-white hover:text-obsidian hover:border-black/20 transition-all flex items-center justify-center gap-2 shadow-sm group">
+          <i data-lucide="camera" class="w-4 h-4 text-white group-hover:text-accent transition-colors"></i> Try AI Visualizer
+        </a>
+        <button onclick="toggleChatAgent(true)" class="w-full sm:w-auto bg-white border border-black/5 hover:border-accent hover:text-accent px-8 py-4 rounded-full transition-all flex items-center justify-center gap-2 shadow-sm">
+          <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i> Ask AI Concierge
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Image block (6 cols) - Premium floating asymmetrical picture frame -->
+    <div class="lg:col-span-6 blur-reveal delay-100 flex justify-center lg:justify-end">
+      <div class="relative w-full max-w-[450px] aspect-[4/5] rounded-[2rem] overflow-hidden border border-black/[0.04] shadow-float bg-accent/5 group">
+        <img
+          src="/static/images/hero_flooring.png"
+          alt="Premium Hardwood Flooring Installation JKN"
+          class="w-full h-full object-cover img-zoom origin-center filter brightness-[0.98] contrast-[1.01]"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-5 left-5 bg-white/95 backdrop-blur-md border border-black/5 p-4.5 rounded-2xl flex flex-col gap-1.5 shadow-sm pointer-events-none">
+          <span class="text-[8px] font-heading font-bold text-accent uppercase tracking-widest leading-none">Showroom Showcase</span>
+          <span class="text-xs font-bold text-obsidian leading-none font-sans">Natural Oak Wide-Plank</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STANDALONE AI VISION TOOL -->
+<section id="vision-tool" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] relative z-20 blur-reveal">
+  <!-- Minimalist card contour -->
+  <div class="bg-white rounded-[clamp(2rem,4vw,3rem)] shadow-glass border border-black/[0.04] overflow-hidden flex flex-col lg:flex-row">
+    
+    <!-- Upload Details Side -->
+    <div class="w-full lg:w-5/12 p-[clamp(2rem,4vw,3.5rem)] bg-white text-obsidian flex flex-col justify-center relative border-r border-black/[0.03]">
+      <div class="inline-flex items-center gap-2 bg-accent/5 border border-accent/15 px-3 py-1.5 rounded-full w-max mb-6">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
+        <span class="text-[9px] font-heading font-bold uppercase tracking-widest text-accent font-sans">Gemini Vision AI Estimator</span>
+      </div>
+      
+      <h2 class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold tracking-tightest leading-[1.1] mb-6 text-obsidian">
+        Snap a photo.<br>Get an estimate.
+      </h2>
+      
+      <p class="text-secondary font-medium text-sm sm:text-base mb-8 leading-relaxed font-sans font-medium">
+        Upload an inspiration photo of a room layout or floor type. Our Gemini model will instantly analyze wood grain/tile texture, map technical specs, and output localized GTA installation estimates.
+      </p>
+
+      <!-- Drag & Drop Uploader (Classy Linen Dotted) -->
+      <label class="w-full border border-dashed border-black/10 hover:border-accent rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer bg-[#faf9f6]/40 hover:bg-[#faf9f6]/80 transition-all duration-300 group relative">
+        <div class="w-12 h-12 rounded-full bg-accent/5 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform border border-accent/10 text-accent">
+          <i data-lucide="upload-cloud" class="w-5 h-5 text-accent"></i>
+        </div>
+        <span class="font-heading font-semibold text-base mb-1 text-obsidian">Upload Room Image</span>
+        <span class="text-xs text-secondary font-medium font-sans">JPEG, PNG, or WEBP inspiration photo</span>
+        <input type="file" id="standalone-vision-upload" accept="image/*" class="hidden" onchange="handleVisionUpload(event)" />
+      </label>
+    </div>
+
+    <!-- Vision Results Area -->
+    <div class="w-full lg:w-7/12 p-[clamp(2rem,4vw,3.5rem)] bg-[#faf9f6]/30 flex flex-col items-center justify-center min-h-[400px] sm:min-h-[500px] relative" id="vision-results-area">
+      
+      <!-- Default state -->
+      <div id="vision-default-state" class="text-center opacity-40 flex flex-col items-center">
+        <i data-lucide="image" class="w-12 h-12 text-secondary mb-3"></i>
+        <p class="font-heading font-semibold text-obsidian text-base">Awaiting Photo Upload</p>
+        <p class="text-xs text-secondary font-semibold mt-1 font-sans">Assess materials and subfloors instantly.</p>
+      </div>
+
+      <!-- Loading shimmer state -->
+      <div id="vision-loading-state" class="w-full max-w-md hidden flex-col gap-4">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-4 h-4 border border-accent border-t-transparent rounded-full animate-spin"></div>
+          <p class="font-heading font-bold text-xs text-accent uppercase tracking-widest">Analyzing textures & mapping subfloor specs...</p>
+        </div>
+        <div class="w-full h-36 rounded-xl shimmer"></div>
+        <div class="w-3/4 h-5 rounded-md shimmer"></div>
+        <div class="w-1/2 h-5 rounded-md shimmer"></div>
+      </div>
+
+      <!-- Output results state -->
+      <div id="vision-output-state" class="w-full hidden flex-col gap-5 w-full max-w-lg">
+        <div class="w-full h-48 sm:h-60 rounded-2xl overflow-hidden shadow-sm relative border border-black/5">
+          <img id="vision-preview-img" src="" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#faf9f6]/95 to-transparent flex items-end p-4">
+            <span class="text-accent text-[9px] font-heading font-bold uppercase tracking-widest border border-accent/25 px-2 py-1 rounded bg-[#faf9f6]/90 backdrop-blur-md">Your Inspiration Image</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-black/[0.04] shadow-sm flex flex-col gap-4">
+          <div class="flex justify-between items-start border-b border-black/[0.04] pb-3">
+            <div>
+              <p class="text-[9px] font-heading font-bold uppercase tracking-widest text-accent" id="vision-matched-category"></p>
+              <h3 class="text-lg font-heading font-bold text-obsidian mt-0.5" id="vision-matched-style"></h3>
+            </div>
+            <span class="bg-[#faf9f6] border border-accent/20 text-accent font-heading font-bold text-[9px] px-2.5 py-1 rounded-full flex items-center gap-1">
+              <i data-lucide="check" class="w-3 h-3"></i> <span id="vision-match-confidence"></span> Match
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-2 text-sm font-semibold">
+            <p class="text-secondary leading-relaxed font-sans font-medium" id="vision-match-desc"></p>
+            
+            <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-black/[0.04]">
+              <div class="bg-[#faf9f6] p-3 rounded-xl border border-black/[0.03]">
+                <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest block">Subfloor Spec</span>
+                <span class="text-xs font-bold text-obsidian mt-0.5 block leading-normal font-sans" id="vision-subfloor-spec"></span>
+              </div>
+              <div class="bg-accent/5 p-3 rounded-xl border border-accent/15">
+                <span class="text-[8px] font-heading font-bold text-accent uppercase tracking-widest block">Est. Installed Cost (GTA)</span>
+                <span class="text-xs font-bold text-accent mt-0.5 block font-heading" id="vision-est-cost"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 font-sans font-semibold">
+          <a href="#contact" class="flex-grow bg-obsidian text-white text-center rounded-xl py-3 text-sm font-bold tracking-wide hover:bg-black/90 transition-all shadow-sm">
+            Request formal measurement
+          </a>
+          <button onclick="resetVisionTool()" class="bg-white text-obsidian rounded-xl py-3 px-5 text-sm font-bold border border-black/5 hover:bg-[#faf9f6]/40 transition-colors">
+            Scan Another
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURAL ADVANTAGES -->
+<section class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(3rem,8vw,6rem)] z-20 blur-reveal">
+  <div class="text-center mb-12 sm:mb-16">
+    <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; Complete Assurance &bull;</p>
+    <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-heading font-semibold tracking-tightest leading-none text-obsidian mb-4">
+      Concrete Advantages.
+    </h2>
+    <p class="text-secondary font-medium text-sm sm:text-base max-w-xl mx-auto font-sans font-medium">
+      Why custom GTA residential builders and homeowners trust JKN Flooring exclusively.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+    <div class="bg-white p-8 rounded-3xl border border-black/[0.04] hover:border-black/10 transition-all shadow-sm group">
+      <div class="w-10 h-10 bg-accent/5 rounded-lg flex items-center justify-center mb-5 border border-accent/10 text-accent group-hover:scale-102 transition-transform">
+        <i data-lucide="shield-check" class="w-5 h-5"></i>
+      </div>
+      <h3 class="text-lg font-heading font-bold text-obsidian mb-2.5 tracking-tight">Lifetime Warranty</h3>
+      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans font-medium">
+        All architectural laminates and engineered hardwood layouts are backed by JKN's structural lifetime warranty. Zero compromises on durability.
+      </p>
+    </div>
+    
+    <div class="bg-white p-8 rounded-3xl border border-black/[0.04] hover:border-black/10 transition-all shadow-sm group">
+      <div class="w-10 h-10 bg-accent/5 rounded-lg flex items-center justify-center mb-5 border border-accent/10 text-accent group-hover:scale-102 transition-transform">
+        <i data-lucide="cpu" class="w-5 h-5"></i>
+      </div>
+      <h3 class="text-lg font-heading font-bold text-obsidian mb-2.5 tracking-tight">AI-Backed Quoting</h3>
+      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans font-medium">
+        We utilize Google's Gemini Vision AI to instantly assess material shapes, grains, and subfloors, computing project labor estimates dynamically.
+      </p>
+    </div>
+    
+    <div class="bg-white p-8 rounded-3xl border border-black/[0.04] hover:border-black/10 transition-all shadow-sm group">
+      <div class="w-10 h-10 bg-accent/5 rounded-lg flex items-center justify-center mb-5 border border-accent/10 text-accent group-hover:scale-102 transition-transform">
+        <i data-lucide="truck" class="w-5 h-5"></i>
+      </div>
+      <h3 class="text-lg font-heading font-bold text-obsidian mb-2.5 tracking-tight">Fleet Delivery</h3>
+      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans font-medium">
+        Rapid GTA dispatch to Toronto, Oakville, Vaughan, and Mississauga. Next-day starting schedules supported by our massive catalog stock.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CORE SERVICES GRID -->
+<section id="services" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] z-20 blur-reveal">
+  <div class="flex flex-col mb-[clamp(2rem,4vw,3.5rem)]">
+    <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; Architectural Crafts &bull;</p>
+    <h2 class="text-fluid-h2 font-heading font-semibold tracking-tightest leading-[0.9] text-obsidian mb-6">
+      Precision <br>Installations.
+    </h2>
+    <p class="text-[clamp(0.95rem,1.2vw,1.15rem)] text-secondary max-w-2xl font-medium leading-relaxed font-sans font-medium">
+      We prepare subfloors, lay boards, and finish transitions to meet the rigorous aesthetics of modern spaces.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-[clamp(1.5rem,3vw,2.5rem)]">
+    <!-- Hardwood Panel -->
+    <div class="bg-white rounded-3xl p-8 border border-black/[0.04] hover:border-black/10 transition-all flex flex-col justify-between group shadow-sm">
+      <div>
+        <div class="w-10 h-10 bg-accent/5 rounded-lg flex items-center justify-center mb-5 border border-accent/10 text-accent group-hover:scale-102 transition-transform">
+          <i data-lucide="tree" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-heading font-bold text-obsidian mb-3 group-hover:text-accent transition-colors">Engineered Hardwood</h3>
+        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans font-medium">
+          Specially acclimated wide-plank wood that matches structural humidity shifts in Southern Ontario. Flawlessly laid with precise expansion tolerances.
+        </p>
+      </div>
+      <a href="#contact" class="inline-flex items-center gap-1.5 text-xs font-heading font-bold uppercase tracking-wider text-accent hover:text-accentDark transition-colors mt-4">
+        Request Hardwood Estimate <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+
+    <!-- Vinyl Panel -->
+    <div class="bg-white rounded-3xl p-8 border border-black/[0.04] hover:border-black/10 transition-all flex flex-col justify-between group shadow-sm">
+      <div>
+        <div class="w-10 h-10 bg-accent/5 rounded-lg flex items-center justify-center mb-5 border border-accent/10 text-accent group-hover:scale-102 transition-transform">
+          <i data-lucide="droplet" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-heading font-bold text-obsidian mb-3 group-hover:text-accent transition-colors">Luxury Vinyl Plank (LVP)</h3>
+        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans font-medium">
+          100% waterproof flooring featuring ultra-thick commercial wear shields. Ideal for GTA basements, kitchens, high-traffic rooms, and active households.
+        </p>
+      </div>
+      <a href="#contact" class="inline-flex items-center gap-1.5 text-xs font-heading font-bold uppercase tracking-wider text-accent hover:text-accentDark transition-colors mt-4">
+        Request Vinyl Estimate <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+
+    <!-- Laminate Panel -->
+    <div class="bg-white rounded-3xl p-8 border border-black/[0.04] hover:border-black/10 transition-all flex flex-col justify-between group shadow-sm">
+      <div>
+        <div class="w-10 h-10 bg-accent/5 rounded-lg flex items-center justify-center mb-5 border border-accent/10 text-accent group-hover:scale-102 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-heading font-bold text-obsidian mb-3 group-hover:text-accent transition-colors">Premium Laminates</h3>
+        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans font-medium">
+          Premium High-Density Fiberboard (HDF) engineered layouts offering superior scratch protection, authentic matte wood patterns, and structural integrity.
+        </p>
+      </div>
+      <a href="#contact" class="inline-flex items-center gap-1.5 text-xs font-heading font-bold uppercase tracking-wider text-accent hover:text-accentDark transition-colors mt-4">
+        Request Laminate Estimate <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER SLIDER SECTION -->
+<section id="transformations" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 pb-[clamp(4rem,10vw,8rem)] z-20 blur-reveal relative">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-4">
+    <div>
+      <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; GTA Visual Proof &bull;</p>
+      <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-heading font-semibold tracking-tightest leading-none text-obsidian mb-2">
+        Real Transformations.
+      </h2>
+      <p class="text-secondary font-medium text-sm sm:text-base font-sans font-medium">
+        Drag the vertical slider splitter to see our subfloor setup versus the oak hardwood finish.
+      </p>
+    </div>
+  </div>
+
+  <div class="relative w-full aspect-[4/3] sm:aspect-[21/9] rounded-[clamp(1.25rem,2.5vw,2rem)] overflow-hidden cursor-ew-resize select-none slider-container border border-black/[0.04] shadow-sm bg-white" id="ba-slider" onmousedown="startSliding(event)" ontouchstart="startSliding(event)">
+    
+    <!-- Floating Interaction Help Box -->
+    <div id="slider-helper" class="absolute top-[45%] left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-xl border border-black/5 px-5 py-3 rounded-2xl flex items-center gap-2.5 text-xs text-obsidian font-bold uppercase tracking-wider pointer-events-none z-30 shadow-md transition-opacity duration-700">
+      <i data-lucide="chevrons-left-right" class="w-3.5 h-3.5 text-accent animate-bounce"></i>
+      Drag Slider to Compare
+    </div>
+
+    <!-- After image (Full background) -->
+    <img
+      src="/static/images/hero_flooring.png"
+      alt="After JKN Flooring installation"
+      class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+    />
+    <div class="absolute top-5 right-5 bg-white/95 backdrop-blur-md border border-black/5 px-4 py-2 rounded-full text-accent font-heading font-bold tracking-widest text-[10px] uppercase shadow-sm pointer-events-none z-10 font-sans font-bold">
+      Completed Hardwood
+    </div>
+
+    <!-- Before image (Clipped overlay) -->
+    <img
+      src="/static/images/craftsmanship.png"
+      alt="Before JKN Flooring (Old floor / subfloor prep)"
+      class="absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-95"
+      style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%)"
+      id="ba-before"
+    />
+    <div class="absolute top-5 left-5 bg-glass border border-black/5 px-4 py-2 rounded-full text-obsidian font-heading font-bold tracking-widest text-[10px] uppercase shadow-sm pointer-events-none z-10 font-sans font-bold" id="ba-before-label">
+      Preparation Setup
+    </div>
+
+    <!-- Handle line -->
+    <div class="absolute inset-y-0 left-[50%] w-px bg-accent cursor-ew-resize transform -translate-x-1/2 flex items-center justify-center z-20" id="ba-handle">
+      <!-- Muted solid handle button -->
+      <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white text-accent rounded-full flex items-center justify-center shadow-md border border-black/5 pointer-events-none hover:scale-105 transition-transform">
+        <i data-lucide="chevrons-left-right" class="w-4 h-4 text-accent"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS GRID -->
+<section class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 relative z-20 blur-reveal delay-200">
+  <div class="bg-white rounded-[clamp(1.25rem,2.5vw,2rem)] py-8 sm:py-10 px-4 sm:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0 gap-x-4 md:gap-x-10 text-center items-center border border-black/[0.04] shadow-sm">
+    <div class="flex flex-col justify-center">
+      <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">
+        15<span class="text-accent">+</span>
+      </p>
+      <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">Years Experience</p>
+    </div>
+    <div class="flex flex-col justify-center md:border-l border-black/[0.04]">
+      <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">03</p>
+      <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">GTA Showrooms</p>
+    </div>
+    <div class="flex flex-col justify-center border-t md:border-t-0 md:border-l border-black/[0.04] pt-8 md:pt-0">
+      <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">
+        600<span class="text-accent">+</span>
+      </p>
+      <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">In-Stock choices</p>
+    </div>
+    <div class="flex flex-col justify-center border-t md:border-t-0 md:border-l border-black/[0.04] pt-8 md:pt-0">
+      <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">100%</p>
+      <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">GTA Price Match</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & FREE ESTIMATE SECTION -->
+<section id="contact" class="py-[clamp(4rem,10vw,8rem)] w-full max-w-[120rem] mx-auto px-4 sm:px-8 bg-white border-t border-black/[0.04] z-20 arch-grid">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start relative z-10">
+    <div class="blur-reveal">
+      <div class="inline-flex items-center gap-2 bg-accent/5 border border-accent/15 px-3 py-1.5 rounded-full mb-6">
+        <i data-lucide="phone" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
+        <span class="text-[9px] font-heading font-bold uppercase tracking-widest text-accent font-sans">Free GTA Measurement</span>
+      </div>
+      <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-heading font-semibold tracking-tightest leading-[0.98] text-obsidian mb-8">
+        Plan Your<br>Renovation.
+      </h2>
+      <p class="text-secondary font-medium text-sm sm:text-base leading-relaxed mb-8 font-sans font-medium">
+        Ready to take the next step? Send us your project details or request an on-site consultation. JKN's estimators bring real material boards to your space, providing layout guidance for optimal floor cuts.
+      </p>
+
+      <div class="flex flex-col gap-4 max-w-xs font-sans">
+        <div class="flex items-center gap-4 bg-[#faf9f6]/85 p-4 rounded-2xl border border-black/[0.03] shadow-sm">
+          <div class="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center text-accent border border-accent/10">
+            <i data-lucide="phone-call" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest">Call GTA Showroom</span>
+            <p class="font-heading font-semibold text-obsidian mt-0.5 text-sm">(905) 840-4019</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-[#faf9f6]/85 p-4 rounded-2xl border border-black/[0.03] shadow-sm">
+          <div class="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center text-accent border border-accent/10">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest">Email Support</span>
+            <p class="font-heading font-semibold text-obsidian mt-0.5 text-sm">info@jknflooring.ca</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote Form Card (Classy Alabaster form) -->
+    <div class="bg-[#faf9f6]/70 rounded-[2rem] p-8 border border-black/[0.03] shadow-glass-inner blur-reveal delay-100 font-sans">
+      <h3 class="text-lg sm:text-xl font-heading font-bold tracking-tight text-obsidian mb-6">Estimate Request Form</h3>
+      <div id="formStatus" class="mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center hidden"></div>
+      
+      <form id="estimateForm" onsubmit="handleFormSubmit(event)" class="flex flex-col gap-4.5 font-sans font-semibold">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <label for="clientName" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Full Name *</label>
+            <input type="text" id="clientName" name="name" placeholder="John Doe" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium font-sans" required autocomplete="name">
+          </div>
+          <div class="flex flex-col">
+            <label for="clientEmail" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Email Address *</label>
+            <input type="email" id="clientEmail" name="email" placeholder="john@example.com" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium font-sans" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <label for="clientPhone" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Phone *</label>
+            <input type="tel" id="clientPhone" name="phone" placeholder="(416) 555-0100" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium font-sans" required autocomplete="tel">
+          </div>
+          <div class="flex flex-col">
+            <label for="flooringType" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Flooring Needed *</label>
+            <select id="flooringType" name="flooring_type" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white text-obsidian cursor-pointer select-none font-medium font-sans" required>
+              <option value="hardwood">Solid / Engineered Hardwood</option>
+              <option value="vinyl">Luxury Vinyl Plank (LVP)</option>
+              <option value="laminate">Premium Laminate</option>
+              <option value="other">Tile / Repairs / Accessories</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <label for="projectSize" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Estimated Area (Sq. Ft.) *</label>
+          <input type="number" id="projectSize" name="size" placeholder="e.g. 600" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium font-sans" min="1" required>
+        </div>
+
+        <div class="flex flex-col">
+          <label for="message" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Message & Details</label>
+          <textarea id="message" name="message" placeholder="Details about your subfloor levelness, baseboards, transitions..." class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium min-h-[100px] max-h-[200px] font-sans"></textarea>
+        </div>
+
+        <button type="submit" class="bg-obsidian text-white rounded-xl py-4 mt-2 text-xs sm:text-sm font-bold tracking-wide hover:bg-black/90 transition-all shadow-sm flex items-center justify-center gap-2 font-sans">
+          Submit Estimate Request <i data-lucide="send" class="w-4 h-4 text-white font-bold"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Reveal-on-Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.blur-reveal').forEach(el => {
+      observer.observe(el);
+    });
+    // Trigger hero reveal instantly
+    setTimeout(() => {
+      document.querySelector('.hero-section .blur-reveal').classList.add('active');
+    }, 100);
+  });
+
+  // Before/After Slider Engine
+  const beforeImg = document.getElementById("ba-before");
+  const handle = document.getElementById("ba-handle");
+  const slider = document.getElementById("ba-slider");
+  const helper = document.getElementById("slider-helper");
+  let isSliding = false;
+
+  function startSliding(e) {
+    isSliding = true;
+    if (helper) helper.style.opacity = '0'; // Hide the helper box
+    updateSlider(e);
+    window.addEventListener("mousemove", updateSlider);
+    window.addEventListener("mouseup", stopSliding);
+    window.addEventListener("touchmove", updateSlider);
+    window.addEventListener("touchend", stopSliding);
+  }
+
+  function stopSliding() {
+    isSliding = false;
+    window.removeEventListener("mousemove", updateSlider);
+    window.removeEventListener("mouseup", stopSliding);
+    window.removeEventListener("touchmove", updateSlider);
+    window.removeEventListener("touchend", stopSliding);
+  }
+
+  function updateSlider(e) {
+    if (!isSliding) return;
+    const rect = slider.getBoundingClientRect();
+    let clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    if (!clientX) return;
+
+    let offset = clientX - rect.left;
+    let percentage = (offset / rect.width) * 100;
+
+    if (percentage < 0) percentage = 0;
+    if (percentage > 100) percentage = 100;
+
+    handle.style.left = `${percentage}%`;
+    beforeImg.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+  }
+
+  // Standalone AI Vision tool uploader handlers
+  async function handleVisionUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Transition states
+    const defaultState = document.getElementById("vision-default-state");
+    const loadingState = document.getElementById("vision-loading-state");
+    const outputState = document.getElementById("vision-output-state");
+
+    defaultState.style.display = "none";
+    outputState.style.display = "none";
+    loadingState.style.display = "flex";
+
+    // Set preview image
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById("vision-preview-img").src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+
+    // Build form request
+    const formData = new FormData();
+    formData.append("data", file);
+
+    try {
+      const response = await fetch("/api/vision", {
+        method: "POST",
+        body: formData
+      });
+      const result = await response.json();
+
+      // Transmit response back to UI
+      if (response.ok && result.status === "success") {
+        setTimeout(() => {
+          loadingState.style.display = "none";
+          outputState.style.display = "flex";
+
+          document.getElementById("vision-matched-category").textContent = result.analysis.category;
+          document.getElementById("vision-matched-style").textContent = result.analysis.detected_style;
+          document.getElementById("vision-match-confidence").textContent = result.analysis.match_rate;
+          document.getElementById("vision-match-desc").textContent = result.analysis.description;
+          document.getElementById("vision-subfloor-spec").textContent = result.analysis.subfloor_spec;
+          document.getElementById("vision-est-cost").textContent = result.analysis.cost_range;
+          
+          lucide.createIcons();
+        }, 1500); // Smooth premium delay
+      } else {
+        throw new Error();
+      }
+    } catch(err) {
+      loadingState.style.display = "none";
+      defaultState.style.display = "flex";
+      alert("Error parsing image. Please select an alternate JPEG/PNG file.");
+    }
+  }
+
+  function resetVisionTool() {
+    document.getElementById("vision-output-state").style.display = "none";
+    document.getElementById("vision-default-state").style.display = "flex";
+    document.getElementById("standalone-vision-upload").value = "";
+  }
+
+  // Quote Request Form submit
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    const statusEl = document.getElementById("formStatus");
+    statusEl.className = "mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center";
+    statusEl.classList.add("bg-accent/5", "border", "border-accent/15", "text-accent");
+    statusEl.textContent = "Submitting estimate metrics...";
+    statusEl.classList.remove("hidden");
+
+    try {
+      const response = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const result = await response.json();
+
+      if (response.ok && result.status === "success") {
+        statusEl.className = "mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold font-sans";
+        statusEl.textContent = result.message;
+        form.reset();
+      } else {
+        throw new Error();
+      }
+    } catch(err) {
+      statusEl.className = "mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center bg-red-50 border border-red-100 text-red-500 font-bold font-sans";
+      statusEl.textContent = "Connection issue. Please call showroom at (905) 840-4019 directly.";
+    }
+  }
+</script>
+{% endblock %}
