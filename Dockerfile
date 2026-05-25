@@ -51,7 +51,7 @@ COPY --chown=litestar:litestar static/ static/
 USER litestar
 
 # Expose production port
-EXPOSE 8000
+EXPOSE 8080
 
 # Launch server
-CMD ["uvicorn", "Home:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "Home:app", "--host", "0.0.0.0", "--port", "8080"]
