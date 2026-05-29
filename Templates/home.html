@@ -37,13 +37,14 @@
     </div>
 
     <!-- Right Image block (6 cols) - Premium floating asymmetrical picture frame -->
-    <div class="lg:col-span-6 blur-reveal delay-100 flex justify-center lg:justify-end">
-      <div class="relative w-full max-w-[450px] aspect-[4/5] rounded-[2rem] overflow-hidden border border-black/[0.04] shadow-float bg-accent/5 group">
+    <div class="lg:col-span-6 blur-reveal delay-100 flex justify-center lg:justify-end mt-8 lg:mt-0">
+      <div class="relative w-full max-w-[450px] aspect-[4/3] sm:aspect-[4/5] rounded-[2rem] overflow-hidden border border-black/[0.04] shadow-float bg-accent/5 group">
         <img
           src="/static/images/hero_flooring.png"
           alt="Premium Hardwood Flooring Installation JKN"
-          class="w-full h-full object-cover img-zoom origin-center filter brightness-[0.98] contrast-[1.01]"
+          class="w-full h-full object-cover object-center img-zoom origin-center filter brightness-[0.98] contrast-[1.01]"
           loading="eager"
+          fetchpriority="high"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent pointer-events-none"></div>
         <div class="absolute bottom-5 left-5 bg-white/95 backdrop-blur-md border border-black/5 p-4.5 rounded-2xl flex flex-col gap-1.5 shadow-sm pointer-events-none">
@@ -387,46 +388,55 @@
       <h3 class="text-lg sm:text-xl font-heading font-bold tracking-tight text-obsidian mb-6">Estimate Request Form</h3>
       <div id="formStatus" class="mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center hidden"></div>
       
-      <form id="estimateForm" onsubmit="handleFormSubmit(event)" class="flex flex-col gap-4.5 font-sans font-semibold">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="flex flex-col">
-            <label for="clientName" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Full Name *</label>
-            <input type="text" id="clientName" name="name" placeholder="John Doe" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium font-sans" required autocomplete="name">
+      <form id="estimateForm" onsubmit="handleFormSubmit(event)" class="flex flex-col gap-5 font-sans font-semibold">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Floating Label Name -->
+          <div class="relative">
+            <input type="text" id="clientName" name="name" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm" placeholder="John Doe" required autocomplete="name">
+            <label for="clientName" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-[1.125rem] peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Full Name *</label>
           </div>
-          <div class="flex flex-col">
-            <label for="clientEmail" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Email Address *</label>
-            <input type="email" id="clientEmail" name="email" placeholder="john@example.com" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium font-sans" required autocomplete="email">
+          <!-- Floating Label Email -->
+          <div class="relative">
+            <input type="email" id="clientEmail" name="email" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm" placeholder="john@example.com" required autocomplete="email">
+            <label for="clientEmail" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-[1.125rem] peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Email Address *</label>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="flex flex-col">
-            <label for="clientPhone" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Phone *</label>
-            <input type="tel" id="clientPhone" name="phone" placeholder="(416) 555-0100" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium font-sans" required autocomplete="tel">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Floating Label Phone -->
+          <div class="relative">
+            <input type="tel" id="clientPhone" name="phone" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm" placeholder="(416) 555-0100" required autocomplete="tel">
+            <label for="clientPhone" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-[1.125rem] peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Phone *</label>
           </div>
-          <div class="flex flex-col">
-            <label for="flooringType" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Flooring Needed *</label>
-            <select id="flooringType" name="flooring_type" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white text-obsidian cursor-pointer select-none font-medium font-sans" required>
+          <!-- Custom Select with Floating Label -->
+          <div class="relative">
+            <select id="flooringType" name="flooring_type" class="w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all shadow-sm appearance-none cursor-pointer" required>
               <option value="hardwood">Solid / Engineered Hardwood</option>
               <option value="vinyl">Luxury Vinyl Plank (LVP)</option>
               <option value="laminate">Premium Laminate</option>
               <option value="other">Tile / Repairs / Accessories</option>
             </select>
+            <label for="flooringType" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-accent pointer-events-none">Flooring Needed *</label>
+            <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+              <i data-lucide="chevron-down" class="w-4 h-4 text-secondary"></i>
+            </div>
           </div>
         </div>
 
-        <div class="flex flex-col">
-          <label for="projectSize" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Estimated Area (Sq. Ft.) *</label>
-          <input type="number" id="projectSize" name="size" placeholder="e.g. 600" class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium font-sans" min="1" required>
+        <!-- Floating Label Size -->
+        <div class="relative">
+          <input type="number" id="projectSize" name="size" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm" placeholder="e.g. 600" min="1" required>
+          <label for="projectSize" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-[1.125rem] peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Estimated Area (Sq. Ft.) *</label>
         </div>
 
-        <div class="flex flex-col">
-          <label for="message" class="text-[9px] font-heading font-bold text-secondary mb-2 uppercase tracking-wider">Message & Details</label>
-          <textarea id="message" name="message" placeholder="Details about your subfloor levelness, baseboards, transitions..." class="bg-white border border-black/5 focus:border-accent rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:bg-white transition-all text-obsidian font-medium min-h-[100px] max-h-[200px] font-sans"></textarea>
+        <!-- Floating Label Textarea -->
+        <div class="relative">
+          <textarea id="message" name="message" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm min-h-[140px] max-h-[250px]" placeholder="Details about your subfloor levelness, baseboards, transitions..."></textarea>
+          <label for="message" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Message & Details</label>
         </div>
 
-        <button type="submit" class="bg-obsidian text-white rounded-xl py-4 mt-2 text-xs sm:text-sm font-bold tracking-wide hover:bg-black/90 transition-all shadow-sm flex items-center justify-center gap-2 font-sans">
-          Submit Estimate Request <i data-lucide="send" class="w-4 h-4 text-white font-bold"></i>
+        <button type="submit" class="bg-obsidian text-white rounded-xl py-4 mt-2 text-sm sm:text-base font-bold tracking-wide hover:bg-black/90 transition-all shadow-md flex items-center justify-center gap-2.5 font-sans group">
+          Submit Estimate Request <i data-lucide="send" class="w-4 h-4 text-white font-bold group-hover:translate-x-1 transition-transform"></i>
         </button>
       </form>
     </div>
