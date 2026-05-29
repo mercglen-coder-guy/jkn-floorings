@@ -160,8 +160,8 @@
 
       <!-- Contact CTA -->
       <div class="pointer-events-auto hidden sm:flex items-center gap-5 bg-glass backdrop-blur-xl shadow-glass-inner border border-black/5 rounded-full p-1 pl-5">
-        <a href="tel:9058404019" class="text-xs font-bold tracking-tight text-secondary hover:text-obsidian transition-colors hidden lg:block">
-          (905) 840-4019
+        <a href="tel:+19054509054" class="text-xs font-bold tracking-tight text-secondary hover:text-obsidian transition-colors hidden lg:block">
+          +1 905-450-9054
         </a>
         <a href="#contact" class="bg-obsidian text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide hover:bg-black/90 transition-all duration-300 shadow-sm whitespace-nowrap">
           Get Estimate
@@ -186,8 +186,17 @@
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
     <a href="#vision-tool" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">AI Visualizer</a>
+    <a href="#services" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Services</a>
     <a href="#transformations" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Transformations</a>
     <a href="#contact" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Contact</a>
+    <div class="flex flex-col items-center gap-4 mt-8 pt-8 border-t border-black/5 w-64">
+      <a href="tel:+19054509054" class="flex items-center gap-2 text-sm font-bold text-accent hover:text-accentDark transition-all">
+        <i data-lucide="phone-call" class="w-4 h-4"></i> +1 905-450-9054
+      </a>
+      <a href="mailto:info@jknflooring.com" class="flex items-center gap-2 text-sm font-bold text-accent hover:text-accentDark transition-all">
+        <i data-lucide="mail" class="w-4 h-4"></i> info@jknflooring.com
+      </a>
+    </div>
   </div>
 
   <!-- MAIN WRAPPER -->
@@ -223,10 +232,10 @@
           Toronto & Greater Toronto Area, Ontario
         </p>
         <p class="font-semibold text-sm text-secondary mb-2">
-          (905) 840-4019
+          <a href="tel:+19054509054" class="hover:text-obsidian transition-colors">+1 905-450-9054</a>
         </p>
         <p class="font-semibold text-sm text-secondary">
-          info@jknflooring.ca
+          <a href="mailto:info@jknflooring.com" class="hover:text-obsidian transition-colors">info@jknflooring.com</a>
         </p>
       </div>
     </div>
@@ -307,9 +316,11 @@
       if (menu.classList.contains("opacity-0")) {
         menu.classList.remove("opacity-0", "pointer-events-none");
         menu.classList.add("opacity-100");
+        document.body.classList.add("overflow-hidden");
       } else {
         menu.classList.add("opacity-0", "pointer-events-none");
         menu.classList.remove("opacity-100");
+        document.body.classList.remove("overflow-hidden");
       }
     }
 
@@ -318,8 +329,10 @@
       const panel = document.getElementById("ai-chat-panel");
       if (open) {
         panel.classList.remove("translate-x-full");
+        document.body.classList.add("overflow-hidden");
       } else {
         panel.classList.add("translate-x-full");
+        document.body.classList.remove("overflow-hidden");
       }
     }
 
@@ -432,7 +445,7 @@
           <div class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter text-red-600">
             <div class="text-[9px] font-bold tracking-widest uppercase">System Issue</div>
             <div class="bg-red-50 border border-red-200 p-4 rounded-2xl rounded-tl-none text-xs">
-              Unable to reach JKN server. Please call (905) 840-4019.
+              Unable to reach JKN server. Please call +1 905-450-9054.
             </div>
           </div>
         `;

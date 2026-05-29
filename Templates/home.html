@@ -61,7 +61,7 @@
   <div class="bg-white rounded-[clamp(2rem,4vw,3rem)] shadow-glass border border-black/[0.04] overflow-hidden flex flex-col lg:flex-row">
     
     <!-- Upload Details Side -->
-    <div class="w-full lg:w-5/12 p-[clamp(2rem,4vw,3.5rem)] bg-white text-obsidian flex flex-col justify-center relative border-r border-black/[0.03]">
+    <div class="w-full lg:w-5/12 p-[clamp(2rem,4vw,3.5rem)] bg-white text-obsidian flex flex-col justify-center relative border-b lg:border-b-0 lg:border-r border-black/[0.03]">
       <div class="inline-flex items-center gap-2 bg-accent/5 border border-accent/15 px-3 py-1.5 rounded-full w-max mb-6">
         <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
         <span class="text-[9px] font-heading font-bold uppercase tracking-widest text-accent font-sans">Gemini Vision AI Estimator</span>
@@ -327,7 +327,7 @@
       </p>
       <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">Years Experience</p>
     </div>
-    <div class="flex flex-col justify-center md:border-l border-black/[0.04]">
+    <div class="flex flex-col justify-center border-l md:border-l border-black/[0.04]">
       <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">03</p>
       <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">GTA Showrooms</p>
     </div>
@@ -337,7 +337,7 @@
       </p>
       <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">In-Stock choices</p>
     </div>
-    <div class="flex flex-col justify-center border-t md:border-t-0 md:border-l border-black/[0.04] pt-8 md:pt-0">
+    <div class="flex flex-col justify-center border-t md:border-t-0 border-l md:border-l border-black/[0.04] pt-8 md:pt-0">
       <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">100%</p>
       <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">GTA Price Match</p>
     </div>
@@ -360,25 +360,25 @@
       </p>
 
       <div class="flex flex-col gap-4 max-w-xs font-sans">
-        <div class="flex items-center gap-4 bg-[#faf9f6]/85 p-4 rounded-2xl border border-black/[0.03] shadow-sm">
+        <a href="tel:+19054509054" class="flex items-center gap-4 bg-[#faf9f6]/85 p-4 rounded-2xl border border-black/[0.03] shadow-sm hover:border-accent hover:scale-[1.01] transition-all block">
           <div class="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center text-accent border border-accent/10">
             <i data-lucide="phone-call" class="w-4 h-4"></i>
           </div>
           <div>
             <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest">Call GTA Showroom</span>
-            <p class="font-heading font-semibold text-obsidian mt-0.5 text-sm">(905) 840-4019</p>
+            <p class="font-heading font-semibold text-obsidian mt-0.5 text-sm">+1 905-450-9054</p>
           </div>
-        </div>
+        </a>
 
-        <div class="flex items-center gap-4 bg-[#faf9f6]/85 p-4 rounded-2xl border border-black/[0.03] shadow-sm">
+        <a href="mailto:info@jknflooring.com" class="flex items-center gap-4 bg-[#faf9f6]/85 p-4 rounded-2xl border border-black/[0.03] shadow-sm hover:border-accent hover:scale-[1.01] transition-all block">
           <div class="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center text-accent border border-accent/10">
             <i data-lucide="mail" class="w-4 h-4"></i>
           </div>
           <div>
             <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest">Email Support</span>
-            <p class="font-heading font-semibold text-obsidian mt-0.5 text-sm">info@jknflooring.ca</p>
+            <p class="font-heading font-semibold text-obsidian mt-0.5 text-sm">info@jknflooring.com</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -482,6 +482,12 @@
 
   function updateSlider(e) {
     if (!isSliding) return;
+    
+    // Prevent scrolling on touch devices during drag
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+    
     const rect = slider.getBoundingClientRect();
     let clientX = e.clientX || (e.touches && e.touches[0].clientX);
     if (!clientX) return;
@@ -589,7 +595,7 @@
       }
     } catch(err) {
       statusEl.className = "mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center bg-red-50 border border-red-100 text-red-500 font-bold font-sans";
-      statusEl.textContent = "Connection issue. Please call showroom at (905) 840-4019 directly.";
+      statusEl.textContent = "Connection issue. Please call showroom at +1 905-450-9054 directly.";
     }
   }
 </script>
