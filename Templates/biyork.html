@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Biyork Enterprise Catalog | JKN Flooring{% endblock %}
-{% block meta_description %}Browse the premium Biyork Enterprise Catalog. High-quality engineered hardwood, luxury vinyl plank, and laminate flooring options available through JKN Flooring.{% endblock %}
+{% block title %}Biyork Canada Collection | JKN Flooring{% endblock %}
+{% block meta_description %}Browse our premium partner catalog featuring Biyork Canada's architectural-grade engineered hardwood, luxury vinyl plank, and laminate flooring options.{% endblock %}
 
 {% block content %}
-<section class="relative min-h-[50svh] flex items-center justify-center px-4 pt-32 pb-16 w-full max-w-[120rem] mx-auto overflow-hidden bg-obsidian text-white">
+<!-- CURATED PARTNER HERO -->
+<section class="relative min-h-[50svh] flex items-center justify-center px-4 pt-32 pb-16 w-full max-w-7xl mx-auto overflow-hidden bg-obsidian text-white rounded-[2.5rem] mt-6">
   <!-- Dynamic gradient orb for premium dark aesthetic -->
   <div class="absolute w-[600px] h-[600px] rounded-full bg-accent/20 blur-[120px] top-[-20%] right-[-10%] pointer-events-none"></div>
   <div class="absolute w-[400px] h-[400px] rounded-full bg-accentDark/30 blur-[100px] bottom-[-10%] left-[-5%] pointer-events-none"></div>
@@ -16,7 +17,7 @@
     </div>
 
     <h1 class="text-fluid-h2 font-heading font-light tracking-tightest leading-[1.1] mb-6">
-      The <span class="font-bold text-accentLight">Biyork</span> Collection
+      The <span class="font-bold text-accentLight">Biyork Canada</span> Collection
     </h1>
     
     <p class="text-fluid-p text-white/70 max-w-2xl font-medium leading-relaxed">
@@ -25,9 +26,9 @@
   </div>
 </section>
 
-<!-- PRODUCT SHOWCASE SECTION -->
-<section class="py-24 px-4 sm:px-8 bg-surface relative">
-  <div class="max-w-[120rem] mx-auto">
+<!-- PRODUCT SHOWCASE GRID -->
+<section class="py-24 px-4 sm:px-8 bg-[#faf9f6] relative">
+  <div class="max-w-7xl mx-auto">
     
     <!-- Filter & Sort Header -->
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6 blur-reveal active delay-100">
@@ -36,41 +37,38 @@
       </h2>
       
       <div class="flex items-center gap-2 text-xs font-bold tracking-wide uppercase overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
-        <!-- Simple mock filters for visual aesthetic -->
         <button class="px-5 py-2.5 rounded-full border border-black/5 bg-white shadow-sm hover:border-accent hover:text-accent transition-all text-obsidian shrink-0">All Surfaces</button>
         <button class="px-5 py-2.5 rounded-full border border-transparent hover:border-black/5 bg-transparent hover:bg-white transition-all text-secondary shrink-0">Engineered Hardwood</button>
         <button class="px-5 py-2.5 rounded-full border border-transparent hover:border-black/5 bg-transparent hover:bg-white transition-all text-secondary shrink-0">Vinyl & Laminate</button>
       </div>
     </div>
 
-    <!-- Products Grid -->
+    <!-- Curated Flat Products Grid (No padding/nested boxes - Cupertino-style flat minimalism) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
       {% for product in products %}
-      <!-- Premium Cohesive Card -->
-      <a href="/biyork/{{ product['Product ID'] }}" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-black/[0.04] shadow-sm hover:shadow-float transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 relative h-full blur-reveal" style="transition-delay: {{ loop.index0 % 4 * 50 }}ms;">
-        <!-- Optimized Square Image Container -->
-        <div class="aspect-square w-full p-5 bg-[#faf9f6] border-b border-black/[0.02] flex items-center justify-center shrink-0">
-          <div class="w-full h-full bg-[#f9f8f6] rounded-xl flex items-center justify-center overflow-hidden shadow-inner border border-black/[0.03] group-hover:scale-[1.02] transition-transform duration-500 relative">
-            {% if product['Primary Image'] %}
-              <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" loading="lazy" class="w-[85%] h-[85%] object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105">
-            {% else %}
-              <div class="w-full h-full bg-black/5 flex items-center justify-center">
-                <i data-lucide="image" class="w-8 h-8 text-black/20"></i>
-              </div>
-            {% endif %}
-          </div>
+      <a href="/biyork/{{ product['Product ID'] }}" class="group flex flex-col bg-white rounded-3xl overflow-hidden border border-black/[0.05] shadow-sm hover:shadow-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 relative h-full blur-reveal" style="transition-delay: {{ loop.index0 % 4 * 50 }}ms;">
+        
+        <!-- Flat Full-Bleed Upper Image Container -->
+        <div class="aspect-square w-full bg-[#f4f3ef] overflow-hidden shrink-0 relative border-b border-black/[0.02]">
+          {% if product['Primary Image'] %}
+            <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          {% else %}
+            <div class="w-full h-full flex items-center justify-center text-secondary/30">
+              <i data-lucide="image" class="w-8 h-8"></i>
+            </div>
+          {% endif %}
         </div>
         
         <!-- Cohesive Content Area -->
-        <div class="p-6 sm:p-7 flex flex-col flex-grow bg-gradient-to-b from-white to-[#faf9f6]/30">
-          <!-- Metadata Tag Row (Highly legible micro-headers with excellent contrast) -->
+        <div class="p-6 flex flex-col flex-grow bg-white">
+          <!-- Metadata Tag Row (Lighter background pills with high contrast labels) -->
           <div class="flex items-center gap-2 mb-3.5 flex-wrap">
             {% set prod_type_parts = product['Product Type'].split('|') if product['Product Type'] else [] %}
             {% set category_name = prod_type_parts[0].strip() if prod_type_parts else 'Premium Floor' %}
-            <span class="px-2.5 py-1 rounded-full bg-black/5 text-obsidian font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-black/[0.02] shadow-sm">
+            <span class="px-2.5 py-1 rounded-full bg-accent/15 text-accentDark font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-accent/10 shadow-sm">
               {{ category_name }}
             </span>
-            <span class="px-2.5 py-1 rounded-full bg-accent/10 text-accentDark font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-accent/15">
+            <span class="px-2.5 py-1 rounded-full bg-[#eae6df] text-obsidian font-sans font-bold text-[9px] uppercase tracking-widest leading-none">
               {{ product['Vendor'] }}
             </span>
           </div>
@@ -80,7 +78,7 @@
             {{ product['Title'] }}
           </h3>
           
-          <!-- Subtle description line if available -->
+          <!-- Subtle Description Line -->
           <p class="text-xs text-secondary line-clamp-2 mb-6 leading-relaxed font-medium">
             {{ product['Description'] | striptags | truncate(95, True, '...') if product['Description'] else 'Architectural grade surface designed for superior aesthetic and durability.' }}
           </p>
@@ -115,7 +113,6 @@
 {% block extra_js %}
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Re-initialize Lucide Icons for new elements
     if (typeof lucide !== 'undefined') {
       lucide.createIcons();
     }
@@ -127,7 +124,6 @@
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Slight delay for staggered effect if multiple elements appear at once
             setTimeout(() => {
               entry.target.classList.add('active');
             }, entry.target.style.transitionDelay ? 0 : 50);

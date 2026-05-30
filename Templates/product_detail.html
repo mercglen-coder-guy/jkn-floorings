@@ -2,12 +2,13 @@
 {% block title %}{{ product['Title'] if product else 'Product Not Found' }} | JKN Flooring{% endblock %}
 
 {% block content %}
-<main class="min-h-screen bg-surface pt-32 pb-32 text-obsidian font-sans">
+<main class="min-h-screen bg-[#faf9f6] pt-32 pb-32 text-obsidian font-sans">
   
   {% if product %}
-  <div class="max-w-[90rem] mx-auto px-4 sm:px-8">
+  <!-- Page Container (Locked to standard max-w-7xl Grid Bounds) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
     
-    <!-- Top Navigation -->
+    <!-- Top Breadcrumb Navigation -->
     <nav class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-secondary mb-12">
       <a href="/" class="hover:text-accent transition-colors">Home</a>
       <span class="opacity-40">/</span>
@@ -16,62 +17,67 @@
       <span class="text-obsidian truncate max-w-[250px]">{{ product['Title'] }}</span>
     </nav>
 
-    <!-- Header: Title & Meta -->
+    <!-- Header Block (Title & Primary Badges) -->
     <header class="mb-12 max-w-5xl">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-white border border-black/5 mb-6 shadow-sm">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/15 mb-6 shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-        <span class="text-[9px] font-bold uppercase tracking-widest text-accent">{{ product['Vendor'] }} Exclusive</span>
+        <span class="text-[9px] font-bold uppercase tracking-widest text-accentDark font-sans">{{ product['Vendor'] }} Premium Selection</span>
       </div>
       
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-medium tracking-tight text-obsidian leading-tight mb-8">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold tracking-tight text-obsidian leading-tight mb-8">
         {{ product['Title'] }}
       </h1>
       
       <div class="flex flex-wrap items-center gap-6 text-xs font-semibold text-secondary uppercase tracking-widest">
         <span class="flex items-center gap-2"><i data-lucide="tag" class="w-4 h-4 text-accent/50"></i> {{ product['Product Type'] or 'Premium Surface' }}</span>
         <span class="flex items-center gap-2"><i data-lucide="hash" class="w-4 h-4 text-accent/50"></i> SKU: {{ product['SKU'] or 'TBD' }}</span>
-        <span class="flex items-center gap-2 text-emerald-600"><i data-lucide="check-circle" class="w-4 h-4 opacity-70"></i> Available to Order</span>
+        <span class="flex items-center gap-2 text-emerald-600"><i data-lucide="check-circle" class="w-4 h-4 opacity-70"></i> In Stock &amp; Available</span>
       </div>
     </header>
 
-    <!-- Main Content: Image & Action -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-24">
+    <!-- Main Core Layout Grid (Image Left, Specs Right) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24">
       
-      <!-- Centerpiece Image -->
-      <div class="lg:col-span-8 relative">
-        <div class="w-full bg-white rounded-[2rem] p-8 sm:p-16 shadow-glass border border-black/5 flex items-center justify-center">
+      <!-- Left Column: Sticky Centerpiece Material Showcase -->
+      <div class="lg:col-span-6 relative w-full">
+        <div class="lg:sticky lg:top-32 w-full bg-white rounded-3xl p-5 sm:p-8 shadow-glass border border-black/5 flex items-center justify-center aspect-square overflow-hidden relative">
           {% if product['Primary Image'] %}
-            <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" class="w-full h-auto max-h-[600px] object-contain mx-auto rounded-xl">
+            <!-- Full-bleed wood material texture image -->
+            <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" class="w-full h-full object-cover rounded-2xl shadow-sm">
+            <div class="absolute bottom-6 right-6 bg-[#faf9f6]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[9px] font-heading font-bold uppercase tracking-wider border border-black/5 text-accentDark">
+              Material Detail View
+            </div>
           {% else %}
-            <div class="w-full aspect-[16/9] bg-[#faf9f6] flex items-center justify-center rounded-xl">
+            <div class="w-full h-full bg-[#faf9f6] flex items-center justify-center rounded-2xl">
               <i data-lucide="image" class="w-16 h-16 text-black/10"></i>
             </div>
           {% endif %}
         </div>
       </div>
 
-      <!-- Action & Details Box -->
-      <div class="lg:col-span-4 flex flex-col justify-start">
-        <div class="bg-white p-8 sm:p-10 rounded-[2rem] shadow-float border border-black/5 sticky top-32">
-          
-          <h3 class="text-2xl font-heading font-medium text-obsidian mb-3">Ready to order?</h3>
-          <p class="text-sm text-secondary font-medium mb-10 leading-relaxed">Speak directly with our architectural specialists for precise installation estimates and inventory checks.</p>
+      <!-- Right Column: Specs & Ordering Panel -->
+      <div class="lg:col-span-6 flex flex-col justify-start">
+        
+        <!-- White-glove "Call Now" CTA Capsule -->
+        <div class="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-float border border-black/5 mb-10">
+          <h3 class="text-2xl font-heading font-semibold text-obsidian mb-3">Order Consultation</h3>
+          <p class="text-sm text-secondary font-medium mb-8 leading-relaxed">Contact JKN Flooring showroom directly to speak with an architectural specialist for inventory reservation and professional subfloor assessment.</p>
           
           <div class="flex flex-col gap-4">
-            <a href="tel:+19054509054" class="w-full bg-obsidian text-white py-4.5 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-accent transition-colors shadow-md hover:-translate-y-0.5 transition-transform">
+            <a href="tel:+19054509054" class="w-full bg-obsidian text-white py-4.5 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-accent transition-colors shadow-md hover:-translate-y-0.5 transition-all duration-300">
               <i data-lucide="phone-call" class="w-4 h-4"></i> Call +1 905-450-9054
             </a>
             
-            <button onclick="toggleChatAgent(true)" class="w-full bg-[#faf9f6] border border-black/5 text-obsidian py-4.5 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:border-accent hover:text-accent transition-colors">
+            <button onclick="toggleChatAgent(true)" class="w-full bg-[#faf9f6] border border-black/5 text-obsidian py-4.5 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:border-accent hover:text-accent transition-all duration-300">
               <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i> Ask AI Concierge
             </button>
           </div>
 
-          <hr class="my-10 border-black/5">
+          <hr class="my-8 border-black/5">
 
           <div class="flex flex-col gap-5 text-sm font-medium">
             <div class="flex items-center justify-between border-b border-black-[0.02] pb-4">
-              <span class="text-secondary text-xs uppercase tracking-widest font-bold">Finish Variant</span>
+              <span class="text-secondary text-xs uppercase tracking-widest font-bold">Finish / Collection</span>
               <span class="text-obsidian font-bold text-right">{{ product['Variant Name'] or 'Standard' }}</span>
             </div>
             <div class="flex items-center justify-between">
@@ -79,24 +85,78 @@
               <span class="text-obsidian font-bold text-right">{{ product['Vendor'] }}</span>
             </div>
           </div>
-
         </div>
-      </div>
 
+        <!-- High-fidelity Tabular Technical Specifications Grid -->
+        <h3 class="text-xs font-bold uppercase tracking-widest text-accent mb-6 flex items-center gap-2">
+          <i data-lucide="sliders" class="w-4 h-4 text-accent/70"></i> Technical Specifications
+        </h3>
+        <div class="border border-black/[0.04] rounded-2xl overflow-hidden shadow-sm bg-white font-sans text-xs sm:text-sm">
+          <div class="divide-y divide-black/[0.03]">
+            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
+              <span class="text-secondary font-medium">Veneer / Wear Layer</span>
+              <span class="text-obsidian font-bold text-right">
+                {% if '1.2mm' in product['Description'] %}1.2mm Real Wood Veneer
+                {% elif '20mil' in product['Description'] or '20 mil' in product['Description'] %}20mil (0.5mm) Heavy Wear
+                {% elif '22mil' in product['Description'] or '22 mil' in product['Description'] %}22mil Premium Wear
+                {% else %}Architectural Grade Core
+                {% endif %}
+              </span>
+            </div>
+            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
+              <span class="text-secondary font-medium">Radiant Heat Compatibility</span>
+              <span class="text-obsidian font-bold text-right">
+                {% if 'Radiant Heat' in product['Description'] or 'radiant heat' in product['Description'] or 'Radiant' in product['Description'] %}Fully Compatible
+                {% else %}Check Subfloor Guides
+                {% endif %}
+              </span>
+            </div>
+            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
+              <span class="text-secondary font-medium">Installation Joint System</span>
+              <span class="text-obsidian font-bold text-right">
+                {% if 'Click' in product['Description'] or 'click' in product['Description'] or 'Valinge' in product['Description'] or 'I4F' in product['Description'] or 'i4f' in product['Description'] %}Drop-Lock Click Joint
+                {% else %}Tongue &amp; Groove Fit
+                {% endif %}
+              </span>
+            </div>
+            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
+              <span class="text-secondary font-medium">Structural Warranty</span>
+              <span class="text-obsidian font-bold text-right">
+                {% if '30-year' in product['Description'] or '30 Year' in product['Description'] %}30-Year Residential
+                {% elif '35-year' in product['Description'] or '35 Year' in product['Description'] %}35-Year Residential
+                {% elif '40 Year' in product['Description'] or '40-year' in product['Description'] %}40-Year Residential
+                {% else %}Limited Lifetime Structural
+                {% endif %}
+              </span>
+            </div>
+            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
+              <span class="text-secondary font-medium">Air Quality Certification</span>
+              <span class="text-obsidian font-bold text-right">FloorScore® Certified</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- Bottom Description Section -->
-    <div class="max-w-4xl border-t border-black/10 pt-16">
-      <h3 class="text-xs font-bold uppercase tracking-widest text-accent mb-8 flex items-center gap-2">
-        <i data-lucide="file-text" class="w-4 h-4"></i> Architectural Details
+    <!-- Isolated Bottom Description Section (Redesigned with elegant, lighter spacing & fonts for luxurious breathing room) -->
+    <div class="border-t border-black/[0.05] pt-16 mt-16 max-w-4xl mx-auto blur-reveal">
+      <h3 class="text-xs font-bold uppercase tracking-widest text-accent mb-6 flex items-center gap-2 justify-center">
+        <i data-lucide="file-text" class="w-4 h-4 text-accent/70"></i> Architectural Overview
       </h3>
-      <div class="prose prose-sm sm:prose-base prose-p:leading-loose prose-p:text-secondary/70 prose-p:font-light max-w-none">
-        <p>{{ product['Description'] | safe if product['Description'] else 'No detailed description available. Please contact our team for technical specifications and subfloor compatibility.' }}</p>
+      <div class="text-secondary/70 text-sm sm:text-base leading-relaxed font-light tracking-wide text-center flex flex-col gap-6">
+        <p>
+          {{ product['Description'] | striptags | replace('THE SPECIFICATIONS', '') | replace('Specifications', '') | replace('Documentations Product Technical Documents', '') | trim }}
+        </p>
+        <p class="text-xs text-secondary/40 font-semibold tracking-wider uppercase mt-4">
+          Architectural Surface Specifications &bull; Biyork Canada &bull; Distributed via JKN Flooring
+        </p>
       </div>
     </div>
 
   </div>
   {% else %}
+  <!-- Fallback State -->
   <div class="flex flex-col items-center justify-center py-32 text-center max-w-lg mx-auto">
     <div class="w-24 h-24 bg-white shadow-glass-inner rounded-full flex items-center justify-center border border-black/5 mb-8 text-obsidian/30">
       <i data-lucide="search-x" class="w-10 h-10"></i>
@@ -114,6 +174,14 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     if (typeof lucide !== 'undefined') lucide.createIcons();
+    
+    // Stagger reveal of bottom details
+    const revealEl = document.querySelector('.blur-reveal');
+    if (revealEl) {
+      setTimeout(() => {
+        revealEl.classList.add('active');
+      }, 300);
+    }
   });
 </script>
 {% endblock %}

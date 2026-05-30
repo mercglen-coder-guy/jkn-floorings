@@ -1,98 +1,87 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Custom Hero Styles for Cinematic Ambient Depth & Glassmorphic Scrim -->
+<!-- Custom Hero Styles for Cinematic Ambient Depth & Localized Readability -->
 <style>
   @keyframes cinematicScale {
     0% { transform: scale(1.02); }
     100% { transform: scale(1.08); }
   }
-  @keyframes slideUp {
+  @keyframes containerReveal {
     0% {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px) scale(0.98);
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
-  }
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
   }
 
   .animate-cinematic-scale {
-    animation: cinematicScale 16s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: cinematicScale 20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     will-change: transform;
   }
-  .animate-slide-up {
-    animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  .animate-fade-in {
-    animation: fadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  .premium-scrim {
-    background: radial-gradient(circle at center, rgba(26, 26, 26, 0.35) 0%, rgba(26, 26, 26, 0.75) 60%, rgba(26, 26, 26, 0.95) 100%);
+  .animate-container-reveal {
+    animation: containerReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 </style>
 
-<!-- HERO SECTION WITH CINEMATIC AMBIENT DEPTH -->
-<section class="relative min-h-screen flex items-center justify-center px-4 sm:px-8 pt-32 pb-24 w-full overflow-hidden bg-obsidian">
-  <!-- The Background Engine (Cinematic Living Backplate) -->
+<!-- HERO SECTION WITH CINEMATIC LIVING BACKPLATE -->
+<section class="relative min-h-screen flex items-center justify-center px-4 sm:px-8 pt-36 pb-24 w-full overflow-hidden bg-obsidian">
+  <!-- The Background Engine (Cinematic Living Backplate - Natural Brightness & Material Depth) -->
   <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
     <img
       src="/static/images/hero_flooring.png"
       alt="Premium Flooring Interior JKN"
-      class="w-full h-full object-cover object-center animate-cinematic-scale filter brightness-[0.8] contrast-[1.05]"
+      class="w-full h-full object-cover object-center animate-cinematic-scale filter brightness-100 contrast-[1.02]"
       loading="eager"
       fetchpriority="high"
     />
-    <!-- The Contrast Scrim Layer (Radial vignette optimized for centered typography) -->
-    <div class="absolute inset-0 premium-scrim z-10"></div>
+    <!-- Premium Edge Vignette - Keeps focus centered without desaturating the wood surface -->
+    <div class="absolute inset-0 bg-gradient-to-t from-obsidian/40 via-transparent to-obsidian/30 z-10"></div>
   </div>
 
-  <!-- Centered Content Cluster -->
-  <div class="w-full max-w-4xl mx-auto z-20 text-center relative flex flex-col items-center justify-center">
+  <!-- Localized Typography Glass Shield (Isolates readability elegantly over fully detailed wood image) -->
+  <div class="w-full max-w-3xl mx-auto z-20 relative flex flex-col items-center justify-center animate-container-reveal bg-[#1a1a1a]/60 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 sm:p-14 shadow-2xl">
     
-    <!-- Centered Highly Refined Brand Stamp Seal -->
-    <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-accent/15 border border-accent/35 mb-8 text-[10px] font-heading font-bold tracking-widest uppercase text-accentLight shadow-glass-inner animate-fade-in">
+    <!-- Brand Stamp Seal -->
+    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-accent/20 border border-accent/40 mb-6 text-[10px] font-heading font-bold tracking-widest uppercase text-accentLight shadow-glass-inner">
       <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
       Servicing Toronto & The GTA
     </div>
 
-    <!-- Centered Cupertino-inspired Typography -->
-    <h1 class="text-[clamp(2.75rem,7.5vw,6rem)] font-heading font-light tracking-tightest leading-[0.88] mb-8 text-white animate-slide-up">
+    <!-- Cupertino-inspired Typography -->
+    <h1 class="text-[clamp(2.5rem,6.5vw,4.75rem)] font-heading font-light tracking-tightest leading-[0.9] text-center mb-6 text-white">
       The Ground<br><span class="font-extrabold text-accent">We Walk.</span>
     </h1>
 
-    <p class="text-accentLight/80 font-sans font-medium text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed mb-12 tracking-tight mx-auto animate-slide-up [animation-delay:150ms]">
+    <p class="text-accentLight/80 font-sans font-medium text-sm sm:text-base md:text-lg max-w-xl text-center leading-relaxed mb-10 tracking-tight">
       Architectural grade hardwood, luxury vinyl plank, laminates, and custom tiles. Engineered for design, built to outlast.
     </p>
 
-    <!-- Twin Action Buttons with Premium Contrast Hierarchy -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto font-sans font-bold text-xs tracking-widest uppercase animate-slide-up [animation-delay:300ms]">
+    <!-- Refined Action Buttons (Clean, crisp border separation - no un-aliased glow shadows) -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto font-sans font-bold text-xs tracking-widest uppercase">
       <!-- Primary: Try AI Visualizer -->
-      <a href="#vision-tool" class="w-full sm:w-auto bg-white text-obsidian border border-white/10 px-9 py-4.5 rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg group">
+      <a href="#vision-tool" class="w-full sm:w-auto bg-white text-obsidian px-9 py-4.5 rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-sm group">
         <i data-lucide="camera" class="w-4 h-4 text-obsidian group-hover:text-accent transition-colors"></i> Try AI Visualizer
       </a>
       
-      <!-- Secondary: Ask AI Concierge (Translucent glass matching header) -->
-      <button onclick="toggleChatAgent(true)" class="w-full sm:w-auto bg-white/10 backdrop-blur-md border border-white/15 text-white hover:bg-white/20 px-9 py-4.5 rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-glass">
+      <!-- Secondary: Ask AI Concierge (Structured border - no fuzzy shadow glow) -->
+      <button onclick="toggleChatAgent(true)" class="w-full sm:w-auto bg-white/10 border border-white/12 text-white hover:bg-white/20 px-9 py-4.5 rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5">
         <i data-lucide="sparkles" class="w-4 h-4 text-accent animate-pulse"></i> Ask AI Concierge
       </button>
     </div>
   </div>
 </section>
 
-<!-- BIYORK PARTNER SECTION -->
+<!-- BIYORK PARTNER SECTION (Standardized max-w-7xl Grid bounds) -->
 <section class="py-24 px-4 sm:px-8 bg-obsidian text-white relative overflow-hidden blur-reveal">
   <!-- Subtle dynamic background glow -->
   <div class="absolute w-[600px] h-[600px] rounded-full bg-accent/20 blur-[120px] top-[-20%] left-[-10%] pointer-events-none"></div>
   <div class="absolute w-[400px] h-[400px] rounded-full bg-accentDark/30 blur-[90px] bottom-[-10%] right-[5%] pointer-events-none"></div>
 
-  <div class="w-full max-w-[120rem] mx-auto z-10 relative">
+  <div class="w-full max-w-7xl mx-auto z-10 relative">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
       <div class="max-w-xl">
         <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 text-[10px] font-heading font-bold tracking-widest uppercase text-accentLight backdrop-blur-md">
@@ -106,38 +95,37 @@
           As an official partner, we offer exclusive access to Biyork's architectural-grade surfaces, combining breathtaking natural aesthetics with cutting-edge engineering durability.
         </p>
       </div>
-      <a href="/biyork" class="shrink-0 flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-obsidian font-bold text-xs uppercase tracking-widest hover:bg-[#eae6df] transition-all duration-300 border border-white/15 hover:scale-[1.02] shadow-md hover:shadow-lg hover:-translate-y-0.5">
+      <a href="/biyork" class="shrink-0 flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-obsidian font-bold text-xs uppercase tracking-widest hover:bg-[#eae6df] transition-all duration-300 border border-white/15 hover:scale-[1.02] shadow-md">
         View Entire Catalog <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
     </div>
 
-    <!-- Featured Products Row -->
+    <!-- Featured Products Showcase (Flattened Layout: Full-bleed image & no triple-nested boxes) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       {% for product in biyork_products %}
-      <a href="/biyork/{{ product['Product ID'] }}" class="group flex flex-col bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-accent/50 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 relative h-full">
-        <!-- Optimized Square Image Container -->
-        <div class="aspect-square w-full p-5 bg-[#171719]/40 border-b border-white/5 flex items-center justify-center shrink-0">
-          <div class="w-full h-full bg-[#faf9f6] rounded-xl flex items-center justify-center overflow-hidden shadow-inner border border-white/5 group-hover:scale-[1.02] transition-transform duration-500 relative">
-            {% if product['Primary Image'] %}
-              <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" loading="lazy" class="w-[85%] h-[85%] object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105">
-            {% else %}
-              <div class="w-full h-full bg-black/5 flex items-center justify-center">
-                <i data-lucide="image" class="w-8 h-8 text-black/20"></i>
-              </div>
-            {% endif %}
-          </div>
+      <a href="/biyork/{{ product['Product ID'] }}" class="group flex flex-col bg-[#1c1c1c] rounded-2xl overflow-hidden border border-white/10 hover:border-accent hover:bg-white/5 transition-all duration-500 hover:-translate-y-2 relative h-full">
+        
+        <!-- Flat Full-Bleed Upper Image Container -->
+        <div class="aspect-square w-full bg-[#f4f3ef] overflow-hidden shrink-0 relative">
+          {% if product['Primary Image'] %}
+            <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          {% else %}
+            <div class="w-full h-full bg-white/5 flex items-center justify-center">
+              <i data-lucide="image" class="w-8 h-8 text-white/20"></i>
+            </div>
+          {% endif %}
         </div>
         
         <!-- Cohesive Content Area -->
         <div class="p-6 flex flex-col flex-grow">
-          <!-- Metadata Tag Row (Highly legible micro-headers) -->
+          <!-- Metadata Tag Row (Lighter background pills with high contrast labels) -->
           <div class="flex items-center gap-2 mb-3.5 flex-wrap">
             {% set prod_type_parts = product['Product Type'].split('|') if product['Product Type'] else [] %}
             {% set category_name = prod_type_parts[0].strip() if prod_type_parts else 'Premium Floor' %}
-            <span class="px-2.5 py-1 rounded-full bg-white/10 text-white font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-white/5 shadow-glass-inner">
+            <span class="px-2.5 py-1 rounded-full bg-[#eae6df] text-obsidian font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-white/10 shadow-sm">
               {{ category_name }}
             </span>
-            <span class="px-2.5 py-1 rounded-full bg-accent/20 text-accentLight font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-accent/20">
+            <span class="px-2.5 py-1 rounded-full bg-accent text-white font-sans font-bold text-[9px] uppercase tracking-widest leading-none">
               {{ product['Vendor'] }}
             </span>
           </div>
@@ -147,7 +135,7 @@
             {{ product['Title'] }}
           </h3>
           
-          <!-- CTA Action Button (Low-contrast solid, transforms gracefully on card hover) -->
+          <!-- Discover CTA Button -->
           <div class="mt-auto">
             <div class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-white group-hover:bg-white group-hover:text-obsidian transition-all duration-300 shadow-sm">
               Discover <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -159,8 +147,9 @@
     </div>
   </div>
 </section>
-<!-- STANDALONE AI VISION TOOL -->
-<section id="vision-tool" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] relative z-20 blur-reveal">
+
+<!-- STANDALONE AI VISION TOOL (Lock to standard max-w-7xl boundary) -->
+<section id="vision-tool" class="w-full max-w-7xl mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] relative z-20 blur-reveal">
   <!-- Minimalist card contour -->
   <div class="bg-white rounded-[clamp(2rem,4vw,3rem)] shadow-glass border border-black/[0.04] overflow-hidden flex flex-col lg:flex-row">
     
@@ -175,11 +164,11 @@
         Snap a photo.<br>Get an estimate.
       </h2>
       
-      <p class="text-secondary font-medium text-sm sm:text-base mb-8 leading-relaxed font-sans font-medium">
+      <p class="text-secondary font-medium text-sm sm:text-base mb-8 leading-relaxed font-sans">
         Upload an inspiration photo of a room layout or floor type. Our Gemini model will instantly analyze wood grain/tile texture, map technical specs, and output localized GTA installation estimates.
       </p>
 
-      <!-- Drag & Drop Uploader (Classy Linen Dotted) -->
+      <!-- Drag & Drop Uploader -->
       <label class="w-full border border-dashed border-black/10 hover:border-accent rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer bg-[#faf9f6]/40 hover:bg-[#faf9f6]/80 transition-all duration-300 group relative">
         <div class="w-12 h-12 rounded-full bg-accent/5 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform border border-accent/10 text-accent">
           <i data-lucide="upload-cloud" class="w-5 h-5 text-accent"></i>
@@ -190,78 +179,82 @@
       </label>
     </div>
 
-    <!-- Vision Results Area -->
-    <div class="w-full lg:w-7/12 p-[clamp(2rem,4vw,3.5rem)] bg-[#faf9f6]/30 flex flex-col items-center justify-center min-h-[400px] sm:min-h-[500px] relative" id="vision-results-area">
+    <!-- Vision Results Area (Fixed container to avoid layout shifts) -->
+    <div class="w-full lg:w-7/12 p-[clamp(2rem,4vw,3.5rem)] bg-[#faf9f6]/30 flex flex-col items-center justify-center min-h-[500px] sm:min-h-[550px] relative overflow-hidden" id="vision-results-area">
       
       <!-- Default state -->
-      <div id="vision-default-state" class="text-center opacity-40 flex flex-col items-center">
+      <div id="vision-default-state" class="absolute inset-0 p-8 flex flex-col items-center justify-center text-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-100 scale-100 pointer-events-auto">
         <i data-lucide="image" class="w-12 h-12 text-secondary mb-3"></i>
         <p class="font-heading font-semibold text-obsidian text-base">Awaiting Photo Upload</p>
         <p class="text-xs text-secondary font-semibold mt-1 font-sans">Assess materials and subfloors instantly.</p>
       </div>
 
       <!-- Loading shimmer state -->
-      <div id="vision-loading-state" class="w-full max-w-md hidden flex-col gap-4">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-4 h-4 border border-accent border-t-transparent rounded-full animate-spin"></div>
-          <p class="font-heading font-bold text-xs text-accent uppercase tracking-widest">Analyzing textures & mapping subfloor specs...</p>
+      <div id="vision-loading-state" class="absolute inset-0 p-[clamp(2rem,4vw,3.5rem)] flex flex-col justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 scale-95 pointer-events-none w-full">
+        <div class="max-w-md mx-auto w-full flex flex-col gap-4">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-4 h-4 border border-accent border-t-transparent rounded-full animate-spin"></div>
+            <p class="font-heading font-bold text-xs text-accent uppercase tracking-widest">Analyzing textures & mapping subfloor specs...</p>
+          </div>
+          <div class="w-full h-36 rounded-xl shimmer"></div>
+          <div class="w-3/4 h-5 rounded-md shimmer"></div>
+          <div class="w-1/2 h-5 rounded-md shimmer"></div>
         </div>
-        <div class="w-full h-36 rounded-xl shimmer"></div>
-        <div class="w-3/4 h-5 rounded-md shimmer"></div>
-        <div class="w-1/2 h-5 rounded-md shimmer"></div>
       </div>
 
       <!-- Output results state -->
-      <div id="vision-output-state" class="w-full hidden flex-col gap-5 w-full max-w-lg">
-        <div class="w-full h-48 sm:h-60 rounded-2xl overflow-hidden shadow-sm relative border border-black/5">
-          <img id="vision-preview-img" src="" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#faf9f6]/95 to-transparent flex items-end p-4">
-            <span class="text-accent text-[9px] font-heading font-bold uppercase tracking-widest border border-accent/25 px-2 py-1 rounded bg-[#faf9f6]/90 backdrop-blur-md">Your Inspiration Image</span>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl p-6 border border-black/[0.04] shadow-sm flex flex-col gap-4">
-          <div class="flex justify-between items-start border-b border-black/[0.04] pb-3">
-            <div>
-              <p class="text-[9px] font-heading font-bold uppercase tracking-widest text-accent" id="vision-matched-category"></p>
-              <h3 class="text-lg font-heading font-bold text-obsidian mt-0.5" id="vision-matched-style"></h3>
-            </div>
-            <span class="bg-[#faf9f6] border border-accent/20 text-accent font-heading font-bold text-[9px] px-2.5 py-1 rounded-full flex items-center gap-1">
-              <i data-lucide="check" class="w-3 h-3"></i> <span id="vision-match-confidence"></span> Match
-            </span>
-          </div>
-
-          <div class="flex flex-col gap-2 text-sm font-semibold">
-            <p class="text-secondary leading-relaxed font-sans font-medium" id="vision-match-desc"></p>
-            
-            <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-black/[0.04]">
-              <div class="bg-[#faf9f6] p-3 rounded-xl border border-black/[0.03]">
-                <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest block">Subfloor Spec</span>
-                <span class="text-xs font-bold text-obsidian mt-0.5 block leading-normal font-sans" id="vision-subfloor-spec"></span>
-              </div>
-              <div class="bg-accent/5 p-3 rounded-xl border border-accent/15">
-                <span class="text-[8px] font-heading font-bold text-accent uppercase tracking-widest block">Est. Installed Cost (GTA)</span>
-                <span class="text-xs font-bold text-accent mt-0.5 block font-heading" id="vision-est-cost"></span>
-              </div>
+      <div id="vision-output-state" class="absolute inset-0 p-[clamp(2rem,4vw,3.5rem)] flex flex-col justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 scale-95 pointer-events-none overflow-y-auto w-full">
+        <div class="w-full max-w-lg mx-auto flex flex-col gap-5">
+          <div class="w-full h-48 sm:h-60 rounded-2xl overflow-hidden shadow-sm relative border border-black/5">
+            <img id="vision-preview-img" src="" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#faf9f6]/95 to-transparent flex items-end p-4">
+              <span class="text-accent text-[9px] font-heading font-bold uppercase tracking-widest border border-accent/25 px-2 py-1 rounded bg-[#faf9f6]/90 backdrop-blur-md">Your Inspiration Image</span>
             </div>
           </div>
-        </div>
 
-        <div class="flex flex-col sm:flex-row gap-3 font-sans font-semibold">
-          <a href="#contact" class="flex-grow bg-obsidian text-white text-center rounded-xl py-3 text-sm font-bold tracking-wide hover:bg-black/90 transition-all shadow-sm">
-            Request formal measurement
-          </a>
-          <button onclick="resetVisionTool()" class="bg-white text-obsidian rounded-xl py-3 px-5 text-sm font-bold border border-black/5 hover:bg-[#faf9f6]/40 transition-colors">
-            Scan Another
-          </button>
+          <div class="bg-white rounded-2xl p-6 border border-black/[0.04] shadow-sm flex flex-col gap-4">
+            <div class="flex justify-between items-start border-b border-black/[0.04] pb-3">
+              <div>
+                <p class="text-[9px] font-heading font-bold uppercase tracking-widest text-accent" id="vision-matched-category"></p>
+                <h3 class="text-lg font-heading font-bold text-obsidian mt-0.5" id="vision-matched-style"></h3>
+              </div>
+              <span class="bg-[#faf9f6] border border-accent/20 text-accent font-heading font-bold text-[9px] px-2.5 py-1 rounded-full flex items-center gap-1">
+                <i data-lucide="check" class="w-3 h-3"></i> <span id="vision-match-confidence"></span> Match
+              </span>
+            </div>
+
+            <div class="flex flex-col gap-2 text-sm font-semibold">
+              <p class="text-secondary leading-relaxed font-sans font-medium" id="vision-match-desc"></p>
+              
+              <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-black/[0.04]">
+                <div class="bg-[#faf9f6] p-3 rounded-xl border border-black/[0.03]">
+                  <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest block">Subfloor Spec</span>
+                  <span class="text-xs font-bold text-obsidian mt-0.5 block leading-normal font-sans" id="vision-subfloor-spec"></span>
+                </div>
+                <div class="bg-accent/5 p-3 rounded-xl border border-accent/15">
+                  <span class="text-[8px] font-heading font-bold text-accent uppercase tracking-widest block">Est. Installed Cost (GTA)</span>
+                  <span class="text-xs font-bold text-accent mt-0.5 block font-heading" id="vision-est-cost"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 font-sans font-semibold">
+            <a href="#contact" class="flex-grow bg-obsidian text-white text-center rounded-xl py-3 text-sm font-bold tracking-wide hover:bg-black/90 transition-all shadow-sm">
+              Request formal measurement
+            </a>
+            <button onclick="resetVisionTool()" class="bg-white text-obsidian rounded-xl py-3 px-5 text-sm font-bold border border-black/5 hover:bg-[#faf9f6]/40 transition-colors">
+              Scan Another
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ARCHITECTURAL ADVANTAGES -->
-<section class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(3rem,8vw,6rem)] z-20 blur-reveal">
+<!-- ARCHITECTURAL ADVANTAGES (Locked to standard max-w-7xl Grid Bounds) -->
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-8 py-[clamp(3rem,8vw,6rem)] z-20 blur-reveal">
   <div class="text-center mb-12 sm:mb-16">
     <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; Complete Assurance &bull;</p>
     <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-heading font-semibold tracking-tightest leading-none text-obsidian mb-4">
@@ -278,7 +271,7 @@
         <i data-lucide="shield-check" class="w-5 h-5"></i>
       </div>
       <h3 class="text-lg font-heading font-bold text-obsidian mb-2.5 tracking-tight">Lifetime Warranty</h3>
-      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans font-medium">
+      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans">
         All architectural laminates and engineered hardwood layouts are backed by JKN's structural lifetime warranty. Zero compromises on durability.
       </p>
     </div>
@@ -288,7 +281,7 @@
         <i data-lucide="cpu" class="w-5 h-5"></i>
       </div>
       <h3 class="text-lg font-heading font-bold text-obsidian mb-2.5 tracking-tight">AI-Backed Quoting</h3>
-      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans font-medium">
+      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans">
         We utilize Google's Gemini Vision AI to instantly assess material shapes, grains, and subfloors, computing project labor estimates dynamically.
       </p>
     </div>
@@ -298,21 +291,21 @@
         <i data-lucide="truck" class="w-5 h-5"></i>
       </div>
       <h3 class="text-lg font-heading font-bold text-obsidian mb-2.5 tracking-tight">Fleet Delivery</h3>
-      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans font-medium">
+      <p class="text-secondary font-medium leading-relaxed text-xs sm:text-sm font-sans">
         Rapid GTA dispatch to Toronto, Oakville, Vaughan, and Mississauga. Next-day starting schedules supported by our massive catalog stock.
       </p>
     </div>
   </div>
 </section>
 
-<!-- CORE SERVICES GRID -->
-<section id="services" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] z-20 blur-reveal">
+<!-- CORE SERVICES GRID (Locked to standard max-w-7xl Grid Bounds) -->
+<section id="services" class="w-full max-w-7xl mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] z-20 blur-reveal">
   <div class="flex flex-col mb-[clamp(2rem,4vw,3.5rem)]">
     <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; Architectural Crafts &bull;</p>
     <h2 class="text-fluid-h2 font-heading font-semibold tracking-tightest leading-[0.9] text-obsidian mb-6">
       Precision <br>Installations.
     </h2>
-    <p class="text-[clamp(0.95rem,1.2vw,1.15rem)] text-secondary max-w-2xl font-medium leading-relaxed font-sans font-medium">
+    <p class="text-[clamp(0.95rem,1.2vw,1.15rem)] text-secondary max-w-2xl font-medium leading-relaxed font-sans">
       We prepare subfloors, lay boards, and finish transitions to meet the rigorous aesthetics of modern spaces.
     </p>
   </div>
@@ -325,7 +318,7 @@
           <i data-lucide="tree" class="w-5 h-5"></i>
         </div>
         <h3 class="text-xl font-heading font-bold text-obsidian mb-3 group-hover:text-accent transition-colors">Engineered Hardwood</h3>
-        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans font-medium">
+        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans">
           Specially acclimated wide-plank wood that matches structural humidity shifts in Southern Ontario. Flawlessly laid with precise expansion tolerances.
         </p>
       </div>
@@ -341,7 +334,7 @@
           <i data-lucide="droplet" class="w-5 h-5"></i>
         </div>
         <h3 class="text-xl font-heading font-bold text-obsidian mb-3 group-hover:text-accent transition-colors">Luxury Vinyl Plank (LVP)</h3>
-        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans font-medium">
+        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans">
           100% waterproof flooring featuring ultra-thick commercial wear shields. Ideal for GTA basements, kitchens, high-traffic rooms, and active households.
         </p>
       </div>
@@ -357,7 +350,7 @@
           <i data-lucide="layers" class="w-5 h-5"></i>
         </div>
         <h3 class="text-xl font-heading font-bold text-obsidian mb-3 group-hover:text-accent transition-colors">Premium Laminates</h3>
-        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans font-medium">
+        <p class="text-secondary font-medium text-xs sm:text-sm leading-relaxed mb-6 font-sans">
           Premium High-Density Fiberboard (HDF) engineered layouts offering superior scratch protection, authentic matte wood patterns, and structural integrity.
         </p>
       </div>
@@ -368,21 +361,22 @@
   </div>
 </section>
 
-<!-- BEFORE / AFTER SLIDER SECTION -->
-<section id="transformations" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 pb-[clamp(4rem,10vw,8rem)] z-20 blur-reveal relative">
+<!-- BEFORE / AFTER SLIDER SECTION (Locked to standard max-w-7xl Grid Bounds) -->
+<section id="transformations" class="w-full max-w-7xl mx-auto px-4 sm:px-8 pb-[clamp(4rem,10vw,8rem)] z-20 blur-reveal relative">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-4">
     <div>
       <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; GTA Visual Proof &bull;</p>
       <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-heading font-semibold tracking-tightest leading-none text-obsidian mb-2">
         Real Transformations.
       </h2>
-      <p class="text-secondary font-medium text-sm sm:text-base font-sans font-medium">
+      <p class="text-secondary font-medium text-sm sm:text-base font-sans">
         Drag the vertical slider splitter to see our subfloor setup versus the oak hardwood finish.
       </p>
     </div>
   </div>
 
-  <div class="relative w-full aspect-[4/3] sm:aspect-[21/9] rounded-[clamp(1.25rem,2.5vw,2rem)] overflow-hidden cursor-ew-resize select-none slider-container border border-black/[0.04] shadow-sm bg-white" id="ba-slider" onmousedown="startSliding(event)" ontouchstart="startSliding(event)">
+  <!-- Smooth gesture slider - removed legacy inline triggers for single-pointer Capturing event pipeline -->
+  <div class="relative w-full aspect-[4/3] sm:aspect-[21/9] rounded-[clamp(1.25rem,2.5vw,2rem)] overflow-hidden cursor-ew-resize select-none slider-container border border-black/[0.04] shadow-sm bg-white" id="ba-slider">
     
     <!-- Floating Interaction Help Box -->
     <div id="slider-helper" class="absolute top-[45%] left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-xl border border-black/5 px-5 py-3 rounded-2xl flex items-center gap-2.5 text-xs text-obsidian font-bold uppercase tracking-wider pointer-events-none z-30 shadow-md transition-opacity duration-700">
@@ -396,7 +390,7 @@
       alt="After JKN Flooring installation"
       class="absolute inset-0 w-full h-full object-cover pointer-events-none"
     />
-    <div class="absolute top-5 right-5 bg-white/95 backdrop-blur-md border border-black/5 px-4 py-2 rounded-full text-accent font-heading font-bold tracking-widest text-[10px] uppercase shadow-sm pointer-events-none z-10 font-sans font-bold">
+    <div class="absolute top-5 right-5 bg-white/95 backdrop-blur-md border border-black/5 px-4 py-2 rounded-full text-accent font-heading font-bold tracking-widest text-[10px] uppercase shadow-sm pointer-events-none z-10 font-sans">
       Completed Hardwood
     </div>
 
@@ -408,7 +402,7 @@
       style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%)"
       id="ba-before"
     />
-    <div class="absolute top-5 left-5 bg-glass border border-black/5 px-4 py-2 rounded-full text-obsidian font-heading font-bold tracking-widest text-[10px] uppercase shadow-sm pointer-events-none z-10 font-sans font-bold" id="ba-before-label">
+    <div class="absolute top-5 left-5 bg-glass border border-black/5 px-4 py-2 rounded-full text-obsidian font-heading font-bold tracking-widest text-[10px] uppercase shadow-sm pointer-events-none z-10 font-sans" id="ba-before-label">
       Preparation Setup
     </div>
 
@@ -422,8 +416,8 @@
   </div>
 </section>
 
-<!-- METRICS GRID -->
-<section class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 relative z-20 blur-reveal delay-200">
+<!-- METRICS GRID (Locked to standard max-w-7xl Grid Bounds) -->
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-8 relative z-20 blur-reveal delay-200">
   <div class="bg-white rounded-[clamp(1.25rem,2.5vw,2rem)] py-8 sm:py-10 px-4 sm:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0 gap-x-4 md:gap-x-10 text-center items-center border border-black/[0.04] shadow-sm">
     <div class="flex flex-col justify-center">
       <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">
@@ -431,51 +425,54 @@
       </p>
       <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">Years Experience</p>
     </div>
-    <div class="flex flex-col justify-center border-l md:border-l border-black/[0.04]">
+    <div class="flex flex-col justify-center border-l border-black/[0.04]">
       <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">03</p>
       <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">GTA Showrooms</p>
     </div>
-    <div class="flex flex-col justify-center border-t md:border-t-0 md:border-l border-black/[0.04] pt-8 md:pt-0">
+    <div class="flex flex-col justify-center border-t md:border-t-0 border-l border-black/[0.04] pt-8 md:pt-0">
       <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">
         600<span class="text-accent">+</span>
       </p>
       <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">In-Stock choices</p>
     </div>
-    <div class="flex flex-col justify-center border-t md:border-t-0 border-l md:border-l border-black/[0.04] pt-8 md:pt-0">
+    <div class="flex flex-col justify-center border-t md:border-t-0 border-l border-black/[0.04] pt-8 md:pt-0">
       <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">100%</p>
       <p class="text-[9px] font-heading font-bold text-secondary uppercase tracking-widest">GTA Price Match</p>
     </div>
   </div>
 </section>
 
-<!-- CONTACT & FREE ESTIMATE SECTION -->
-<section id="contact" class="py-[clamp(4rem,10vw,8rem)] w-full max-w-[120rem] mx-auto px-4 sm:px-8 bg-white border-t border-black/[0.04] z-20 arch-grid">
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start relative z-10">
-    <div class="blur-reveal">
-      <div class="inline-flex items-center gap-2 bg-accent/5 border border-accent/15 px-3 py-1.5 rounded-full mb-6">
-        <i data-lucide="phone" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
-        <span class="text-[9px] font-heading font-bold uppercase tracking-widest text-accent font-sans">Free GTA Measurement</span>
+<!-- CONTACT & CONVERSION ENGINE (Locked to standard max-w-7xl Container & fully standardized underline input styles) -->
+<section id="contact" class="w-full max-w-7xl mx-auto px-4 sm:px-8 py-24 relative z-20 blur-reveal">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-start">
+    
+    <!-- Info Side (5 cols) -->
+    <div class="lg:col-span-5 flex flex-col justify-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/5 border border-accent/15 w-max mb-6">
+        <i data-lucide="phone-call" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
+        <span class="text-[9px] font-heading font-bold uppercase tracking-widest text-accent font-sans">Immediate Assistance</span>
       </div>
-      <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-heading font-semibold tracking-tightest leading-[0.98] text-obsidian mb-8">
-        Plan Your<br>Renovation.
+      
+      <h2 class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold tracking-tightest leading-[1.1] mb-6 text-obsidian">
+        Let's prepare<br>your estimate.
       </h2>
-      <p class="text-secondary font-medium text-sm sm:text-base leading-relaxed mb-8 font-sans font-medium">
-        Ready to take the next step? Send us your project details or request an on-site consultation. JKN's estimators bring real material boards to your space, providing layout guidance for optimal floor cuts.
+      
+      <p class="text-secondary font-medium text-sm sm:text-base mb-10 leading-relaxed font-sans">
+        Submit details about your project below, and our Toronto-based technical team will prepare a localized installation and materials proposal within 24 hours.
       </p>
 
-      <div class="flex flex-col gap-4 max-w-xs font-sans">
-        <a href="tel:+19054509054" class="flex items-center gap-4 bg-[#faf9f6]/85 p-4 rounded-2xl border border-black/[0.03] shadow-sm hover:border-accent hover:scale-[1.01] transition-all block">
-          <div class="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center text-accent border border-accent/10">
-            <i data-lucide="phone-call" class="w-4 h-4"></i>
+      <div class="flex flex-col gap-6">
+        <a href="tel:+19054509054" class="flex items-center gap-4 bg-white p-5 rounded-2xl border border-black/[0.03] shadow-sm hover:shadow-md transition-all group">
+          <div class="w-11 h-11 bg-accent/5 rounded-xl flex items-center justify-center border border-accent/10 text-accent group-hover:scale-105 transition-transform">
+            <i data-lucide="phone" class="w-4 h-4"></i>
           </div>
           <div>
-            <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest">Call GTA Showroom</span>
+            <span class="text-[8px] font-heading font-bold text-secondary uppercase tracking-widest">Call Showroom</span>
             <p class="font-heading font-semibold text-obsidian mt-0.5 text-sm">+1 905-450-9054</p>
           </div>
         </a>
-
-        <a href="mailto:info@jknflooring.com" class="flex items-center gap-4 bg-[#faf9f6]/85 p-4 rounded-2xl border border-black/[0.03] shadow-sm hover:border-accent hover:scale-[1.01] transition-all block">
-          <div class="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center text-accent border border-accent/10">
+        <a href="mailto:info@jknflooring.com" class="flex items-center gap-4 bg-white p-5 rounded-2xl border border-black/[0.03] shadow-sm hover:shadow-md transition-all group">
+          <div class="w-11 h-11 bg-accent/5 rounded-xl flex items-center justify-center border border-accent/10 text-accent group-hover:scale-105 transition-transform">
             <i data-lucide="mail" class="w-4 h-4"></i>
           </div>
           <div>
@@ -486,59 +483,59 @@
       </div>
     </div>
 
-    <!-- Quote Form Card (Classy Alabaster form) -->
-    <div class="bg-[#faf9f6]/70 rounded-[2rem] p-8 border border-black/[0.03] shadow-glass-inner blur-reveal delay-100 font-sans">
+    <!-- Quote Form Card (Premium Alabaster form with seamless floating underline fields) -->
+    <div class="lg:col-span-7 bg-[#faf9f6]/70 rounded-[2rem] p-8 sm:p-10 border border-black/[0.03] shadow-glass-inner blur-reveal delay-100 font-sans w-full">
       <h3 class="text-lg sm:text-xl font-heading font-bold tracking-tight text-obsidian mb-6">Estimate Request Form</h3>
       <div id="formStatus" class="mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center hidden"></div>
       
-      <form id="estimateForm" onsubmit="handleFormSubmit(event)" class="flex flex-col gap-5 font-sans font-semibold">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <form id="estimateForm" onsubmit="handleFormSubmit(event)" class="flex flex-col gap-8 font-sans font-semibold">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <!-- Floating Label Name -->
-          <div class="relative">
-            <input type="text" id="clientName" name="name" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm" placeholder="John Doe" required autocomplete="name">
-            <label for="clientName" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-[1.125rem] peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Full Name *</label>
+          <div class="relative w-full">
+            <input type="text" id="clientName" name="name" class="peer w-full bg-transparent border-b border-black/15 focus:border-accent pt-6 pb-2 text-sm text-obsidian font-semibold focus:outline-none transition-all placeholder-transparent" placeholder="John Doe" required autocomplete="name">
+            <label for="clientName" class="absolute left-0 top-1.5 text-[9px] font-heading font-bold uppercase tracking-widest text-secondary transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-placeholder-shown:font-sans peer-placeholder-shown:normal-case peer-focus:top-1.5 peer-focus:text-[9px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Full Name *</label>
           </div>
           <!-- Floating Label Email -->
-          <div class="relative">
-            <input type="email" id="clientEmail" name="email" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm" placeholder="john@example.com" required autocomplete="email">
-            <label for="clientEmail" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-[1.125rem] peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Email Address *</label>
+          <div class="relative w-full">
+            <input type="email" id="clientEmail" name="email" class="peer w-full bg-transparent border-b border-black/15 focus:border-accent pt-6 pb-2 text-sm text-obsidian font-semibold focus:outline-none transition-all placeholder-transparent" placeholder="john@example.com" required autocomplete="email">
+            <label for="clientEmail" class="absolute left-0 top-1.5 text-[9px] font-heading font-bold uppercase tracking-widest text-secondary transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-placeholder-shown:font-sans peer-placeholder-shown:normal-case peer-focus:top-1.5 peer-focus:text-[9px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Email Address *</label>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <!-- Floating Label Phone -->
-          <div class="relative">
-            <input type="tel" id="clientPhone" name="phone" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm" placeholder="(416) 555-0100" required autocomplete="tel">
-            <label for="clientPhone" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-[1.125rem] peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Phone *</label>
+          <div class="relative w-full">
+            <input type="tel" id="clientPhone" name="phone" class="peer w-full bg-transparent border-b border-black/15 focus:border-accent pt-6 pb-2 text-sm text-obsidian font-semibold focus:outline-none transition-all placeholder-transparent" placeholder="(416) 555-0100" required autocomplete="tel">
+            <label for="clientPhone" class="absolute left-0 top-1.5 text-[9px] font-heading font-bold uppercase tracking-widest text-secondary transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-placeholder-shown:font-sans peer-placeholder-shown:normal-case peer-focus:top-1.5 peer-focus:text-[9px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Phone *</label>
           </div>
-          <!-- Custom Select with Floating Label -->
-          <div class="relative">
-            <select id="flooringType" name="flooring_type" class="w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all shadow-sm appearance-none cursor-pointer" required>
-              <option value="hardwood">Solid / Engineered Hardwood</option>
-              <option value="vinyl">Luxury Vinyl Plank (LVP)</option>
-              <option value="laminate">Premium Laminate</option>
-              <option value="other">Tile / Repairs / Accessories</option>
+          <!-- Custom Select with Floating Label (100% matched typography and line alignment) -->
+          <div class="relative w-full">
+            <select id="flooringType" name="flooring_type" class="w-full bg-transparent border-b border-black/15 focus:border-accent pt-6 pb-2 text-sm text-obsidian font-semibold focus:outline-none transition-all cursor-pointer appearance-none" required>
+              <option value="hardwood" class="font-semibold text-obsidian">Solid / Engineered Hardwood</option>
+              <option value="vinyl" class="font-semibold text-obsidian">Luxury Vinyl Plank (LVP)</option>
+              <option value="laminate" class="font-semibold text-obsidian">Premium Laminate</option>
+              <option value="other" class="font-semibold text-obsidian">Tile / Repairs / Accessories</option>
             </select>
-            <label for="flooringType" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-accent pointer-events-none">Flooring Needed *</label>
-            <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+            <label for="flooringType" class="absolute left-0 top-1.5 text-[9px] font-heading font-bold uppercase tracking-widest text-secondary pointer-events-none">Flooring Needed *</label>
+            <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none pt-4">
               <i data-lucide="chevron-down" class="w-4 h-4 text-secondary"></i>
             </div>
           </div>
         </div>
 
         <!-- Floating Label Size -->
-        <div class="relative">
-          <input type="number" id="projectSize" name="size" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm" placeholder="e.g. 600" min="1" required>
-          <label for="projectSize" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-[1.125rem] peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Estimated Area (Sq. Ft.) *</label>
+        <div class="relative w-full">
+          <input type="number" id="projectSize" name="size" class="peer w-full bg-transparent border-b border-black/15 focus:border-accent pt-6 pb-2 text-sm text-obsidian font-semibold focus:outline-none transition-all placeholder-transparent" placeholder="e.g. 600" min="1" required>
+          <label for="projectSize" class="absolute left-0 top-1.5 text-[9px] font-heading font-bold uppercase tracking-widest text-secondary transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-placeholder-shown:font-sans peer-placeholder-shown:normal-case peer-focus:top-1.5 peer-focus:text-[9px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Estimated Area (Sq. Ft.) *</label>
         </div>
 
         <!-- Floating Label Textarea -->
-        <div class="relative">
-          <textarea id="message" name="message" class="peer w-full bg-white border border-black/10 rounded-xl px-4 pt-6 pb-2 text-sm sm:text-base text-obsidian font-semibold font-sans focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder-transparent shadow-sm min-h-[140px] max-h-[250px]" placeholder="Details about your subfloor levelness, baseboards, transitions..."></textarea>
-          <label for="message" class="absolute left-4 top-2 text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-wider text-secondary transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:font-sans peer-focus:top-2 peer-focus:text-[10px] sm:peer-focus:text-[11px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Message & Details</label>
+        <div class="relative w-full">
+          <textarea id="message" name="message" class="peer w-full bg-transparent border-b border-black/15 focus:border-accent pt-6 pb-2 text-sm text-obsidian font-semibold focus:outline-none transition-all placeholder-transparent min-h-[100px] max-h-[200px]" placeholder="Details..."></textarea>
+          <label for="message" class="absolute left-0 top-1.5 text-[9px] font-heading font-bold uppercase tracking-widest text-secondary transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-placeholder-shown:font-sans peer-placeholder-shown:normal-case peer-focus:top-1.5 peer-focus:text-[9px] peer-focus:font-heading peer-focus:uppercase peer-focus:text-accent pointer-events-none">Message & Details</label>
         </div>
 
-        <button type="submit" class="bg-obsidian text-white rounded-xl py-4 mt-2 text-sm sm:text-base font-bold tracking-wide hover:bg-black/90 transition-all shadow-md flex items-center justify-center gap-2.5 font-sans group">
+        <button type="submit" class="bg-obsidian text-white rounded-xl py-4 mt-4 text-sm sm:text-base font-bold tracking-wide hover:bg-black/90 transition-all shadow-md flex items-center justify-center gap-2.5 font-sans group">
           Submit Estimate Request <i data-lucide="send" class="w-4 h-4 text-white font-bold group-hover:translate-x-1 transition-transform"></i>
         </button>
       </form>
@@ -549,6 +546,59 @@
 
 {% block extra_js %}
 <script>
+  // In-App Premium Toast Notification Helper (replaces browser alerts completely!)
+  function showCustomToast(title, message, type = "success") {
+    let container = document.getElementById("toast-container");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "toast-container";
+      container.className = "fixed top-24 right-4 sm:right-8 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full";
+      document.body.appendChild(container);
+    }
+    
+    const toast = document.createElement("div");
+    toast.className = `p-5 rounded-2xl border backdrop-blur-xl shadow-xl pointer-events-auto transform translate-x-12 opacity-0 transition-all duration-500 flex items-start gap-3.5 bg-white ${type === 'success' ? 'border-emerald-100' : 'border-red-100'}`;
+    
+    const iconWrapper = document.createElement("div");
+    iconWrapper.className = `w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${type === 'success' ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-500'}`;
+    
+    const icon = document.createElement("i");
+    icon.setAttribute("data-lucide", type === "success" ? "check-circle" : "alert-circle");
+    icon.className = "w-4 h-4";
+    iconWrapper.appendChild(icon);
+    
+    const textBlock = document.createElement("div");
+    
+    const header = document.createElement("h4");
+    header.className = "text-xs font-bold text-obsidian uppercase tracking-wider";
+    header.textContent = title;
+    
+    const body = document.createElement("p");
+    body.className = "text-xs text-secondary font-medium mt-1 leading-relaxed";
+    body.textContent = message;
+    
+    textBlock.appendChild(header);
+    textBlock.appendChild(body);
+    
+    toast.appendChild(iconWrapper);
+    toast.appendChild(textBlock);
+    
+    container.appendChild(toast);
+    
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    
+    setTimeout(() => {
+      toast.classList.remove("translate-x-12", "opacity-0");
+    }, 50);
+    
+    setTimeout(() => {
+      toast.classList.add("translate-x-12", "opacity-0");
+      setTimeout(() => {
+        toast.remove();
+      }, 500);
+    }, 5000);
+  }
+
   // Reveal-on-Scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -562,50 +612,53 @@
     document.querySelectorAll('.blur-reveal').forEach(el => {
       observer.observe(el);
     });
-    // Trigger hero reveal instantly
-    setTimeout(() => {
-      document.querySelector('.hero-section .blur-reveal').classList.add('active');
-    }, 100);
   });
 
-  // Before/After Slider Engine
+  // Declared state control helper for Vision Estimator results area
+  function showVisionState(stateId) {
+    const states = ["vision-default-state", "vision-loading-state", "vision-output-state"];
+    states.forEach(id => {
+      const el = document.getElementById(id);
+      if (id === stateId) {
+        el.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+        el.classList.add("opacity-100", "scale-100", "pointer-events-auto");
+      } else {
+        el.classList.remove("opacity-100", "scale-100", "pointer-events-auto");
+        el.classList.add("opacity-0", "scale-95", "pointer-events-none");
+      }
+    });
+  }
+
+  // Unified Pointer-Event Slider Engine (Native setPointerCapture locks)
   const beforeImg = document.getElementById("ba-before");
   const handle = document.getElementById("ba-handle");
   const slider = document.getElementById("ba-slider");
   const helper = document.getElementById("slider-helper");
   let isSliding = false;
 
+  // Unified pointer listeners to avoid mobile gesture stuttering
+  slider.addEventListener("pointerdown", startSliding);
+  slider.addEventListener("pointermove", updateSlider);
+  slider.addEventListener("pointerup", stopSliding);
+  slider.addEventListener("pointercancel", stopSliding);
+
   function startSliding(e) {
     isSliding = true;
-    if (helper) helper.style.opacity = '0'; // Hide the helper box
+    slider.setPointerCapture(e.pointerId);
+    if (helper) helper.style.opacity = '0';
     updateSlider(e);
-    window.addEventListener("mousemove", updateSlider);
-    window.addEventListener("mouseup", stopSliding);
-    window.addEventListener("touchmove", updateSlider);
-    window.addEventListener("touchend", stopSliding);
   }
 
-  function stopSliding() {
+  function stopSliding(e) {
+    if (!isSliding) return;
     isSliding = false;
-    window.removeEventListener("mousemove", updateSlider);
-    window.removeEventListener("mouseup", stopSliding);
-    window.removeEventListener("touchmove", updateSlider);
-    window.removeEventListener("touchend", stopSliding);
+    slider.releasePointerCapture(e.pointerId);
   }
 
   function updateSlider(e) {
     if (!isSliding) return;
-    
-    // Prevent scrolling on touch devices during drag
-    if (e.cancelable) {
-      e.preventDefault();
-    }
-    
     const rect = slider.getBoundingClientRect();
-    let clientX = e.clientX || (e.touches && e.touches[0].clientX);
-    if (!clientX) return;
-
-    let offset = clientX - rect.left;
+    let offset = e.clientX - rect.left;
     let percentage = (offset / rect.width) * 100;
 
     if (percentage < 0) percentage = 0;
@@ -620,14 +673,8 @@
     const file = event.target.files[0];
     if (!file) return;
 
-    // Transition states
-    const defaultState = document.getElementById("vision-default-state");
-    const loadingState = document.getElementById("vision-loading-state");
-    const outputState = document.getElementById("vision-output-state");
-
-    defaultState.style.display = "none";
-    outputState.style.display = "none";
-    loadingState.style.display = "flex";
+    // Transition states using our layout-locked opacity/scale manager
+    showVisionState("vision-loading-state");
 
     // Set preview image
     const reader = new FileReader();
@@ -647,11 +694,9 @@
       });
       const result = await response.json();
 
-      // Transmit response back to UI
       if (response.ok && result.status === "success") {
         setTimeout(() => {
-          loadingState.style.display = "none";
-          outputState.style.display = "flex";
+          showVisionState("vision-output-state");
 
           document.getElementById("vision-matched-category").textContent = result.analysis.category;
           document.getElementById("vision-matched-style").textContent = result.analysis.detected_style;
@@ -660,21 +705,20 @@
           document.getElementById("vision-subfloor-spec").textContent = result.analysis.subfloor_spec;
           document.getElementById("vision-est-cost").textContent = result.analysis.cost_range;
           
-          lucide.createIcons();
-        }, 1500); // Smooth premium delay
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+          showCustomToast("Scan Successful", "Gemini matched surface patterns with " + result.analysis.match_rate + " confidence.", "success");
+        }, 1200); // Smooth premium transition delay
       } else {
         throw new Error();
       }
     } catch(err) {
-      loadingState.style.display = "none";
-      defaultState.style.display = "flex";
-      alert("Error parsing image. Please select an alternate JPEG/PNG file.");
+      showVisionState("vision-default-state");
+      showCustomToast("Scan Issue", "Error processing flooring image. Please verify file type and try again.", "error");
     }
   }
 
   function resetVisionTool() {
-    document.getElementById("vision-output-state").style.display = "none";
-    document.getElementById("vision-default-state").style.display = "flex";
+    showVisionState("vision-default-state");
     document.getElementById("standalone-vision-upload").value = "";
   }
 
@@ -703,12 +747,14 @@
         statusEl.className = "mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold font-sans";
         statusEl.textContent = result.message;
         form.reset();
+        showCustomToast("Estimate Request Received", "Our GTA architectural team is processing your specifications.", "success");
       } else {
         throw new Error();
       }
     } catch(err) {
       statusEl.className = "mb-6 p-4 rounded-xl text-xs sm:text-sm font-semibold text-center bg-red-50 border border-red-100 text-red-500 font-bold font-sans";
       statusEl.textContent = "Connection issue. Please call showroom at +1 905-450-9054 directly.";
+      showCustomToast("Submission Failed", "Connection issue. Please contact showroom directly.", "error");
     }
   }
 </script>

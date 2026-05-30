@@ -138,61 +138,68 @@
 </head>
 <body class="text-obsidian antialiased overflow-x-hidden relative bg-[#faf9f6] min-h-screen flex flex-col font-sans">
 
-  <!-- NAVBAR -->
-  <header id="navbar" class="fixed top-0 inset-x-0 z-40 transition-all duration-700 pt-4 sm:pt-6 px-4 sm:px-8 pointer-events-none w-full max-w-7xl mx-auto">
-    <div class="pointer-events-auto w-full bg-white/80 backdrop-blur-[30px] border border-black/[0.06] rounded-full px-5 sm:px-6 py-2.5 flex items-center justify-between shadow-2xl relative transition-all duration-500 hover:border-accent/25 hover:shadow-float">
-      <!-- Minimalist Logo -->
-      <div class="flex items-center transition-all hover:scale-[1.02] duration-300 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <span class="font-heading font-semibold text-base sm:text-lg tracking-tight flex items-center gap-2 text-obsidian">
-          JKN<span class="font-normal text-secondary font-sans text-xs tracking-wider uppercase ml-1">Flooring</span>
-        </span>
-      </div>
+  <!-- NAVBAR (Lock to standard max-w-7xl grid boundary) -->
+  <div class="fixed top-0 inset-x-0 z-40 pt-4 sm:pt-6 px-4 sm:px-8 pointer-events-none w-full">
+    <header id="navbar" class="max-w-7xl mx-auto pointer-events-auto">
+      <div class="w-full bg-[#1a1a1a]/70 backdrop-blur-[32px] saturate-[190%] border border-white/[0.15] rounded-full px-5 sm:px-6 py-2.5 flex items-center justify-between shadow-2xl relative transition-all duration-500 hover:border-white/25">
+        
+        <!-- Logo -->
+        <div class="flex items-center transition-all hover:scale-[1.02] duration-300 cursor-pointer" onclick="window.location.href='/'">
+          <span class="font-heading font-semibold text-base sm:text-lg tracking-tight flex items-center gap-2 text-white">
+            JKN<span class="font-normal text-accentLight font-sans text-xs tracking-wider uppercase ml-1">Flooring</span>
+          </span>
+        </div>
 
-      <!-- Minimalist AI Search Trigger (Perfectly Centered via Absolute Position) -->
-      <div class="absolute left-1/2 -translate-x-1/2 hidden md:block">
-        <button onclick="toggleChatAgent(true)" class="flex items-center gap-3 bg-black/[0.03] hover:bg-black/[0.06] rounded-full py-2 px-4.5 border border-black/[0.05] transition-all group w-56 lg:w-64 justify-between">
-          <div class="flex items-center gap-2">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
-            <span class="text-xs font-semibold text-secondary tracking-tight group-hover:text-obsidian transition-colors truncate">Ask AI Concierge...</span>
-          </div>
-          <div class="flex items-center gap-0.5 bg-black/[0.03] px-1.5 py-0.5 rounded border border-black/5">
-            <span class="text-[8px] font-bold text-secondary">⌘</span>
-            <span class="text-[8px] font-bold text-secondary">K</span>
-          </div>
-        </button>
-      </div>
+        <!-- Command Capsule (Search Trigger with inner border glow & scaling animation) -->
+        <div class="absolute left-1/2 -translate-x-1/2 hidden md:block">
+          <button onclick="toggleChatAgent(true)" class="flex items-center gap-3 bg-white/5 hover:bg-white/10 rounded-full py-2 px-4.5 border border-white/10 hover:border-white/20 transition-all duration-300 group w-56 lg:w-64 justify-between hover:scale-[1.015] shadow-sm">
+            <div class="flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
+              <span class="text-xs font-semibold text-white/70 group-hover:text-white transition-colors truncate">Ask AI Concierge...</span>
+            </div>
+            <div class="flex items-center gap-0.5 bg-white/5 px-1.5 py-0.5 rounded border border-white/10">
+              <span class="text-[8px] font-bold text-white/60">⌘</span>
+              <span class="text-[8px] font-bold text-white/60">K</span>
+            </div>
+          </button>
+        </div>
 
-      <!-- Contact CTA -->
-      <div class="hidden sm:flex items-center gap-5">
-        <a href="tel:+19054509054" class="text-xs font-bold tracking-tight text-secondary hover:text-obsidian transition-colors hidden lg:block">
-          +1 905-450-9054
-        </a>
-        <a href="#contact" class="bg-obsidian text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide hover:bg-black/90 transition-all duration-300 shadow-sm whitespace-nowrap">
-          Get Estimate
-        </a>
-      </div>
+        <!-- Navigation Links & Contact -->
+        <div class="hidden sm:flex items-center gap-5">
+          <a href="/biyork" class="text-xs font-bold tracking-tight text-white/70 hover:text-white transition-colors">
+            Biyork Collection
+          </a>
+          <a href="tel:+19054509054" class="text-xs font-bold tracking-tight text-white/70 hover:text-white transition-colors hidden lg:block">
+            +1 905-450-9054
+          </a>
+          <a href="/#contact" class="bg-white text-obsidian px-5 py-2.5 rounded-full text-xs font-bold tracking-wide hover:bg-accent hover:text-white transition-all duration-300 whitespace-nowrap shadow-sm">
+            Get Estimate
+          </a>
+        </div>
 
-      <!-- Mobile triggers -->
-      <div class="sm:hidden flex items-center gap-1.5">
-        <button onclick="toggleChatAgent(true)" class="bg-black/5 p-2.5 rounded-full text-obsidian transition-all">
-          <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i>
-        </button>
-        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="bg-black/5 p-2.5 rounded-full text-obsidian transition-all">
-          <i data-lucide="menu" class="w-4 h-4"></i>
-        </button>
+        <!-- Mobile Menu Triggers -->
+        <div class="sm:hidden flex items-center gap-1.5">
+          <button onclick="toggleChatAgent(true)" class="bg-white/5 p-2.5 rounded-full text-white transition-all">
+            <i data-lucide="sparkles" class="w-4 h-4 text-accent animate-pulse"></i>
+          </button>
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="bg-white/5 p-2.5 rounded-full text-white transition-all">
+            <i data-lucide="menu" class="w-4 h-4"></i>
+          </button>
+        </div>
+
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
   <!-- MOBILE MENU -->
   <div id="mobile-menu" class="fixed inset-0 z-50 bg-[#faf9f6]/98 backdrop-blur-3xl flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-all duration-500">
     <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-2.5 rounded-full bg-glass shadow-glass-inner text-obsidian border border-black/5 transition-all">
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
+    <a href="/" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Home</a>
     <a href="/#vision-tool" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">AI Visualizer</a>
-    <a href="/#services" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Services</a>
-    <a href="#transformations" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Transformations</a>
-    <a href="#contact" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Contact</a>
+    <a href="/biyork" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Biyork Catalog</a>
+    <a href="/#contact" onclick="toggleMobileMenu()" class="mobile-link text-3xl font-heading font-semibold text-obsidian hover:text-accent transition-all">Free Estimate</a>
     <div class="flex flex-col items-center gap-4 mt-8 pt-8 border-t border-black/5 w-64">
       <a href="tel:+19054509054" class="flex items-center gap-2 text-sm font-bold text-accent hover:text-accentDark transition-all">
         <i data-lucide="phone-call" class="w-4 h-4"></i> +1 905-450-9054
@@ -208,7 +215,7 @@
     {% block content %}{% endblock %}
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (Locked to exact max-w-7xl container) -->
   <footer class="bg-white text-obsidian py-16 px-4 sm:px-8 border-t border-black/[0.04] relative z-25 font-sans">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-8 mb-12">
       <div>
@@ -223,10 +230,10 @@
       <div>
         <h4 class="text-xs font-heading font-bold uppercase tracking-widest text-accent mb-6">Services</h4>
         <ul class="flex flex-col gap-3 font-semibold text-sm text-secondary">
-          <li><a href="/#contact" class="hover:text-obsidian transition-colors">Hardwood Installations</a></li>
-          <li><a href="/#contact" class="hover:text-obsidian transition-colors">Luxury Vinyl Plank (LVP)</a></li>
-          <li><a href="/#contact" class="hover:text-obsidian transition-colors">Premium Laminates</a></li>
-          <li><a href="/#contact" class="hover:text-obsidian transition-colors">Architectural Custom Tiling</a></li>
+          <li><a href="/#services" class="hover:text-obsidian transition-colors">Hardwood Installations</a></li>
+          <li><a href="/#services" class="hover:text-obsidian transition-colors">Luxury Vinyl Plank (LVP)</a></li>
+          <li><a href="/#services" class="hover:text-obsidian transition-colors">Premium Laminates</a></li>
+          <li><a href="/#services" class="hover:text-obsidian transition-colors">Architectural Custom Tiling</a></li>
         </ul>
       </div>
 
@@ -254,7 +261,7 @@
     </div>
   </footer>
 
-  <!-- DOCKABLE SLIDE-OUT AI ARCHITECTURAL AGENT CHAT PANEL (Clean Alabaster Concierge style) -->
+  <!-- DOCKABLE SLIDE-OUT AI CHAT PANEL -->
   <div id="ai-chat-panel" class="fixed inset-y-0 right-0 z-50 w-full sm:w-[420px] bg-white text-obsidian border-l border-black/5 shadow-2xl flex flex-col translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
     <!-- Header -->
     <div class="p-6 border-b border-black/5 flex items-center justify-between bg-surface/50">
@@ -274,22 +281,9 @@
       </button>
     </div>
 
-    <!-- Messages -->
+    <!-- Messages Container -->
     <div id="ai-chat-messages" class="flex-grow p-6 overflow-y-auto flex flex-col gap-4 font-sans">
-      <!-- Agent Intro Message -->
-      <div class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter">
-        <div class="text-[9px] font-bold tracking-widest text-secondary uppercase font-sans">AI CONCIERGE</div>
-        <div class="bg-surface border border-black/[0.04] p-4 rounded-2xl rounded-tl-none font-medium text-xs sm:text-sm leading-relaxed text-secondary">
-          Welcome to JKN Flooring. I can assist with engineered hardwood specifications, waterproof luxury vinyl details, and GTA installation estimates.
-          <br><br>
-          Select a prompt to begin:
-          <ul class="list-none mt-2 flex flex-col gap-2 font-bold text-accent text-xs">
-            <li class="cursor-pointer hover:text-accentDark flex items-center gap-1" onclick="sendSuggestedMessage('Show me waterproof vinyl options')"><i data-lucide="chevron-right" class="w-3 h-3"></i> Waterproof vinyl planks</li>
-            <li class="cursor-pointer hover:text-accentDark flex items-center gap-1" onclick="sendSuggestedMessage('Tell me about engineered hardwood')"><i data-lucide="chevron-right" class="w-3 h-3"></i> Engineered hardwood specs</li>
-            <li class="cursor-pointer hover:text-accentDark flex items-center gap-1" onclick="sendSuggestedMessage('What are your installation rates?')"><i data-lucide="chevron-right" class="w-3 h-3"></i> Typical GTA costs</li>
-          </ul>
-        </div>
-      </div>
+      <!-- Loaded dynamically via state synchronization -->
     </div>
 
     <!-- Quick Suggestions Row -->
@@ -312,6 +306,7 @@
     // Initialize Lucide Icons
     document.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
+      renderMessages();
     });
 
     // Mobile Menu Toggle
@@ -356,7 +351,156 @@
     function sendSuggestedMessage(text) {
       const input = document.getElementById("ai-chat-input");
       input.value = text;
-      document.getElementById("ai-chat-form").requestSubmit();
+      document.getElementById("ai-chat-form").dispatchEvent(new Event("submit"));
+    }
+
+    // Pure Declarative UI Chat State Engine (prevents unsafe innerHTML injection and maps correctly)
+    const chatState = {
+      messages: [
+        {
+          sender: "AI CONCIERGE",
+          text: "Welcome to JKN Flooring. I can assist with engineered hardwood specifications, waterproof luxury vinyl details, and GTA installation estimates.\n\nSelect a prompt to begin:",
+          isUser: false,
+          suggestions: [
+            { label: "Waterproof vinyl planks", query: "Show me waterproof vinyl options" },
+            { label: "Engineered hardwood specs", query: "Tell me about engineered hardwood" },
+            { label: "Typical GTA costs", query: "What are your installation rates?" }
+          ]
+        }
+      ],
+      isLoading: false
+    };
+
+    function renderMessages() {
+      const chatMessages = document.getElementById("ai-chat-messages");
+      chatMessages.innerHTML = "";
+
+      chatState.messages.forEach(msg => {
+        const msgWrapper = document.createElement("div");
+        msgWrapper.className = `flex flex-col gap-1 max-w-[85%] chat-message-enter ${msg.isUser ? 'self-end' : 'self-start'}`;
+
+        const headerTag = document.createElement("div");
+        headerTag.className = `text-[9px] font-bold tracking-widest uppercase ${msg.isUser ? 'text-secondary text-right' : 'text-accent'}`;
+        headerTag.textContent = msg.sender;
+        msgWrapper.appendChild(headerTag);
+
+        const bubble = document.createElement("div");
+        if (msg.isUser) {
+          bubble.className = "bg-obsidian text-white p-4 rounded-2xl rounded-tr-none font-semibold text-xs sm:text-sm leading-relaxed";
+        } else {
+          bubble.className = "bg-surface border border-black/5 p-4 rounded-2xl rounded-tl-none font-medium text-xs sm:text-sm leading-relaxed text-secondary text-left";
+        }
+
+        // Render text node securely with linebreaks
+        const textNode = document.createElement("p");
+        textNode.className = "whitespace-pre-line";
+        textNode.textContent = msg.text;
+        bubble.appendChild(textNode);
+
+        // Render suggested questions list natively
+        if (msg.suggestions && msg.suggestions.length > 0) {
+          const list = document.createElement("ul");
+          list.className = "list-none mt-3 flex flex-col gap-2 font-bold text-accent text-xs";
+          
+          msg.suggestions.forEach(item => {
+            const li = document.createElement("li");
+            li.className = "cursor-pointer hover:text-accentDark flex items-center gap-1.5 transition-colors";
+            li.onclick = () => sendSuggestedMessage(item.query);
+            
+            const icon = document.createElement("i");
+            icon.setAttribute("data-lucide", "chevron-right");
+            icon.className = "w-3 h-3 text-accent";
+            li.appendChild(icon);
+            
+            const labelSpan = document.createElement("span");
+            labelSpan.textContent = item.label;
+            li.appendChild(labelSpan);
+
+            list.appendChild(li);
+          });
+          bubble.appendChild(list);
+        }
+
+        // Render recommendation cards natively
+        if (msg.cards && msg.cards.length > 0) {
+          const cardsContainer = document.createElement("div");
+          cardsContainer.className = "mt-4 flex flex-col gap-2.5";
+
+          msg.cards.forEach(card => {
+            const cardEl = document.createElement("div");
+            cardEl.className = "bg-white border border-black/5 rounded-xl overflow-hidden flex items-center group cursor-pointer hover:border-accent transition-all w-full";
+            cardEl.onclick = () => {
+              document.location.href = "/biyork";
+              toggleChatAgent(false);
+            };
+
+            const img = document.createElement("img");
+            img.src = card.image;
+            img.className = "w-14 h-14 object-cover bg-gray-100 shrink-0";
+            cardEl.appendChild(img);
+
+            const content = document.createElement("div");
+            content.className = "p-3 pr-4 flex-grow truncate text-left";
+
+            const cat = document.createElement("p");
+            cat.className = "text-[8px] font-bold uppercase tracking-widest text-accent";
+            cat.textContent = card.category;
+            content.appendChild(cat);
+
+            const title = document.createElement("p");
+            title.className = "text-xs font-bold truncate text-obsidian";
+            title.textContent = card.title;
+            content.appendChild(title);
+
+            const price = document.createElement("p");
+            price.className = "text-[10px] text-secondary font-semibold mt-0.5";
+            price.textContent = card.price;
+            content.appendChild(price);
+
+            cardEl.appendChild(content);
+
+            const icon = document.createElement("i");
+            icon.setAttribute("data-lucide", "arrow-up-right");
+            icon.className = "w-3.5 h-3.5 text-gray-400 mr-3 group-hover:text-accent transition-colors";
+            cardEl.appendChild(icon);
+
+            cardsContainer.appendChild(cardEl);
+          });
+          bubble.appendChild(cardsContainer);
+        }
+
+        msgWrapper.appendChild(bubble);
+        chatMessages.appendChild(msgWrapper);
+      });
+
+      // Render loading shimmer natively
+      if (chatState.isLoading) {
+        const loadingWrapper = document.createElement("div");
+        loadingWrapper.className = "flex flex-col gap-1 max-w-[85%] self-start chat-message-enter";
+
+        const header = document.createElement("div");
+        header.className = "text-[9px] font-bold tracking-widest text-accent uppercase";
+        header.textContent = "AI CONCIERGE";
+        loadingWrapper.appendChild(header);
+
+        const bubble = document.createElement("div");
+        bubble.className = "bg-surface border border-black/5 p-4 rounded-2xl rounded-tl-none flex items-center gap-2";
+
+        const spinner = document.createElement("div");
+        spinner.className = "w-3 h-3 border border-accent border-t-transparent rounded-full animate-spin";
+        bubble.appendChild(spinner);
+
+        const label = document.createElement("span");
+        label.className = "text-xs text-secondary font-bold uppercase tracking-wider";
+        label.textContent = "Accessing JKN specifications...";
+        bubble.appendChild(label);
+
+        loadingWrapper.appendChild(bubble);
+        chatMessages.appendChild(loadingWrapper);
+      }
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     // Handle Chat submit
@@ -367,33 +511,15 @@
       if (!message) return;
 
       inputEl.value = "";
-      const chatMessages = document.getElementById("ai-chat-messages");
 
-      // Append User message HTML
-      const userMsgHtml = `
-        <div class="flex flex-col gap-1 max-w-[85%] self-end chat-message-enter">
-          <div class="text-[9px] font-bold tracking-widest text-secondary uppercase text-right">You</div>
-          <div class="bg-obsidian text-white p-4 rounded-2xl rounded-tr-none font-semibold text-xs sm:text-sm leading-relaxed">
-            ${escapeHTML(message)}
-          </div>
-        </div>
-      `;
-      chatMessages.insertAdjacentHTML("beforeend", userMsgHtml);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-
-      // Append Loading shimmer message
-      const loadingId = "ai-loading-" + Date.now();
-      const loadingHtml = `
-        <div id="${loadingId}" class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter">
-          <div class="text-[9px] font-bold tracking-widest text-accent uppercase">AI CONCIERGE</div>
-          <div class="bg-surface border border-black/5 p-4 rounded-2xl rounded-tl-none flex items-center gap-2">
-            <div class="w-3 h-3 border border-accent border-t-transparent rounded-full animate-spin"></div>
-            <span class="text-xs text-secondary font-bold uppercase tracking-wider">Accessing JKN specifications...</span>
-          </div>
-        </div>
-      `;
-      chatMessages.insertAdjacentHTML("beforeend", loadingHtml);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+      // Add user message to state
+      chatState.messages.push({
+        sender: "You",
+        text: message,
+        isUser: true
+      });
+      chatState.isLoading = true;
+      renderMessages();
 
       try {
         const response = await fetch("/api/chat", {
@@ -403,64 +529,27 @@
         });
         const result = await response.json();
 
-        // Remove loading state
-        document.getElementById(loadingId).remove();
+        chatState.isLoading = false;
 
         if (response.ok) {
-          // Construct suggestion cards if present (Sophisticated matte boxes)
-          let cardsHtml = "";
-          if (result.cards && result.cards.length > 0) {
-            cardsHtml = `<div class="mt-4 flex flex-col gap-2.5">`;
-            result.cards.forEach(card => {
-              cardsHtml += `
-                <div class="bg-white border border-black/5 rounded-xl overflow-hidden flex items-center group cursor-pointer hover:border-accent transition-all" onclick="document.location.href='#contact'; toggleChatAgent(false);">
-                  <img src="${card.image}" class="w-14 h-14 object-cover bg-gray-100 shrink-0">
-                  <div class="p-3 pr-4 flex-grow truncate">
-                    <p class="text-[8px] font-bold uppercase tracking-widest text-accent">${card.category}</p>
-                    <p class="text-xs font-bold truncate text-obsidian">${card.title}</p>
-                    <p class="text-[10px] text-secondary font-semibold mt-0.5">${card.price}</p>
-                  </div>
-                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 mr-3 group-hover:text-accent transition-colors"></i>
-                </div>
-              `;
-            });
-            cardsHtml += `</div>`;
-          }
-
-          // Append real response
-          const agentMsgHtml = `
-            <div class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter">
-              <div class="text-[9px] font-bold tracking-widest text-accent uppercase">AI CONCIERGE</div>
-              <div class="bg-surface border border-black/5 p-4 rounded-2xl rounded-tl-none font-medium text-xs sm:text-sm leading-relaxed text-secondary">
-                ${result.reply}
-                ${cardsHtml}
-              </div>
-            </div>
-          `;
-          chatMessages.insertAdjacentHTML("beforeend", agentMsgHtml);
-          lucide.createIcons(); // Instantly initialize icons
-          chatMessages.scrollTop = chatMessages.scrollHeight;
+          chatState.messages.push({
+            sender: "AI CONCIERGE",
+            text: result.reply,
+            isUser: false,
+            cards: result.cards
+          });
         } else {
           throw new Error();
         }
       } catch (err) {
-        document.getElementById(loadingId).remove();
-        const errorHtml = `
-          <div class="flex flex-col gap-1 max-w-[85%] self-start chat-message-enter text-red-600">
-            <div class="text-[9px] font-bold tracking-widest uppercase">System Issue</div>
-            <div class="bg-red-50 border border-red-200 p-4 rounded-2xl rounded-tl-none text-xs">
-              Unable to reach JKN server. Please call +1 905-450-9054.
-            </div>
-          </div>
-        `;
-        chatMessages.insertAdjacentHTML("beforeend", errorHtml);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        chatState.isLoading = false;
+        chatState.messages.push({
+          sender: "System Issue",
+          text: "Unable to reach JKN server. Please call +1 905-450-9054.",
+          isUser: false
+        });
       }
-    }
-
-    // Helper to escape HTML characters
-    function escapeHTML(str) {
-      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+      renderMessages();
     }
   </script>
 
