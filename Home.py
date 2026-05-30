@@ -1,6 +1,8 @@
 import re
 from dataclasses import dataclass
 from typing import Dict, Any, List
+import csv
+from pathlib import Path
 
 from litestar import Litestar, Controller, get, post
 from litestar.response import Template
@@ -247,6 +249,27 @@ class ChatApiController(Controller):
         }
 
 # -------------------------------------------------------------
+# Biyork Store Controller
+# -------------------------------------------------------------
+
+class BiyorkController(Controller):
+    """Controller for rendering the Biyork products storefront."""
+    path = "/biyork"
+
+    @get()
+    async def getBiyorkStore(self) -> Template:
+        """Parse the Biyork catalog CSV and render the products page."""
+        catalog_path = Path("Data/biyork_enterprise_catalog.csv")
+        products = []
+        if catalog_path.exists():
+            with open(catalog_path, encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    products.append(row)
+        
+        return Template(template_name="biyork.html", context={"products": products})
+
+# -------------------------------------------------------------
 # Application Setup & Configurations
 # -------------------------------------------------------------
 
@@ -266,7 +289,7 @@ static_files_config = [
 
 # Initialize Litestar application with new API endpoints
 app = Litestar(
-    route_handlers=[HomeController, QuoteApiController, VisionApiController, ChatApiController],
+    route_handlers=[HomeController, QuoteApiController, VisionApiController, ChatApiController, BiyorkController],
     template_config=template_config,
     static_files_config=static_files_config,
 )

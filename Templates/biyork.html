@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Biyork Enterprise Catalog | JKN Flooring{% endblock %}
+{% block meta_description %}Browse the premium Biyork Enterprise Catalog. High-quality engineered hardwood, luxury vinyl plank, and laminate flooring options available through JKN Flooring.{% endblock %}
+
+{% block content %}
+<section class="relative min-h-[50svh] flex items-center justify-center px-4 pt-32 pb-16 w-full max-w-[120rem] mx-auto overflow-hidden bg-obsidian text-white">
+  <!-- Dynamic gradient orb for premium dark aesthetic -->
+  <div class="absolute w-[600px] h-[600px] rounded-full bg-accent/20 blur-[120px] top-[-20%] right-[-10%] pointer-events-none"></div>
+  <div class="absolute w-[400px] h-[400px] rounded-full bg-accentDark/30 blur-[100px] bottom-[-10%] left-[-5%] pointer-events-none"></div>
+
+  <div class="w-full max-w-7xl mx-auto z-10 flex flex-col items-center text-center blur-reveal active">
+    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 text-[10px] font-heading font-bold tracking-widest uppercase text-accentLight shadow-sm backdrop-blur-md hover:bg-white/10 transition-colors cursor-default">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+      Official Enterprise Partner
+    </div>
+
+    <h1 class="text-fluid-h2 font-heading font-light tracking-tightest leading-[1.1] mb-6">
+      The <span class="font-bold text-accentLight">Biyork</span> Collection
+    </h1>
+    
+    <p class="text-fluid-p text-white/70 max-w-2xl font-medium leading-relaxed">
+      Discover our curated selection of architectural-grade surfaces from Biyork. Engineered for perfection, designed for the modern lifestyle.
+    </p>
+  </div>
+</section>
+
+<!-- PRODUCT SHOWCASE SECTION -->
+<section class="py-24 px-4 sm:px-8 bg-surface relative">
+  <div class="max-w-[120rem] mx-auto">
+    
+    <!-- Filter & Sort Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6 blur-reveal active delay-100">
+      <h2 class="text-3xl font-heading font-semibold tracking-tight text-obsidian flex items-center flex-wrap gap-4">
+        Available Surfaces 
+        <span class="text-accent text-sm font-bold tracking-widest uppercase bg-accent/10 px-4 py-1.5 rounded-full border border-accent/20">
+          {{ products|length }} Products
+        </span>
+      </h2>
+      
+      <div class="flex items-center gap-2 text-xs font-bold tracking-wide uppercase overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
+        <!-- Simple mock filters for visual aesthetic -->
+        <button class="px-5 py-2.5 rounded-full border border-black/5 bg-white shadow-sm hover:border-accent hover:text-accent transition-all text-obsidian shrink-0">All Surfaces</button>
+        <button class="px-5 py-2.5 rounded-full border border-transparent hover:border-black/5 bg-transparent hover:bg-white transition-all text-secondary shrink-0">Engineered Hardwood</button>
+        <button class="px-5 py-2.5 rounded-full border border-transparent hover:border-black/5 bg-transparent hover:bg-white transition-all text-secondary shrink-0">Vinyl & Laminate</button>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {% for product in products %}
+      <!-- Premium Glassmorphic Card -->
+      <div class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-black/[0.04] shadow-sm hover:shadow-float transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 relative h-full blur-reveal" style="transition-delay: {{ loop.index0 % 4 * 50 }}ms;">
+        
+        <!-- Image Container -->
+        <div class="relative h-64 sm:h-72 bg-[#f9f8f6] img-container shrink-0 p-6 flex items-center justify-center overflow-hidden">
+          {% if product['Primary Image'] %}
+            <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" loading="lazy" class="w-full h-full object-contain rounded-lg img-zoom drop-shadow-md mix-blend-multiply transition-transform duration-700">
+          {% else %}
+            <div class="w-full h-full bg-black/5 rounded-lg flex items-center justify-center">
+              <i data-lucide="image" class="w-8 h-8 text-black/20"></i>
+            </div>
+          {% endif %}
+          
+          <!-- Category Pill -->
+          <div class="absolute top-4 left-4 z-10 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-obsidian border border-black/5 shadow-glass-inner truncate max-w-[80%]">
+            {{ product['Product Type'] or 'Premium Flooring' }}
+          </div>
+
+          <!-- Quick view hover action -->
+          <div class="absolute inset-0 bg-obsidian/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+            <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 bg-white px-4 py-2 rounded-full text-xs font-bold text-obsidian shadow-lg border border-black/5 flex items-center gap-2">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i> View Detail
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="p-6 sm:p-8 flex flex-col flex-grow bg-gradient-to-b from-white to-[#faf9f6]/30">
+          <p class="text-[10px] font-bold text-accent uppercase tracking-widest mb-2 truncate">
+            {{ product['Vendor'] }}
+          </p>
+          <h3 class="text-lg font-heading font-semibold leading-snug mb-3 text-obsidian group-hover:text-accent transition-colors line-clamp-2">
+            {{ product['Title'] }}
+          </h3>
+          
+          <!-- Subtle description line if available -->
+          <p class="text-xs text-secondary line-clamp-2 mb-4 leading-relaxed font-medium">
+            {{ product['Description'] | striptags | truncate(100, True, '...') if product['Description'] else 'Architectural grade surface designed for superior aesthetic and durability.' }}
+          </p>
+          
+          <div class="mt-auto pt-6 flex items-end justify-between border-t border-black/[0.04]">
+            <div>
+              <p class="text-[9px] text-secondary font-bold uppercase tracking-widest mb-1">Estimated Base</p>
+              <p class="text-lg font-semibold text-obsidian flex items-baseline gap-1">
+                ${{ product['Price (CAD)'] }} <span class="text-[10px] text-secondary font-normal uppercase tracking-widest">CAD / sqft</span>
+              </p>
+            </div>
+            
+            <a href="{{ product['Product URL'] }}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-surface border border-black/5 text-obsidian flex items-center justify-center group-hover:bg-obsidian group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-md hover:scale-110">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Empty State Fallback -->
+    {% if not products %}
+    <div class="flex flex-col items-center justify-center py-32 text-center blur-reveal">
+      <div class="w-20 h-20 bg-white shadow-glass-inner rounded-full flex items-center justify-center border border-black/5 mb-6">
+        <i data-lucide="package-search" class="w-8 h-8 text-accent"></i>
+      </div>
+      <h3 class="text-2xl font-heading font-semibold text-obsidian mb-3">Catalog Syncing</h3>
+      <p class="text-secondary max-w-md mx-auto text-sm leading-relaxed">Our connection to the Biyork enterprise catalog is currently being updated. Please check back shortly for our full collection.</p>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Re-initialize Lucide Icons for new elements
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Advanced 3D Reveal Intersection Observer
+    const revealElements = document.querySelectorAll('.blur-reveal:not(.active)');
+    
+    if (revealElements.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Slight delay for staggered effect if multiple elements appear at once
+            setTimeout(() => {
+              entry.target.classList.add('active');
+            }, entry.target.style.transitionDelay ? 0 : 50);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.05,
+        rootMargin: "0px 0px -50px 0px"
+      });
+
+      revealElements.forEach(el => {
+        observer.observe(el);
+      });
+    }
+  });
+</script>
+{% endblock %}

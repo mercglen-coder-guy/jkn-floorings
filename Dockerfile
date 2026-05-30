@@ -46,6 +46,7 @@ COPY --from=builder /opt/venv /opt/venv
 COPY --chown=litestar:litestar Home.py .
 COPY --chown=litestar:litestar Templates/ Templates/
 COPY --chown=litestar:litestar static/ static/
+COPY --chown=litestar:litestar Data/ Data/
 
 # Switch to the non-root user for security
 USER litestar
