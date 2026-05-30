@@ -150,20 +150,6 @@
           </span>
         </div>
 
-        <!-- Command Capsule (Search Trigger with inner border glow, scale-[1.015] hover & micro-shadow layers) -->
-        <div class="absolute left-1/2 -translate-x-1/2 hidden md:block">
-          <button onclick="toggleChatAgent(true)" class="flex items-center gap-3 bg-white/5 hover:bg-white/10 rounded-full py-2 px-4.5 border border-white/10 hover:border-white/20 transition-all duration-300 group w-56 lg:w-64 justify-between hover:scale-[1.015] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] hover:shadow-[inset_0_1px_2px_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.15)]">
-            <div class="flex items-center gap-2">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
-              <span class="text-xs font-semibold text-white/70 group-hover:text-white transition-colors truncate">Ask AI Concierge...</span>
-            </div>
-            <div class="flex items-center gap-0.5 bg-white/5 px-1.5 py-0.5 rounded border border-white/10">
-              <span class="text-[8px] font-bold text-white/60">⌘</span>
-              <span class="text-[8px] font-bold text-white/60">K</span>
-            </div>
-          </button>
-        </div>
-
         <!-- Navigation Links & Contact -->
         <div class="hidden sm:flex items-center gap-5">
           <a href="/biyork" class="text-xs font-bold tracking-tight text-white/70 hover:text-white transition-colors">
@@ -179,9 +165,6 @@
 
         <!-- Mobile Menu Triggers -->
         <div class="sm:hidden flex items-center gap-1.5">
-          <button onclick="toggleChatAgent(true)" class="bg-white/5 p-2.5 rounded-full text-white transition-all">
-            <i data-lucide="sparkles" class="w-4 h-4 text-accent animate-pulse"></i>
-          </button>
           <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="bg-white/5 p-2.5 rounded-full text-white transition-all">
             <i data-lucide="menu" class="w-4 h-4"></i>
           </button>

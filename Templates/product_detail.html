@@ -64,13 +64,9 @@
           <p class="text-sm text-secondary font-medium mb-8 leading-relaxed">Contact JKN Flooring showroom directly to speak with an architectural specialist for inventory reservation and professional subfloor assessment.</p>
           
           <div class="flex flex-col gap-4">
-            <a href="tel:+19054509054" class="w-full bg-obsidian text-white py-4.5 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-accent transition-colors shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <a href="tel:+19054509054" class="w-full bg-obsidian text-white py-4 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-accent transition-colors shadow-md hover:-translate-y-0.5 transition-all duration-300">
               <i data-lucide="phone-call" class="w-4 h-4"></i> Call +1 905-450-9054
             </a>
-            
-            <button onclick="toggleChatAgent(true)" class="w-full bg-[#faf9f6] border border-black/5 text-obsidian py-4.5 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:border-accent hover:text-accent transition-all duration-300">
-              <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i> Ask AI Concierge
-            </button>
           </div>
 
           <hr class="my-8 border-black/5">
@@ -94,12 +90,12 @@
         <div class="border border-black/[0.04] rounded-2xl overflow-hidden shadow-sm bg-white font-sans text-xs sm:text-sm">
           <div class="divide-y divide-black/[0.03]">
             {% for name, val in specs.items() %}
-            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
+            <div class="grid grid-cols-2 p-4 hover:bg-[#faf9f6]/30 transition-colors">
               <span class="text-secondary font-medium">{{ name }}</span>
               <span class="text-obsidian font-bold text-right">{{ val }}</span>
             </div>
             {% endfor %}
-            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
+            <div class="grid grid-cols-2 p-4 hover:bg-[#faf9f6]/30 transition-colors">
               <span class="text-secondary font-medium">Air Quality Certification</span>
               <span class="text-obsidian font-bold text-right">FloorScore® Certified</span>
             </div>
