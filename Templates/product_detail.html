@@ -21,7 +21,7 @@
     <header class="mb-12 max-w-5xl">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/15 mb-6 shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-        <span class="text-[9px] font-bold uppercase tracking-widest text-accentDark font-sans">{{ product['Vendor'] }} Premium Selection</span>
+        <span class="text-[9px] font-bold uppercase tracking-widest text-accentDark font-sans">Toronto Showroom Collection</span>
       </div>
       
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold tracking-tight text-obsidian leading-tight mb-8">
@@ -29,8 +29,18 @@
       </h1>
       
       <div class="flex flex-wrap items-center gap-6 text-xs font-semibold text-secondary uppercase tracking-widest">
-        <span class="flex items-center gap-2"><i data-lucide="tag" class="w-4 h-4 text-accent/50"></i> {{ product['Product Type'] or 'Premium Surface' }}</span>
-        <span class="flex items-center gap-2"><i data-lucide="hash" class="w-4 h-4 text-accent/50"></i> SKU: {{ product['SKU'] or 'TBD' }}</span>
+        {% set type_parts = product['Product Type'].split('|') if product['Product Type'] else [] %}
+        {% set clean_type = type_parts[0].strip() if type_parts else 'Premium Surface' %}
+        <span class="flex items-center gap-2"><i data-lucide="tag" class="w-4 h-4 text-accent/50"></i> {{ clean_type }}</span>
+        
+        <span class="flex items-center gap-2">
+          <i data-lucide="hash" class="w-4 h-4 text-accent/50"></i> 
+          {% if product['SKU'] and product['SKU'].strip() and product['SKU'] != 'TBD' %}
+            SKU: {{ product['SKU'] }}
+          {% else %}
+            SKU: JKN-{{ product['Product ID'][-6:] }}
+          {% endif %}
+        </span>
         <span class="flex items-center gap-2 text-emerald-600"><i data-lucide="check-circle" class="w-4 h-4 opacity-70"></i> In Stock &amp; Available</span>
       </div>
     </header>
@@ -58,8 +68,8 @@
       <!-- Right Column: Specs & Ordering Panel -->
       <div class="lg:col-span-6 flex flex-col justify-start">
         
-        <!-- White-glove "Call Now" CTA Capsule -->
-        <div class="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-float border border-black/5 mb-10">
+        <!-- White-glove "Call Now" CTA Capsule (mb-16 upgraded margin for baseline optical alignment) -->
+        <div class="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-float border border-black/5 mb-16">
           <h3 class="text-2xl font-heading font-semibold text-obsidian mb-3">Order Consultation</h3>
           <p class="text-sm text-secondary font-medium mb-8 leading-relaxed">Contact JKN Flooring showroom directly to speak with an architectural specialist for inventory reservation and professional subfloor assessment.</p>
           
@@ -67,6 +77,11 @@
             <a href="tel:+19054509054" class="w-full bg-obsidian text-white py-4 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-accent transition-colors shadow-md hover:-translate-y-0.5 transition-all duration-300">
               <i data-lucide="phone-call" class="w-4 h-4"></i> Call +1 905-450-9054
             </a>
+            
+            <!-- Restored Ask AI Concierge with High-Tactile presence & Option border styling -->
+            <button onclick="toggleChatAgent(true)" class="w-full bg-black/[0.02] border border-black/[0.08] hover:bg-black/[0.05] transition-all duration-300 rounded-full py-4 text-[11px] font-bold uppercase tracking-widest text-obsidian flex items-center justify-center gap-2.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i> Ask AI Concierge
+            </button>
           </div>
 
           <hr class="my-8 border-black/5">
@@ -74,7 +89,13 @@
           <div class="flex flex-col gap-5 text-sm font-medium">
             <div class="flex items-center justify-between border-b border-black-[0.02] pb-4">
               <span class="text-secondary text-xs uppercase tracking-widest font-bold">Finish / Collection</span>
-              <span class="text-obsidian font-bold text-right">{{ product['Variant Name'] or 'Standard' }}</span>
+              <span class="text-obsidian font-bold text-right">
+                {% if product['Variant Name'] and product['Variant Name'].strip() and product['Variant Name'] != 'Default Title' and product['Variant Name'] != 'Default' %}
+                  {{ product['Variant Name'] }}
+                {% else %}
+                  Signature Collection
+                {% endif %}
+              </span>
             </div>
             <div class="flex items-center justify-between">
               <span class="text-secondary text-xs uppercase tracking-widest font-bold">Brand Category</span>
