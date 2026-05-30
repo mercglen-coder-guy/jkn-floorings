@@ -33,9 +33,6 @@
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6 blur-reveal active delay-100">
       <h2 class="text-3xl font-heading font-semibold tracking-tight text-obsidian flex items-center flex-wrap gap-4">
         Available Surfaces 
-        <span class="text-accent text-sm font-bold tracking-widest uppercase bg-accent/10 px-4 py-1.5 rounded-full border border-accent/20">
-          {{ products|length }} Products
-        </span>
       </h2>
       
       <div class="flex items-center gap-2 text-xs font-bold tracking-wide uppercase overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
@@ -97,7 +94,7 @@
               </p>
             </div>
             
-            <a href="{{ product['Product URL'] }}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-surface border border-black/5 text-obsidian flex items-center justify-center group-hover:bg-obsidian group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-md hover:scale-110">
+            <a href="/biyork/{{ product['Product ID'] }}" class="w-10 h-10 rounded-full bg-surface border border-black/5 text-obsidian flex items-center justify-center group-hover:bg-obsidian group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-md hover:scale-110">
               <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
             </a>
           </div>

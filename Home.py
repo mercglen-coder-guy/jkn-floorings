@@ -43,8 +43,18 @@ class HomeController(Controller):
 
     @get()
     async def getHome(self) -> Template:
-        """Render and return the Home page template."""
-        return Template(template_name="home.html")
+        """Render and return the Home page template with Biyork products."""
+        catalog_path = Path("Data/biyork_enterprise_catalog.csv")
+        biyork_products = []
+        if catalog_path.exists():
+            with open(catalog_path, encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for i, row in enumerate(reader):
+                    if i >= 4:
+                        break
+                    biyork_products.append(row)
+        
+        return Template(template_name="home.html", context={"biyork_products": biyork_products})
 
 
 class QuoteApiController(Controller):
@@ -268,6 +278,21 @@ class BiyorkController(Controller):
                     products.append(row)
         
         return Template(template_name="biyork.html", context={"products": products})
+
+    @get(path="/{product_id:str}")
+    async def getBiyorkProduct(self, product_id: str) -> Template:
+        """Render individual Biyork product detail page."""
+        catalog_path = Path("Data/biyork_enterprise_catalog.csv")
+        product = None
+        if catalog_path.exists():
+            with open(catalog_path, encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    if row['Product ID'] == product_id:
+                        product = row
+                        break
+        
+        return Template(template_name="product_detail.html", context={"product": product})
 
 # -------------------------------------------------------------
 # Application Setup & Configurations
