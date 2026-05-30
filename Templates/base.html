@@ -139,21 +139,23 @@
 <body class="text-obsidian antialiased overflow-x-hidden relative bg-[#faf9f6] min-h-screen flex flex-col font-sans">
 
   <!-- NAVBAR -->
-  <header id="navbar" class="fixed top-0 inset-x-0 z-40 transition-all duration-700 pt-4 sm:pt-6 px-4 sm:px-8 pointer-events-none w-full max-w-[120rem] mx-auto">
-    <div class="relative flex items-center justify-between w-full">
+  <header id="navbar" class="fixed top-0 inset-x-0 z-40 transition-all duration-700 pt-4 sm:pt-6 px-4 sm:px-8 pointer-events-none w-full max-w-7xl mx-auto">
+    <div class="pointer-events-auto w-full bg-white/80 backdrop-blur-[30px] border border-black/[0.06] rounded-full px-5 sm:px-6 py-2.5 flex items-center justify-between shadow-2xl relative transition-all duration-500 hover:border-accent/25 hover:shadow-float">
       <!-- Minimalist Logo -->
-      <div class="pointer-events-auto bg-glass backdrop-blur-xl shadow-glass-inner border border-black/5 rounded-full px-5 sm:px-6 py-2.5 flex items-center transition-all hover:scale-[1.02] duration-300 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <div class="flex items-center transition-all hover:scale-[1.02] duration-300 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <span class="font-heading font-semibold text-base sm:text-lg tracking-tight flex items-center gap-2 text-obsidian">
           JKN<span class="font-normal text-secondary font-sans text-xs tracking-wider uppercase ml-1">Flooring</span>
         </span>
       </div>
 
       <!-- Minimalist AI Search Trigger (Perfectly Centered via Absolute Position) -->
-      <div class="absolute left-1/2 -translate-x-1/2 pointer-events-auto hidden md:block">
-        <button onclick="toggleChatAgent(true)" class="flex items-center gap-3 bg-glass backdrop-blur-xl shadow-glass-inner rounded-full py-2 px-4 border border-black/5 hover:bg-white hover:border-black/10 transition-all group">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
-          <span class="text-xs font-semibold text-secondary tracking-tight group-hover:text-obsidian transition-colors truncate">Ask AI Concierge...</span>
-          <div class="ml-8 flex items-center gap-0.5 bg-black/[0.03] px-1.5 py-0.5 rounded border border-black/5">
+      <div class="absolute left-1/2 -translate-x-1/2 hidden md:block">
+        <button onclick="toggleChatAgent(true)" class="flex items-center gap-3 bg-black/[0.03] hover:bg-black/[0.06] rounded-full py-2 px-4.5 border border-black/[0.05] transition-all group w-56 lg:w-64 justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
+            <span class="text-xs font-semibold text-secondary tracking-tight group-hover:text-obsidian transition-colors truncate">Ask AI Concierge...</span>
+          </div>
+          <div class="flex items-center gap-0.5 bg-black/[0.03] px-1.5 py-0.5 rounded border border-black/5">
             <span class="text-[8px] font-bold text-secondary">⌘</span>
             <span class="text-[8px] font-bold text-secondary">K</span>
           </div>
@@ -161,7 +163,7 @@
       </div>
 
       <!-- Contact CTA -->
-      <div class="pointer-events-auto hidden sm:flex items-center gap-5 bg-glass backdrop-blur-xl shadow-glass-inner border border-black/5 rounded-full p-1 pl-5">
+      <div class="hidden sm:flex items-center gap-5">
         <a href="tel:+19054509054" class="text-xs font-bold tracking-tight text-secondary hover:text-obsidian transition-colors hidden lg:block">
           +1 905-450-9054
         </a>
@@ -171,11 +173,11 @@
       </div>
 
       <!-- Mobile triggers -->
-      <div class="pointer-events-auto sm:hidden flex items-center gap-1.5">
-        <button onclick="toggleChatAgent(true)" class="bg-glass backdrop-blur-xl shadow-glass-inner p-2.5 rounded-full text-obsidian border border-black/5 transition-all">
+      <div class="sm:hidden flex items-center gap-1.5">
+        <button onclick="toggleChatAgent(true)" class="bg-black/5 p-2.5 rounded-full text-obsidian transition-all">
           <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i>
         </button>
-        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="bg-glass backdrop-blur-xl shadow-glass-inner p-2.5 rounded-full text-obsidian border border-black/5 transition-all">
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="bg-black/5 p-2.5 rounded-full text-obsidian transition-all">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>

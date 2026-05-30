@@ -1,57 +1,87 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- HERO SECTION WITH ASYMMETRICAL EDITORIAL GRID -->
-<section class="relative min-h-[90svh] sm:min-h-screen flex items-center justify-center px-4 sm:px-8 pt-32 pb-20 w-full max-w-[120rem] mx-auto arch-grid overflow-hidden">
-  <!-- Subtle warm golden radial glow for structural background warmth -->
-  <div class="absolute w-[450px] h-[450px] rounded-full bg-accent/[0.03] blur-[100px] top-[15%] left-[5%] pointer-events-none"></div>
+<!-- Custom Hero Styles for Cinematic Ambient Depth & Glassmorphic Scrim -->
+<style>
+  @keyframes cinematicScale {
+    0% { transform: scale(1.02); }
+    100% { transform: scale(1.08); }
+  }
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 
-  <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center z-10">
+  .animate-cinematic-scale {
+    animation: cinematicScale 16s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform;
+  }
+  .animate-slide-up {
+    animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-fade-in {
+    animation: fadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .premium-scrim {
+    background: radial-gradient(circle at center, rgba(26, 26, 26, 0.35) 0%, rgba(26, 26, 26, 0.75) 60%, rgba(26, 26, 26, 0.95) 100%);
+  }
+</style>
+
+<!-- HERO SECTION WITH CINEMATIC AMBIENT DEPTH -->
+<section class="relative min-h-screen flex items-center justify-center px-4 sm:px-8 pt-32 pb-24 w-full overflow-hidden bg-obsidian">
+  <!-- The Background Engine (Cinematic Living Backplate) -->
+  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <img
+      src="/static/images/hero_flooring.png"
+      alt="Premium Flooring Interior JKN"
+      class="w-full h-full object-cover object-center animate-cinematic-scale filter brightness-[0.8] contrast-[1.05]"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- The Contrast Scrim Layer (Radial vignette optimized for centered typography) -->
+    <div class="absolute inset-0 premium-scrim z-10"></div>
+  </div>
+
+  <!-- Centered Content Cluster -->
+  <div class="w-full max-w-4xl mx-auto z-20 text-center relative flex flex-col items-center justify-center">
     
-    <!-- Left text block (6 cols) -->
-    <div class="lg:col-span-6 flex flex-col items-start text-left blur-reveal">
-      <!-- Luxury Brand Stamp Seal Tag -->
-      <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-accent/5 border border-accent/25 mb-6 text-[10px] font-heading font-bold tracking-widest uppercase text-accent shadow-sm">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-        Servicing Toronto & The GTA
-      </div>
-
-      <!-- Classy two-tone editorial header -->
-      <h1 class="text-fluid-hero font-heading font-light tracking-tightest leading-[0.84] mb-8 text-obsidian">
-        The Ground<br><span class="font-extrabold text-accent">We Walk.</span>
-      </h1>
-
-      <p class="text-secondary font-medium text-sm sm:text-base max-w-xl leading-relaxed mb-10 tracking-tight font-sans">
-        Architectural grade hardwood, luxury vinyl plank, laminates, and custom tiles. Engineered for design, built to outlast.
-      </p>
-
-      <!-- Polished Dual-tone buttons -->
-      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto font-sans font-semibold text-xs tracking-wider uppercase">
-        <a href="#vision-tool" class="w-full sm:w-auto bg-obsidian text-white border border-obsidian px-8 py-4 rounded-full hover:bg-white hover:text-obsidian hover:border-black/20 transition-all flex items-center justify-center gap-2 shadow-sm group">
-          <i data-lucide="camera" class="w-4 h-4 text-white group-hover:text-accent transition-colors"></i> Try AI Visualizer
-        </a>
-        <button onclick="toggleChatAgent(true)" class="w-full sm:w-auto bg-white border border-black/5 hover:border-accent hover:text-accent px-8 py-4 rounded-full transition-all flex items-center justify-center gap-2 shadow-sm">
-          <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i> Ask AI Concierge
-        </button>
-      </div>
+    <!-- Centered Highly Refined Brand Stamp Seal -->
+    <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-accent/15 border border-accent/35 mb-8 text-[10px] font-heading font-bold tracking-widest uppercase text-accentLight shadow-glass-inner animate-fade-in">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+      Servicing Toronto & The GTA
     </div>
 
-    <!-- Right Image block (6 cols) - Premium floating asymmetrical picture frame -->
-    <div class="lg:col-span-6 blur-reveal delay-100 flex justify-center lg:justify-end mt-8 lg:mt-0">
-      <div class="relative w-full max-w-[450px] aspect-[4/3] sm:aspect-[4/5] rounded-[2rem] overflow-hidden border border-black/[0.04] shadow-float bg-accent/5 group">
-        <img
-          src="/static/images/hero_flooring.png"
-          alt="Premium Hardwood Flooring Installation JKN"
-          class="w-full h-full object-cover object-center img-zoom origin-center filter brightness-[0.98] contrast-[1.01]"
-          loading="eager"
-          fetchpriority="high"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent pointer-events-none"></div>
-        <div class="absolute bottom-5 left-5 bg-white/95 backdrop-blur-md border border-black/5 p-4.5 rounded-2xl flex flex-col gap-1.5 shadow-sm pointer-events-none">
-          <span class="text-[8px] font-heading font-bold text-accent uppercase tracking-widest leading-none">Showroom Showcase</span>
-          <span class="text-xs font-bold text-obsidian leading-none font-sans">Natural Oak Wide-Plank</span>
-        </div>
-      </div>
+    <!-- Centered Cupertino-inspired Typography -->
+    <h1 class="text-[clamp(2.75rem,7.5vw,6rem)] font-heading font-light tracking-tightest leading-[0.88] mb-8 text-white animate-slide-up">
+      The Ground<br><span class="font-extrabold text-accent">We Walk.</span>
+    </h1>
+
+    <p class="text-accentLight/80 font-sans font-medium text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed mb-12 tracking-tight mx-auto animate-slide-up [animation-delay:150ms]">
+      Architectural grade hardwood, luxury vinyl plank, laminates, and custom tiles. Engineered for design, built to outlast.
+    </p>
+
+    <!-- Twin Action Buttons with Premium Contrast Hierarchy -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto font-sans font-bold text-xs tracking-widest uppercase animate-slide-up [animation-delay:300ms]">
+      <!-- Primary: Try AI Visualizer -->
+      <a href="#vision-tool" class="w-full sm:w-auto bg-white text-obsidian border border-white/10 px-9 py-4.5 rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg group">
+        <i data-lucide="camera" class="w-4 h-4 text-obsidian group-hover:text-accent transition-colors"></i> Try AI Visualizer
+      </a>
+      
+      <!-- Secondary: Ask AI Concierge (Translucent glass matching header) -->
+      <button onclick="toggleChatAgent(true)" class="w-full sm:w-auto bg-white/10 backdrop-blur-md border border-white/15 text-white hover:bg-white/20 px-9 py-4.5 rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-glass">
+        <i data-lucide="sparkles" class="w-4 h-4 text-accent animate-pulse"></i> Ask AI Concierge
+      </button>
     </div>
   </div>
 </section>
