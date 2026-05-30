@@ -52,6 +52,8 @@ class HomeController(Controller):
                 for i, row in enumerate(reader):
                     if i >= 4:
                         break
+                    if 'Title' in row and row['Title']:
+                        row['Title'] = row['Title'].replace('*', '').strip()
                     biyork_products.append(row)
         
         return Template(template_name="home.html", context={"biyork_products": biyork_products})
@@ -277,6 +279,8 @@ class BiyorkController(Controller):
                 for i, row in enumerate(reader):
                     if i >= 40:
                         break
+                    if 'Title' in row and row['Title']:
+                        row['Title'] = row['Title'].replace('*', '').strip()
                     products.append(row)
         
         return Template(template_name="biyork.html", context={"products": products})
@@ -291,6 +295,8 @@ class BiyorkController(Controller):
                 reader = csv.DictReader(f)
                 for row in reader:
                     if row['Product ID'] == product_id:
+                        if 'Title' in row and row['Title']:
+                            row['Title'] = row['Title'].replace('*', '').strip()
                         product = row
                         break
         

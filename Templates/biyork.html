@@ -46,53 +46,53 @@
     <!-- Products Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
       {% for product in products %}
-      <!-- Premium Glassmorphic Card -->
-      <div class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-black/[0.04] shadow-sm hover:shadow-float transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 relative h-full blur-reveal" style="transition-delay: {{ loop.index0 % 4 * 50 }}ms;">
-        
-        <!-- Image Container -->
-        <div class="relative h-64 sm:h-72 bg-[#f9f8f6] img-container shrink-0 p-6 flex items-center justify-center overflow-hidden">
-          {% if product['Primary Image'] %}
-            <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" loading="lazy" class="w-full h-full object-contain rounded-lg img-zoom drop-shadow-md mix-blend-multiply transition-transform duration-700">
-          {% else %}
-            <div class="w-full h-full bg-black/5 rounded-lg flex items-center justify-center">
-              <i data-lucide="image" class="w-8 h-8 text-black/20"></i>
-            </div>
-          {% endif %}
-          
-          <!-- Category Pill -->
-          <div class="absolute top-4 left-4 z-10 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-obsidian border border-black/5 shadow-glass-inner truncate max-w-[80%]">
-            {{ product['Product Type'] or 'Premium Flooring' }}
-          </div>
-
-          <!-- Quick view hover action -->
-          <div class="absolute inset-0 bg-obsidian/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-            <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 bg-white px-4 py-2 rounded-full text-xs font-bold text-obsidian shadow-lg border border-black/5 flex items-center gap-2">
-              <i data-lucide="eye" class="w-3.5 h-3.5"></i> View Detail
-            </div>
+      <!-- Premium Cohesive Card -->
+      <a href="/biyork/{{ product['Product ID'] }}" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-black/[0.04] shadow-sm hover:shadow-float transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 relative h-full blur-reveal" style="transition-delay: {{ loop.index0 % 4 * 50 }}ms;">
+        <!-- Optimized Square Image Container -->
+        <div class="aspect-square w-full p-5 bg-[#faf9f6] border-b border-black/[0.02] flex items-center justify-center shrink-0">
+          <div class="w-full h-full bg-[#f9f8f6] rounded-xl flex items-center justify-center overflow-hidden shadow-inner border border-black/[0.03] group-hover:scale-[1.02] transition-transform duration-500 relative">
+            {% if product['Primary Image'] %}
+              <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" loading="lazy" class="w-[85%] h-[85%] object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105">
+            {% else %}
+              <div class="w-full h-full bg-black/5 flex items-center justify-center">
+                <i data-lucide="image" class="w-8 h-8 text-black/20"></i>
+              </div>
+            {% endif %}
           </div>
         </div>
-
-        <!-- Content Area -->
-        <div class="p-6 sm:p-8 flex flex-col flex-grow bg-gradient-to-b from-white to-[#faf9f6]/30">
-          <p class="text-[10px] font-bold text-accent uppercase tracking-widest mb-2 truncate">
-            {{ product['Vendor'] }}
-          </p>
-          <h3 class="text-lg font-heading font-semibold leading-snug mb-3 text-obsidian group-hover:text-accent transition-colors line-clamp-2">
+        
+        <!-- Cohesive Content Area -->
+        <div class="p-6 sm:p-7 flex flex-col flex-grow bg-gradient-to-b from-white to-[#faf9f6]/30">
+          <!-- Metadata Tag Row (Highly legible micro-headers with excellent contrast) -->
+          <div class="flex items-center gap-2 mb-3.5 flex-wrap">
+            {% set prod_type_parts = product['Product Type'].split('|') if product['Product Type'] else [] %}
+            {% set category_name = prod_type_parts[0].strip() if prod_type_parts else 'Premium Floor' %}
+            <span class="px-2.5 py-1 rounded-full bg-black/5 text-obsidian font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-black/[0.02] shadow-sm">
+              {{ category_name }}
+            </span>
+            <span class="px-2.5 py-1 rounded-full bg-accent/10 text-accentDark font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-accent/15">
+              {{ product['Vendor'] }}
+            </span>
+          </div>
+          
+          <!-- Product Title -->
+          <h3 class="text-base sm:text-lg font-heading font-semibold leading-snug mb-3 text-obsidian group-hover:text-accent transition-colors line-clamp-2">
             {{ product['Title'] }}
           </h3>
           
           <!-- Subtle description line if available -->
-          <p class="text-xs text-secondary line-clamp-2 mb-4 leading-relaxed font-medium">
-            {{ product['Description'] | striptags | truncate(100, True, '...') if product['Description'] else 'Architectural grade surface designed for superior aesthetic and durability.' }}
+          <p class="text-xs text-secondary line-clamp-2 mb-6 leading-relaxed font-medium">
+            {{ product['Description'] | striptags | truncate(95, True, '...') if product['Description'] else 'Architectural grade surface designed for superior aesthetic and durability.' }}
           </p>
           
-          <div class="mt-auto pt-6 flex items-end justify-between border-t border-black/[0.04]">
-            <a href="/biyork/{{ product['Product ID'] }}" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-surface border border-black/5 text-xs font-bold uppercase tracking-widest text-obsidian group-hover:bg-obsidian group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-md hover:scale-[1.02]">
-              Explore Surface <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
+          <!-- Explore Surface CTA Button -->
+          <div class="mt-auto">
+            <div class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-[#faf9f6] border border-black/5 text-xs font-bold uppercase tracking-widest text-obsidian group-hover:bg-obsidian group-hover:text-white transition-all duration-300 shadow-sm">
+              Explore Surface <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
     </div>
 
