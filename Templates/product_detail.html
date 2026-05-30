@@ -1,129 +1,119 @@
 {% extends "base.html" %}
-
 {% block title %}{{ product['Title'] if product else 'Product Not Found' }} | JKN Flooring{% endblock %}
 
 {% block content %}
-<!-- FULL SCREEN PREMIUM EDITORIAL HERO -->
-<section class="relative min-h-[90vh] bg-obsidian text-white flex flex-col justify-end overflow-hidden pb-12 pt-32 px-4 sm:px-8">
-  <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/80 to-transparent z-10 pointer-events-none"></div>
+<main class="min-h-screen bg-surface pt-32 pb-32 text-obsidian font-sans">
   
-  <!-- Massive Background Blur Orbs for dramatic lighting -->
-  <div class="absolute top-0 right-0 w-[50vw] h-[50vw] bg-accent/20 rounded-full blur-[150px] mix-blend-screen opacity-60"></div>
-  <div class="absolute bottom-0 left-0 w-[60vw] h-[60vw] bg-accentDark/30 rounded-full blur-[150px] mix-blend-screen opacity-50"></div>
-
-  <!-- Background Product Image Pattern -->
-  {% if product and product['Primary Image'] %}
-    <div class="absolute inset-0 z-0 opacity-[0.05] grayscale mix-blend-overlay" style="background-image: url('{{ product['Primary Image'] }}'); background-size: cover; background-position: center;"></div>
-  {% endif %}
-
-  <div class="relative z-20 max-w-[100rem] mx-auto w-full flex flex-col items-start gap-8 blur-reveal">
-    <nav class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-white/50">
-      <a href="/" class="hover:text-white transition-colors">Home</a>
-      <span>/</span>
-      <a href="/biyork" class="hover:text-white transition-colors">Biyork Partner Collection</a>
-    </nav>
+  {% if product %}
+  <div class="max-w-[90rem] mx-auto px-4 sm:px-8">
     
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 w-max backdrop-blur-md">
-      <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-      <span class="text-[9px] font-bold uppercase tracking-widest text-accentLight">{{ product['Vendor'] if product else 'Biyork' }} Architectural Grade</span>
-    </div>
+    <!-- Top Navigation -->
+    <nav class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-secondary mb-12">
+      <a href="/" class="hover:text-accent transition-colors">Home</a>
+      <span class="opacity-40">/</span>
+      <a href="/biyork" class="hover:text-accent transition-colors">Biyork Collection</a>
+      <span class="opacity-40">/</span>
+      <span class="text-obsidian truncate max-w-[250px]">{{ product['Title'] }}</span>
+    </nav>
 
-    <h1 class="text-[clamp(3rem,8vw,7rem)] font-heading font-light tracking-tightest leading-[0.9] max-w-5xl">
-      {{ product['Title'] if product else 'Surface Not Found' }}
-    </h1>
-  </div>
-</section>
-
-{% if product %}
-<!-- STICKY EDITORIAL PRODUCT DETAILS -->
-<section class="bg-surface relative z-30 pb-32">
-  <!-- Overlapping Container -->
-  <div class="max-w-[100rem] mx-auto px-4 sm:px-8 -mt-24 lg:-mt-32 relative z-40">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+    <!-- Header: Title & Meta -->
+    <header class="mb-12 max-w-5xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-white border border-black/5 mb-6 shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+        <span class="text-[9px] font-bold uppercase tracking-widest text-accent">{{ product['Vendor'] }} Exclusive</span>
+      </div>
       
-      <!-- Left: Floating Sticky Image -->
-      <div class="lg:col-span-7">
-        <div class="sticky top-32 flex flex-col gap-4 blur-reveal delay-100">
-          <div class="bg-white p-8 sm:p-16 rounded-[2.5rem] shadow-glass border border-black/5 aspect-[4/3] flex items-center justify-center relative overflow-hidden group">
-            {% if product['Primary Image'] %}
-              <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" class="w-full h-full object-contain mix-blend-multiply drop-shadow-xl group-hover:scale-105 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]">
-            {% else %}
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-medium tracking-tight text-obsidian leading-tight mb-8">
+        {{ product['Title'] }}
+      </h1>
+      
+      <div class="flex flex-wrap items-center gap-6 text-xs font-semibold text-secondary uppercase tracking-widest">
+        <span class="flex items-center gap-2"><i data-lucide="tag" class="w-4 h-4 text-accent/50"></i> {{ product['Product Type'] or 'Premium Surface' }}</span>
+        <span class="flex items-center gap-2"><i data-lucide="hash" class="w-4 h-4 text-accent/50"></i> SKU: {{ product['SKU'] or 'TBD' }}</span>
+        <span class="flex items-center gap-2 text-emerald-600"><i data-lucide="check-circle" class="w-4 h-4 opacity-70"></i> Available to Order</span>
+      </div>
+    </header>
+
+    <!-- Main Content: Image & Action -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-24">
+      
+      <!-- Centerpiece Image -->
+      <div class="lg:col-span-8 relative">
+        <div class="w-full bg-white rounded-[2rem] p-8 sm:p-16 shadow-glass border border-black/5 flex items-center justify-center">
+          {% if product['Primary Image'] %}
+            <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" class="w-full h-auto max-h-[600px] object-contain mx-auto rounded-xl">
+          {% else %}
+            <div class="w-full aspect-[16/9] bg-[#faf9f6] flex items-center justify-center rounded-xl">
               <i data-lucide="image" class="w-16 h-16 text-black/10"></i>
-            {% endif %}
-            <div class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[2.5rem] pointer-events-none"></div>
-          </div>
+            </div>
+          {% endif %}
         </div>
       </div>
 
-      <!-- Right: Detailed Specifications & CTA -->
-      <div class="lg:col-span-5 pt-12 lg:pt-32 flex flex-col gap-12 blur-reveal delay-200">
-        
-        <div>
-          <h3 class="text-xs font-bold uppercase tracking-widest text-accent mb-6 flex items-center gap-2"><i data-lucide="info" class="w-4 h-4"></i> Surface Profile</h3>
-          <div class="prose prose-base lg:prose-lg prose-p:leading-relaxed prose-p:text-obsidian/70 font-medium">
-            <p>{{ product['Description'] | safe if product['Description'] else 'Designed for sophisticated architectural projects requiring unparalleled durability and timeless aesthetic perfection.' }}</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="bg-white p-6 rounded-2xl border border-black/5 shadow-sm">
-            <p class="text-[9px] font-bold text-secondary uppercase tracking-widest mb-2">Category</p>
-            <p class="font-heading font-semibold text-lg text-obsidian">{{ product['Product Type'] or 'Premium Flooring' }}</p>
-          </div>
-          <div class="bg-white p-6 rounded-2xl border border-black/5 shadow-sm">
-            <p class="text-[9px] font-bold text-secondary uppercase tracking-widest mb-2">Identifier</p>
-            <p class="font-heading font-semibold text-lg text-obsidian">{{ product['SKU'] or 'TBD' }}</p>
-          </div>
-          <div class="bg-white p-6 rounded-2xl border border-black/5 shadow-sm sm:col-span-2">
-            <p class="text-[9px] font-bold text-secondary uppercase tracking-widest mb-2">Variant / Finish</p>
-            <p class="font-heading font-semibold text-lg text-obsidian">{{ product['Variant Name'] or 'Standard Finish' }}</p>
-          </div>
-        </div>
-
-        <div class="p-8 rounded-[2rem] bg-obsidian text-white relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-accent/20 blur-[40px] rounded-full"></div>
-          <h3 class="text-xl font-heading font-semibold mb-2 relative z-10">Start Your Project</h3>
-          <p class="text-sm text-white/70 mb-8 max-w-sm relative z-10 leading-relaxed font-medium">Connect with our Toronto-based architectural specialists to order this surface and arrange a precise installation estimate.</p>
+      <!-- Action & Details Box -->
+      <div class="lg:col-span-4 flex flex-col justify-start">
+        <div class="bg-white p-8 sm:p-10 rounded-[2rem] shadow-float border border-black/5 sticky top-32">
           
-          <div class="flex flex-col gap-3 relative z-10">
-            <a href="tel:+19054509054" class="w-full bg-white text-obsidian py-4 px-6 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-accent hover:text-white transition-all duration-300 group">
-              <i data-lucide="phone-call" class="w-4 h-4 group-hover:-rotate-12 transition-transform"></i> Call +1 905-450-9054
+          <h3 class="text-2xl font-heading font-medium text-obsidian mb-3">Ready to order?</h3>
+          <p class="text-sm text-secondary font-medium mb-10 leading-relaxed">Speak directly with our architectural specialists for precise installation estimates and inventory checks.</p>
+          
+          <div class="flex flex-col gap-4">
+            <a href="tel:+19054509054" class="w-full bg-obsidian text-white py-4.5 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-accent transition-colors shadow-md hover:-translate-y-0.5 transition-transform">
+              <i data-lucide="phone-call" class="w-4 h-4"></i> Call +1 905-450-9054
             </a>
-            <button onclick="toggleChatAgent(true)" class="w-full bg-white/5 border border-white/10 text-white py-4 px-6 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 transition-colors">
-              <i data-lucide="sparkles" class="w-4 h-4 text-accentLight"></i> Ask AI Concierge
+            
+            <button onclick="toggleChatAgent(true)" class="w-full bg-[#faf9f6] border border-black/5 text-obsidian py-4.5 rounded-full font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:border-accent hover:text-accent transition-colors">
+              <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i> Ask AI Concierge
             </button>
           </div>
-        </div>
 
+          <hr class="my-10 border-black/5">
+
+          <div class="flex flex-col gap-5 text-sm font-medium">
+            <div class="flex items-center justify-between border-b border-black-[0.02] pb-4">
+              <span class="text-secondary text-xs uppercase tracking-widest font-bold">Finish Variant</span>
+              <span class="text-obsidian font-bold text-right">{{ product['Variant Name'] or 'Standard' }}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-secondary text-xs uppercase tracking-widest font-bold">Brand Category</span>
+              <span class="text-obsidian font-bold text-right">{{ product['Vendor'] }}</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Description Section -->
+    <div class="max-w-4xl border-t border-black/10 pt-16">
+      <h3 class="text-xs font-bold uppercase tracking-widest text-accent mb-8 flex items-center gap-2">
+        <i data-lucide="file-text" class="w-4 h-4"></i> Architectural Details
+      </h3>
+      <div class="prose prose-sm sm:prose-base prose-p:leading-loose prose-p:text-secondary/70 prose-p:font-light max-w-none">
+        <p>{{ product['Description'] | safe if product['Description'] else 'No detailed description available. Please contact our team for technical specifications and subfloor compatibility.' }}</p>
       </div>
     </div>
+
   </div>
-</section>
-{% endif %}
+  {% else %}
+  <div class="flex flex-col items-center justify-center py-32 text-center max-w-lg mx-auto">
+    <div class="w-24 h-24 bg-white shadow-glass-inner rounded-full flex items-center justify-center border border-black/5 mb-8 text-obsidian/30">
+      <i data-lucide="search-x" class="w-10 h-10"></i>
+    </div>
+    <h2 class="text-4xl font-heading font-medium text-obsidian mb-4">Surface Not Found</h2>
+    <p class="text-secondary font-light mb-10 text-lg">The requested item could not be located in our active catalog.</p>
+    <a href="/biyork" class="bg-obsidian text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-accent transition-colors shadow-md">Return to Catalog</a>
+  </div>
+  {% endif %}
+
+</main>
 {% endblock %}
 
 {% block extra_js %}
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     if (typeof lucide !== 'undefined') lucide.createIcons();
-
-    const revealElements = document.querySelectorAll('.blur-reveal:not(.active)');
-    if (revealElements.length > 0) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add('active');
-            }, entry.target.style.transitionDelay ? 0 : 50);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.05,
-        rootMargin: "0px 0px -50px 0px"
-      });
-      revealElements.forEach(el => observer.observe(el));
-    }
   });
 </script>
 {% endblock %}
