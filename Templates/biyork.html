@@ -4,8 +4,8 @@
 {% block meta_description %}Browse our premium partner catalog featuring Biyork Canada's architectural-grade engineered hardwood, luxury vinyl plank, and laminate flooring options.{% endblock %}
 
 {% block content %}
-<!-- CURATED PARTNER HERO -->
-<section class="relative min-h-[50svh] flex items-center justify-center px-4 pt-32 pb-16 w-full max-w-[120rem] mx-auto overflow-hidden bg-obsidian text-white rounded-[2.5rem] mt-6">
+<!-- CURATED PARTNER HERO (Option A: sharp top edge, elegant rounded bottom corners) -->
+<section class="relative min-h-[50svh] flex items-center justify-center px-4 pt-36 pb-16 w-full max-w-[120rem] mx-auto overflow-hidden bg-obsidian text-white rounded-b-[2rem] rounded-t-none mt-0">
   <!-- Dynamic gradient orb for premium dark aesthetic -->
   <div class="absolute w-[600px] h-[600px] rounded-full bg-accent/20 blur-[120px] top-[-20%] right-[-10%] pointer-events-none"></div>
   <div class="absolute w-[400px] h-[400px] rounded-full bg-accentDark/30 blur-[100px] bottom-[-10%] left-[-5%] pointer-events-none"></div>
@@ -30,23 +30,29 @@
 <section class="py-24 px-4 sm:px-8 bg-[#faf9f6] relative">
   <div class="max-w-[120rem] mx-auto">
     
-    <!-- Filter & Sort Header -->
-    <div class="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6 blur-reveal active delay-100">
+    <!-- Filter & Sort Header (Upgraded clearance margin & premium sliding track) -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between mt-20 mb-16 gap-6 blur-reveal active delay-100">
       <h2 class="text-3xl font-heading font-semibold tracking-tight text-obsidian flex items-center flex-wrap gap-4">
         Available Surfaces 
       </h2>
       
-      <div class="flex items-center gap-2 text-xs font-bold tracking-wide uppercase overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
-        <button class="px-5 py-2.5 rounded-full border border-black/5 bg-white shadow-sm hover:border-accent hover:text-accent transition-all text-obsidian shrink-0">All Surfaces</button>
-        <button class="px-5 py-2.5 rounded-full border border-transparent hover:border-black/5 bg-transparent hover:bg-white transition-all text-secondary shrink-0">Engineered Hardwood</button>
-        <button class="px-5 py-2.5 rounded-full border border-transparent hover:border-black/5 bg-transparent hover:bg-white transition-all text-secondary shrink-0">Vinyl & Laminate</button>
+      <!-- Curated Slider Category Filter (Cupertino style unified track and sliding indicator) -->
+      <div class="relative bg-black/[0.04] p-1 rounded-full flex items-center border border-black/[0.02] text-[10px] font-bold tracking-widest uppercase text-secondary shrink-0 select-none shadow-[inset_0_1px_1px_rgba(0,0,0,0.03)]" id="filter-track">
+        <!-- Sliding active indicator background -->
+        <div class="absolute top-1 bottom-1 left-1 rounded-full bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-black/[0.02] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-0" id="filter-indicator" style="width: 105px; transform: translateX(0px);"></div>
+        
+        <button onclick="activateFilter(this, 0)" class="relative z-10 px-5 py-2.5 rounded-full text-obsidian font-bold transition-all duration-300 shrink-0 focus:outline-none">All Surfaces</button>
+        <button onclick="activateFilter(this, 1)" class="relative z-10 px-5 py-2.5 rounded-full text-secondary hover:text-obsidian transition-all duration-300 shrink-0 focus:outline-none">Engineered Hardwood</button>
+        <button onclick="activateFilter(this, 2)" class="relative z-10 px-5 py-2.5 rounded-full text-secondary hover:text-obsidian transition-all duration-300 shrink-0 focus:outline-none">Vinyl & Laminate</button>
       </div>
     </div>
 
     <!-- Curated Flat Products Grid (No padding/nested boxes - Cupertino-style flat minimalism) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
       {% for product in products %}
-      <a href="/biyork/{{ product['Product ID'] }}" class="group flex flex-col bg-white rounded-3xl overflow-hidden border border-black/[0.05] shadow-sm hover:shadow-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 relative h-full blur-reveal" style="transition-delay: {{ loop.index0 % 4 * 50 }}ms;">
+      {% set prod_type_parts = product['Product Type'].split('|') if product['Product Type'] else [] %}
+      {% set category_name = prod_type_parts[0].strip() if prod_type_parts else 'Premium Floor' %}
+      <a href="/biyork/{{ product['Product ID'] }}" data-category="{{ category_name | lower }}" class="group flex flex-col bg-white rounded-3xl overflow-hidden border border-black/[0.05] shadow-sm hover:shadow-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 relative h-full blur-reveal" style="transition-delay: {{ loop.index0 % 4 * 50 }}ms;">
         
         <!-- Flat Full-Bleed Upper Image Container (Uniform background to eliminate triple box nesting) -->
         <div class="aspect-square w-full bg-black/5 overflow-hidden shrink-0 relative border-b border-black/[0.02]">
@@ -63,8 +69,6 @@
         <div class="p-6 flex flex-col flex-grow bg-white">
           <!-- Metadata Tag Row (Lighter background pills with high contrast labels) -->
           <div class="flex items-center gap-2 mb-3.5 flex-wrap">
-            {% set prod_type_parts = product['Product Type'].split('|') if product['Product Type'] else [] %}
-            {% set category_name = prod_type_parts[0].strip() if prod_type_parts else 'Premium Floor' %}
             <span class="px-2.5 py-1 rounded-full bg-accent text-white font-sans font-bold text-[9px] uppercase tracking-widest leading-none border border-accent/10 shadow-sm">
               {{ category_name }}
             </span>
@@ -112,10 +116,76 @@
 
 {% block extra_js %}
 <script>
+  // Curated Tab Slider Tracker Animation Step
+  function activateFilter(btn, index) {
+    const indicator = document.getElementById("filter-indicator");
+    const track = document.getElementById("filter-track");
+    
+    if (indicator && track) {
+      // Calculate smooth slide and width transformations
+      indicator.style.width = `${btn.offsetWidth}px`;
+      indicator.style.transform = `translateX(${btn.offsetLeft - 4}px)`;
+      
+      const buttons = track.querySelectorAll("button");
+      buttons.forEach((b, i) => {
+        if (i === index) {
+          b.classList.add("text-obsidian", "font-bold");
+          b.classList.remove("text-secondary");
+        } else {
+          b.classList.remove("text-obsidian", "font-bold");
+          b.classList.add("text-secondary");
+        }
+      });
+    }
+
+    const filterMap = ["all", "engineered hardwood", "vinyl & laminate"];
+    filterProducts(filterMap[index]);
+  }
+
+  // Client-Side Hardware Accelerated Grid Filter
+  function filterProducts(category) {
+    const cards = document.querySelectorAll(".grid > a[data-category]");
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute("data-category") || "";
+      let matches = false;
+      
+      if (category === "all") {
+        matches = true;
+      } else if (category === "engineered hardwood") {
+        matches = cardCategory.includes("engineered") || cardCategory.includes("hardwood");
+      } else if (category === "vinyl & laminate") {
+        matches = cardCategory.includes("vinyl") || cardCategory.includes("laminate") || cardCategory.includes("spc") || cardCategory.includes("waterproof");
+      }
+      
+      if (matches) {
+        card.style.display = "flex";
+        setTimeout(() => {
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0) scale(1)";
+        }, 50);
+      } else {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(15px) scale(0.98)";
+        setTimeout(() => {
+          card.style.display = "none";
+        }, 300);
+      }
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     if (typeof lucide !== 'undefined') {
       lucide.createIcons();
     }
+
+    // Auto-align sliding indicator to active button on layout mount
+    setTimeout(() => {
+      const track = document.getElementById("filter-track");
+      if (track) {
+        const activeBtn = track.querySelector("button");
+        if (activeBtn) activateFilter(activeBtn, 0);
+      }
+    }, 100);
 
     // Advanced 3D Reveal Intersection Observer
     const revealElements = document.querySelectorAll('.blur-reveal:not(.active)');
