@@ -5,8 +5,8 @@
 <main class="min-h-screen bg-[#faf9f6] pt-32 pb-32 text-obsidian font-sans">
   
   {% if product %}
-  <!-- Page Container (Locked to standard max-w-7xl Grid Bounds) -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+  <!-- Page Container (Upgraded to max-w-[120rem] for perfect ultrawide visual alignment) -->
+  <div class="max-w-[120rem] mx-auto px-4 sm:px-8">
     
     <!-- Top Breadcrumb Navigation -->
     <nav class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-secondary mb-12">
@@ -87,48 +87,18 @@
           </div>
         </div>
 
-        <!-- High-fidelity Tabular Technical Specifications Grid -->
+        <!-- High-fidelity Tabular Technical Specifications Grid (Upgraded to dynamic, parsed rows) -->
         <h3 class="text-xs font-bold uppercase tracking-widest text-accent mb-6 flex items-center gap-2">
           <i data-lucide="sliders" class="w-4 h-4 text-accent/70"></i> Technical Specifications
         </h3>
         <div class="border border-black/[0.04] rounded-2xl overflow-hidden shadow-sm bg-white font-sans text-xs sm:text-sm">
           <div class="divide-y divide-black/[0.03]">
+            {% for name, val in specs.items() %}
             <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
-              <span class="text-secondary font-medium">Veneer / Wear Layer</span>
-              <span class="text-obsidian font-bold text-right">
-                {% if '1.2mm' in product['Description'] %}1.2mm Real Wood Veneer
-                {% elif '20mil' in product['Description'] or '20 mil' in product['Description'] %}20mil (0.5mm) Heavy Wear
-                {% elif '22mil' in product['Description'] or '22 mil' in product['Description'] %}22mil Premium Wear
-                {% else %}Architectural Grade Core
-                {% endif %}
-              </span>
+              <span class="text-secondary font-medium">{{ name }}</span>
+              <span class="text-obsidian font-bold text-right">{{ val }}</span>
             </div>
-            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
-              <span class="text-secondary font-medium">Radiant Heat Compatibility</span>
-              <span class="text-obsidian font-bold text-right">
-                {% if 'Radiant Heat' in product['Description'] or 'radiant heat' in product['Description'] or 'Radiant' in product['Description'] %}Fully Compatible
-                {% else %}Check Subfloor Guides
-                {% endif %}
-              </span>
-            </div>
-            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
-              <span class="text-secondary font-medium">Installation Joint System</span>
-              <span class="text-obsidian font-bold text-right">
-                {% if 'Click' in product['Description'] or 'click' in product['Description'] or 'Valinge' in product['Description'] or 'I4F' in product['Description'] or 'i4f' in product['Description'] %}Drop-Lock Click Joint
-                {% else %}Tongue &amp; Groove Fit
-                {% endif %}
-              </span>
-            </div>
-            <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
-              <span class="text-secondary font-medium">Structural Warranty</span>
-              <span class="text-obsidian font-bold text-right">
-                {% if '30-year' in product['Description'] or '30 Year' in product['Description'] %}30-Year Residential
-                {% elif '35-year' in product['Description'] or '35 Year' in product['Description'] %}35-Year Residential
-                {% elif '40 Year' in product['Description'] or '40-year' in product['Description'] %}40-Year Residential
-                {% else %}Limited Lifetime Structural
-                {% endif %}
-              </span>
-            </div>
+            {% endfor %}
             <div class="grid grid-cols-2 p-4.5 hover:bg-[#faf9f6]/30 transition-colors">
               <span class="text-secondary font-medium">Air Quality Certification</span>
               <span class="text-obsidian font-bold text-right">FloorScore® Certified</span>

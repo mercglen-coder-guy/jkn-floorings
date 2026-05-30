@@ -290,6 +290,7 @@ class BiyorkController(Controller):
         """Render individual Biyork product detail page."""
         catalog_path = Path("Data/biyork_enterprise_catalog.csv")
         product = None
+        specs = {}
         if catalog_path.exists():
             with open(catalog_path, encoding='utf-8') as f:
                 reader = csv.DictReader(f)
@@ -300,7 +301,90 @@ class BiyorkController(Controller):
                         product = row
                         break
         
-        return Template(template_name="product_detail.html", context={"product": product})
+        if product and 'Description' in product:
+            desc = product['Description']
+            
+            # Clean description text
+            desc_clean = desc.replace('&amp;', '&').replace('TM', '™').replace('TrueShield', 'TrueShield™')
+            
+            # 1. Material Category / Flooring Type
+            if "Engineered Hardwood" in desc_clean:
+                specs["Material Category"] = "Engineered Hardwood"
+            elif "SPC" in desc_clean or "Vinyl" in desc_clean or "LVP" in desc_clean:
+                specs["Material Category"] = "Waterproof SPC Luxury Vinyl"
+            elif "Laminate" in desc_clean:
+                specs["Material Category"] = "Premium HDF Laminate"
+            else:
+                specs["Material Category"] = "Architectural Surface"
+
+            # 2. Dimensions (Width & Thickness)
+            dim_match = re.search(r'(\d+(?:\.\d+)?(?:["”])\s*Width\s*x\s*\d+(?:/\d+)?(?:["”])\s*Thick)', desc_clean, re.IGNORECASE)
+            if dim_match:
+                specs["Dimensions"] = dim_match.group(1)
+            else:
+                width_match = re.search(r'(\d+(?:\.\d+)?(?:["”])\s*Width)', desc_clean, re.IGNORECASE)
+                thick_match = re.search(r'(\d+(?:/\d+)?(?:["”])\s*Thick)', desc_clean, re.IGNORECASE)
+                if width_match and thick_match:
+                    specs["Dimensions"] = f"{width_match.group(1)} x {thick_match.group(1)}"
+                elif width_match:
+                    specs["Dimensions"] = f"{width_match.group(1)} Planks"
+                else:
+                    specs["Dimensions"] = "Architectural Profile"
+
+            # 3. Veneer / Wear Layer
+            veneer_match = re.search(r'(\d+(?:\.\d+)?\s*(?:mm|mil)\s*(?:Veneer|Wear\s*Layer|Wear))', desc_clean, re.IGNORECASE)
+            if veneer_match:
+                specs["Veneer / Wear Layer"] = veneer_match.group(1)
+            elif "1.2mm" in desc_clean:
+                specs["Veneer / Wear Layer"] = "1.2mm Real Wood Veneer"
+            elif "20mil" in desc_clean or "20 mil" in desc_clean:
+                specs["Veneer / Wear Layer"] = "20mil (0.5mm) Heavy Commercial"
+            elif "22mil" in desc_clean or "22 mil" in desc_clean:
+                specs["Veneer / Wear Layer"] = "22mil Premium Wear Shield"
+            else:
+                specs["Veneer / Wear Layer"] = "High Durability Protective Coating"
+
+            # 4. Joint System / Installation Method
+            if "Tongue & Groove" in desc_clean or "Tongue &amp; Groove" in desc_clean:
+                specs["Joint Profile"] = "Precision Tongue & Groove System"
+            elif "Click" in desc_clean or "Drop-Lock" in desc_clean or "Valinge" in desc_clean or "i4f" in desc_clean.lower():
+                specs["Joint Profile"] = "Drop-Lock Click Joint (Floating)"
+            else:
+                specs["Joint Profile"] = "Architectural Interlocking Profile"
+
+            # 5. Warranty
+            warranty_match = re.search(r'(\d+[- ]year\s*(?:Residential)?\s*Warranty)', desc_clean, re.IGNORECASE)
+            if warranty_match:
+                specs["Warranty Protection"] = warranty_match.group(1)
+            elif "Lifetime" in desc_clean:
+                specs["Warranty Protection"] = "Lifetime Structural Warranty"
+            else:
+                specs["Warranty Protection"] = "30-Year Residential / 5-Year Commercial"
+
+            # 6. Radiant Heat
+            if "Radiant Heat" in desc_clean:
+                specs["Radiant Heat Rated"] = "Fully Compatible / Radiant Approved"
+            else:
+                specs["Radiant Heat Rated"] = "Suitable for Standard Underlayments"
+
+            # 7. Finish / Texture
+            finish_match = re.search(r'(\w+ished\s*Finish|\w+\s*Finish)', desc_clean, re.IGNORECASE)
+            if finish_match:
+                specs["Finish & Texture"] = finish_match.group(1)
+            elif "Wirebrushed" in desc_clean:
+                specs["Finish & Texture"] = "Premium Wirebrushed Matte"
+            elif "EIR" in desc_clean or "Embossed" in desc_clean:
+                specs["Finish & Texture"] = "Embossed In Register Wood Grain"
+            else:
+                specs["Finish & Texture"] = "Architectural Matte Finish"
+
+            # 8. Grade / Subfloor
+            if "Above or Below" in desc_clean or "On, Above" in desc_clean:
+                specs["Installation Level"] = "On, Above, or Below Grade"
+            else:
+                specs["Installation Level"] = "On / Above Grade Subfloors"
+        
+        return Template(template_name="product_detail.html", context={"product": product, "specs": specs})
 
 # -------------------------------------------------------------
 # Application Setup & Configurations

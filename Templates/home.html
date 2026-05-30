@@ -42,8 +42,8 @@
     <div class="absolute inset-0 bg-gradient-to-t from-obsidian/40 via-transparent to-obsidian/30 z-10"></div>
   </div>
 
-  <!-- Localized Typography Glass Shield (Isolates readability elegantly over fully detailed wood image) -->
-  <div class="w-full max-w-3xl mx-auto z-20 relative flex flex-col items-center justify-center animate-container-reveal bg-[#1a1a1a]/60 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 sm:p-14 shadow-2xl">
+  <!-- Localized Typography Glass Shield (Isolates readability elegantly with non-linear radial scrim behind core block) -->
+  <div class="w-full max-w-3xl mx-auto z-20 relative flex flex-col items-center justify-center animate-container-reveal backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 sm:p-14 shadow-2xl" style="background: radial-gradient(110% 110% at 50% 50%, rgba(26, 26, 26, 0.75) 0%, rgba(26, 26, 26, 0.6) 60%, rgba(26, 26, 26, 0.45) 100%);">
     
     <!-- Brand Stamp Seal -->
     <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-accent/20 border border-accent/40 mb-6 text-[10px] font-heading font-bold tracking-widest uppercase text-accentLight shadow-glass-inner">
@@ -67,21 +67,21 @@
         <i data-lucide="camera" class="w-4 h-4 text-obsidian group-hover:text-accent transition-colors"></i> Try AI Visualizer
       </a>
       
-      <!-- Secondary: Ask AI Concierge (Structured border - no fuzzy shadow glow) -->
-      <button onclick="toggleChatAgent(true)" class="w-full sm:w-auto bg-white/10 border border-white/12 text-white hover:bg-white/20 px-9 py-4.5 rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5">
+      <!-- Secondary: Ask AI Concierge (Structured border - no fuzzy shadow glow, premium inner edge overlay) -->
+      <button onclick="toggleChatAgent(true)" class="w-full sm:w-auto bg-white/10 border border-white/12 text-white hover:bg-white/20 px-9 py-4.5 rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]">
         <i data-lucide="sparkles" class="w-4 h-4 text-accent animate-pulse"></i> Ask AI Concierge
       </button>
     </div>
   </div>
 </section>
 
-<!-- BIYORK PARTNER SECTION (Standardized max-w-7xl Grid bounds) -->
+<!-- BIYORK PARTNER SECTION (Upgraded to 120rem Grid bounds) -->
 <section class="py-24 px-4 sm:px-8 bg-obsidian text-white relative overflow-hidden blur-reveal">
   <!-- Subtle dynamic background glow -->
   <div class="absolute w-[600px] h-[600px] rounded-full bg-accent/20 blur-[120px] top-[-20%] left-[-10%] pointer-events-none"></div>
   <div class="absolute w-[400px] h-[400px] rounded-full bg-accentDark/30 blur-[90px] bottom-[-10%] right-[5%] pointer-events-none"></div>
 
-  <div class="w-full max-w-7xl mx-auto z-10 relative">
+  <div class="w-full max-w-[120rem] mx-auto z-10 relative">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
       <div class="max-w-xl">
         <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 text-[10px] font-heading font-bold tracking-widest uppercase text-accentLight backdrop-blur-md">
@@ -105,8 +105,8 @@
       {% for product in biyork_products %}
       <a href="/biyork/{{ product['Product ID'] }}" class="group flex flex-col bg-[#1c1c1c] rounded-2xl overflow-hidden border border-white/10 hover:border-accent hover:bg-white/5 transition-all duration-500 hover:-translate-y-2 relative h-full">
         
-        <!-- Flat Full-Bleed Upper Image Container -->
-        <div class="aspect-square w-full bg-[#f4f3ef] overflow-hidden shrink-0 relative">
+        <!-- Flat Full-Bleed Upper Image Container (Uniform dark background to eliminate triple box nesting) -->
+        <div class="aspect-square w-full bg-white/5 overflow-hidden shrink-0 relative">
           {% if product['Primary Image'] %}
             <img src="{{ product['Primary Image'] }}" alt="{{ product['Title'] }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           {% else %}
@@ -148,8 +148,8 @@
   </div>
 </section>
 
-<!-- STANDALONE AI VISION TOOL (Lock to standard max-w-7xl boundary) -->
-<section id="vision-tool" class="w-full max-w-7xl mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] relative z-20 blur-reveal">
+<!-- STANDALONE AI VISION TOOL (Lock to standard max-w-[120rem] boundary) -->
+<section id="vision-tool" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] relative z-20 blur-reveal">
   <!-- Minimalist card contour -->
   <div class="bg-white rounded-[clamp(2rem,4vw,3rem)] shadow-glass border border-black/[0.04] overflow-hidden flex flex-col lg:flex-row">
     
@@ -253,8 +253,8 @@
   </div>
 </section>
 
-<!-- ARCHITECTURAL ADVANTAGES (Locked to standard max-w-7xl Grid Bounds) -->
-<section class="w-full max-w-7xl mx-auto px-4 sm:px-8 py-[clamp(3rem,8vw,6rem)] z-20 blur-reveal">
+<!-- ARCHITECTURAL ADVANTAGES (Locked to standard max-w-[120rem] Grid Bounds) -->
+<section class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(3rem,8vw,6rem)] z-20 blur-reveal">
   <div class="text-center mb-12 sm:mb-16">
     <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; Complete Assurance &bull;</p>
     <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-heading font-semibold tracking-tightest leading-none text-obsidian mb-4">
@@ -298,8 +298,8 @@
   </div>
 </section>
 
-<!-- CORE SERVICES GRID (Locked to standard max-w-7xl Grid Bounds) -->
-<section id="services" class="w-full max-w-7xl mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] z-20 blur-reveal">
+<!-- CORE SERVICES GRID (Locked to standard max-w-[120rem] Grid Bounds) -->
+<section id="services" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-[clamp(4rem,10vw,8rem)] z-20 blur-reveal">
   <div class="flex flex-col mb-[clamp(2rem,4vw,3.5rem)]">
     <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; Architectural Crafts &bull;</p>
     <h2 class="text-fluid-h2 font-heading font-semibold tracking-tightest leading-[0.9] text-obsidian mb-6">
@@ -361,8 +361,8 @@
   </div>
 </section>
 
-<!-- BEFORE / AFTER SLIDER SECTION (Locked to standard max-w-7xl Grid Bounds) -->
-<section id="transformations" class="w-full max-w-7xl mx-auto px-4 sm:px-8 pb-[clamp(4rem,10vw,8rem)] z-20 blur-reveal relative">
+<!-- BEFORE / AFTER SLIDER SECTION (Locked to standard max-w-[120rem] Grid Bounds) -->
+<section id="transformations" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 pb-[clamp(4rem,10vw,8rem)] z-20 blur-reveal relative">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-4">
     <div>
       <p class="text-accent text-[10px] font-heading font-bold tracking-widest uppercase mb-1">&bull; GTA Visual Proof &bull;</p>
@@ -416,8 +416,8 @@
   </div>
 </section>
 
-<!-- METRICS GRID (Locked to standard max-w-7xl Grid Bounds) -->
-<section class="w-full max-w-7xl mx-auto px-4 sm:px-8 relative z-20 blur-reveal delay-200">
+<!-- METRICS GRID (Locked to standard max-w-[120rem] Grid Bounds) -->
+<section class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 relative z-20 blur-reveal delay-200">
   <div class="bg-white rounded-[clamp(1.25rem,2.5vw,2rem)] py-8 sm:py-10 px-4 sm:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0 gap-x-4 md:gap-x-10 text-center items-center border border-black/[0.04] shadow-sm">
     <div class="flex flex-col justify-center">
       <p class="text-[clamp(1.75rem,3.5vw,3rem)] font-heading font-semibold text-obsidian leading-none mb-2.5">
@@ -442,8 +442,8 @@
   </div>
 </section>
 
-<!-- CONTACT & CONVERSION ENGINE (Locked to standard max-w-7xl Container & fully standardized underline input styles) -->
-<section id="contact" class="w-full max-w-7xl mx-auto px-4 sm:px-8 py-24 relative z-20 blur-reveal">
+<!-- CONTACT & CONVERSION ENGINE (Locked to standard max-w-[120rem] Container & fully standardized underline input styles) -->
+<section id="contact" class="w-full max-w-[120rem] mx-auto px-4 sm:px-8 py-24 relative z-20 blur-reveal">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-start">
     
     <!-- Info Side (5 cols) -->
@@ -510,13 +510,14 @@
           </div>
           <!-- Custom Select with Floating Label (100% matched typography and line alignment) -->
           <div class="relative w-full">
-            <select id="flooringType" name="flooring_type" class="w-full bg-transparent border-b border-black/15 focus:border-accent pt-6 pb-2 text-sm text-obsidian font-semibold focus:outline-none transition-all cursor-pointer appearance-none" required>
+            <select id="flooringType" name="flooring_type" class="peer w-full bg-transparent border-b border-black/15 focus:border-accent pt-6 pb-2 text-sm text-obsidian font-semibold focus:outline-none transition-all cursor-pointer appearance-none" required>
+              <option value="" disabled selected hidden></option>
               <option value="hardwood" class="font-semibold text-obsidian">Solid / Engineered Hardwood</option>
               <option value="vinyl" class="font-semibold text-obsidian">Luxury Vinyl Plank (LVP)</option>
               <option value="laminate" class="font-semibold text-obsidian">Premium Laminate</option>
               <option value="other" class="font-semibold text-obsidian">Tile / Repairs / Accessories</option>
             </select>
-            <label for="flooringType" class="absolute left-0 top-1.5 text-[9px] font-heading font-bold uppercase tracking-widest text-secondary pointer-events-none">Flooring Needed *</label>
+            <label for="flooringType" id="flooringTypeLabel" class="absolute left-0 top-6 text-sm font-sans font-medium normal-case text-secondary transition-all peer-focus:top-1.5 peer-focus:text-[9px] peer-focus:font-heading peer-focus:font-bold peer-focus:uppercase peer-focus:text-accent pointer-events-none">Flooring Needed *</label>
             <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none pt-4">
               <i data-lucide="chevron-down" class="w-4 h-4 text-secondary"></i>
             </div>
@@ -546,57 +547,29 @@
 
 {% block extra_js %}
 <script>
-  // In-App Premium Toast Notification Helper (replaces browser alerts completely!)
-  function showCustomToast(title, message, type = "success") {
-    let container = document.getElementById("toast-container");
-    if (!container) {
-      container = document.createElement("div");
-      container.id = "toast-container";
-      container.className = "fixed top-24 right-4 sm:right-8 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full";
-      document.body.appendChild(container);
+  // Native Select Element Floating Label Synchronization
+  const selectEl = document.getElementById("flooringType");
+  const labelEl = document.getElementById("flooringTypeLabel");
+  
+  function checkSelectValue() {
+    if (selectEl.value) {
+      labelEl.classList.remove("top-6", "text-sm", "font-sans", "normal-case");
+      labelEl.classList.add("top-1.5", "text-[9px]", "font-heading", "font-bold", "uppercase");
+    } else {
+      labelEl.classList.add("top-6", "text-sm", "font-sans", "normal-case");
+      labelEl.classList.remove("top-1.5", "text-[9px]", "font-heading", "font-bold", "uppercase");
     }
-    
-    const toast = document.createElement("div");
-    toast.className = `p-5 rounded-2xl border backdrop-blur-xl shadow-xl pointer-events-auto transform translate-x-12 opacity-0 transition-all duration-500 flex items-start gap-3.5 bg-white ${type === 'success' ? 'border-emerald-100' : 'border-red-100'}`;
-    
-    const iconWrapper = document.createElement("div");
-    iconWrapper.className = `w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${type === 'success' ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-500'}`;
-    
-    const icon = document.createElement("i");
-    icon.setAttribute("data-lucide", type === "success" ? "check-circle" : "alert-circle");
-    icon.className = "w-4 h-4";
-    iconWrapper.appendChild(icon);
-    
-    const textBlock = document.createElement("div");
-    
-    const header = document.createElement("h4");
-    header.className = "text-xs font-bold text-obsidian uppercase tracking-wider";
-    header.textContent = title;
-    
-    const body = document.createElement("p");
-    body.className = "text-xs text-secondary font-medium mt-1 leading-relaxed";
-    body.textContent = message;
-    
-    textBlock.appendChild(header);
-    textBlock.appendChild(body);
-    
-    toast.appendChild(iconWrapper);
-    toast.appendChild(textBlock);
-    
-    container.appendChild(toast);
-    
-    if (typeof lucide !== 'undefined') lucide.createIcons();
-    
-    setTimeout(() => {
-      toast.classList.remove("translate-x-12", "opacity-0");
-    }, 50);
-    
-    setTimeout(() => {
-      toast.classList.add("translate-x-12", "opacity-0");
-      setTimeout(() => {
-        toast.remove();
-      }, 500);
-    }, 5000);
+  }
+  
+  if (selectEl && labelEl) {
+    selectEl.addEventListener("change", checkSelectValue);
+    selectEl.addEventListener("focus", () => {
+      labelEl.classList.remove("top-6", "text-sm", "font-sans", "normal-case");
+      labelEl.classList.add("top-1.5", "text-[9px]", "font-heading", "font-bold", "uppercase");
+    });
+    selectEl.addEventListener("blur", checkSelectValue);
+    // Trigger initial check
+    checkSelectValue();
   }
 
   // Reveal-on-Scroll animations
