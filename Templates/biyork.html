@@ -87,15 +87,8 @@
           </p>
           
           <div class="mt-auto pt-6 flex items-end justify-between border-t border-black/[0.04]">
-            <div>
-              <p class="text-[9px] text-secondary font-bold uppercase tracking-widest mb-1">Estimated Base</p>
-              <p class="text-lg font-semibold text-obsidian flex items-baseline gap-1">
-                ${{ product['Price (CAD)'] }} <span class="text-[10px] text-secondary font-normal uppercase tracking-widest">CAD / sqft</span>
-              </p>
-            </div>
-            
-            <a href="/biyork/{{ product['Product ID'] }}" class="w-10 h-10 rounded-full bg-surface border border-black/5 text-obsidian flex items-center justify-center group-hover:bg-obsidian group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-md hover:scale-110">
-              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            <a href="/biyork/{{ product['Product ID'] }}" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-surface border border-black/5 text-xs font-bold uppercase tracking-widest text-obsidian group-hover:bg-obsidian group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-md hover:scale-[1.02]">
+              Explore Surface <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
           </div>
         </div>

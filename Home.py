@@ -274,7 +274,9 @@ class BiyorkController(Controller):
         if catalog_path.exists():
             with open(catalog_path, encoding='utf-8') as f:
                 reader = csv.DictReader(f)
-                for row in reader:
+                for i, row in enumerate(reader):
+                    if i >= 40:
+                        break
                     products.append(row)
         
         return Template(template_name="biyork.html", context={"products": products})
